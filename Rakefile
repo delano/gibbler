@@ -17,8 +17,7 @@ LICENSE = "LICENSE.txt"
 # Files and directories to be deleted when you run "rake clean"
 CLEAN.include [ 'pkg', '*.gem', '.config']
 
-# Virginia assumes your project and gemspec have the same name
-name = (Dir.glob('*.gemspec') || ['virginia']).first.split('.').first
+name = 'gibbler'
 load "#{name}.gemspec"
 version = @spec.version
 
