@@ -27,20 +27,23 @@ class Object
   private
   def __generate_gibbler(h)
     klass = h.class
-    if h.kind_of? Hash
+    if h.kind_of?(Hash) || h.respond_to?(:keys)
       d = h.keys.sort { |a,b| a.inspect <=> b.inspect }
       d.collect! { |name| '%s:%s:%s' % [klass, name, __generate_gibbler(h[name])] }
       a=__generate_gibbler d.join($/)
       gibbler_debug [klass, a]
       a
-    elsif h.kind_of? Array
-      d = []
-      h.each_with_index do |value,index| 
-        '%s:%s:%s' % [h.class, index, __generate_gibbler(value)]
+    elsif h.kind_of?(Array) || h.respond_to?(:each)
+      d, index = [], 0
+      h.each do |value| 
+        d << '%s:%s:%s' % [h.class, index, __generate_gibbler(value)]
+        index += 1
       end
       a=__generate_gibbler d.join($/)
       gibbler_debug [klass, a]
       a
+    elsif h.respond_to? :gibble
+      
     else
       value = h.nil? ? "\0" : h.to_s
       a=@@gibbler_digest_type.hexdigest "%s:%d:%s" % [klass, value.size, value]
