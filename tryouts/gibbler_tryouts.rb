@@ -17,22 +17,12 @@ tryouts "Basic syntax with SHA1" do
   drill "Hash", Hash 
   
   dream :to_gibble, :respond_to?
+  dream 'ab33b9dec202d136d0e695a3a7b06ee678134882', :to_gibble 
+  drill "Array", Array
+  
+  dream :to_gibble, :respond_to?
   dream '2e124aa78e365a6222bfa0f1c725181ab5d33440', :to_gibble 
   drill "Empty Hash instance", Hash.new
-  
-  dream :to_gibble, :respond_to?
-  dream '83c4994bb01eefc06aa267aa99aa12b55696616e', :to_gibble 
-  drill "Array", Array 
-  
-  dream :to_gibble, :respond_to?
-  dream '2e124aa78e365a6222bfa0f1c725181ab5d33440', :to_gibble 
-  drill "Empty Array instance", Array.new
-  
-  dream "7bd799aa2dfe6d180dfc5124561413a85b85d5c4", :to_gibble 
-  drill "Populated Array instance" do
-    stash :poop, 11111111
-    [1, 222222, :runtime, [2, "three", [Object]]]
-  end 
   
   dream "6a0eace5245ec00306c2a15f652a9d520d49b657", :to_gibble 
   drill "Populated Hash instance" do
@@ -40,9 +30,19 @@ tryouts "Basic syntax with SHA1" do
       :a => [1,2,3, [4,5,6]],
       :b => { :c => Class }
     }
+  end
+  
+  dream :to_gibble, :respond_to?
+  dream '2e124aa78e365a6222bfa0f1c725181ab5d33440', :to_gibble 
+  drill "Empty Array instance", Array.new
+  
+  dream "213c82119d256e29d0e786cfcc5400c3bb043517", :to_gibble 
+  drill "Populated Array instance" do
+    stash :poop, 11111111
+    [1, 222222, :runtime, [2, "three", [Object]]]
   end 
   
-  drill "Knows when an object has changed" do
+  drill "Knows when an Hash has changed" do
     a = {}
     stash :clean, a.clone
     a.to_gibble
@@ -74,6 +74,6 @@ tryouts "Benchmarks", :benchmark do
   end
   
   drill("array sort!", 4, :mean, 5) { @@array.dup.sort! }
-  xdrill("array sort", 3.0, :lte)  { @@array.dup.sort }
+  drill("array sort", 3.0, :mean, 5)  { @@array.dup.sort }
 
 end
