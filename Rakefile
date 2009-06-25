@@ -68,7 +68,7 @@ end
 Rake::RDocTask.new do |t|
 	t.rdoc_dir = 'doc'
 	t.title    = @spec.summary
-	t.options << '--line-numbers' << '-A cattr_accessor=object'
+	t.options << '--line-numbers' 
 	t.options << '--charset' << 'utf-8'
 	t.rdoc_files.include(LICENSE)
 	t.rdoc_files.include(README)
