@@ -1,0 +1,31 @@
+= Gash - v0.2 
+
+Git-like hashes for Ruby objects.
+
+    
+    config = {}
+    config.gash             # => 57589e9811fe00c307ed3ab740cdac516c9975cb
+    
+    config[:server] = { 
+      :users => [:dave, :ali], 
+      :ports => [22, 80, 443]
+    }
+    config.gash             # => 87d792aefceb893b2d966828827c61636b0ace3e 
+    
+    config[:server][:users] << :yanni
+    
+    config.gash             # => 126ea10af73149ae4e69b0e036aa1d47a7651f07
+
+== ALPHA NOTICE
+
+This code is hella fresh. It's ugly and barely tested, but it's fun to play with. I'll happily accept patches. 
+
+
+== Credits
+
+* Delano Mandelbaum (delano@solutious.com)
+
+
+== License
+
+See: LICENSE.txt
