@@ -1,6 +1,6 @@
 
 library :gibbler, File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
-group "Gibbler Gazzette"
+group "Gibbler Gazette"
 
 tryouts "Basic syntax with SHA1" do
   
