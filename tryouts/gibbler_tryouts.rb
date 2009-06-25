@@ -1,5 +1,6 @@
 
 library :gibbler, File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+group "Gibbler Gazzette"
 
 tryouts "Basic syntax with SHA1" do
   
@@ -27,8 +28,9 @@ tryouts "Basic syntax with SHA1" do
   dream '2e124aa78e365a6222bfa0f1c725181ab5d33440', :to_gibble 
   drill "Empty Array instance", Array.new
   
-  dream "213c82119d256e29d0e786cfcc5400c3bb043517", :to_gibble 
+  dream "7bd799aa2dfe6d180dfc5124561413a85b85d5c4", :to_gibble 
   drill "Populated Array instance" do
+    stash :poop, 11111111
     [1, 222222, :runtime, [2, "three", [Object]]]
   end 
   
@@ -63,5 +65,15 @@ tryouts "Basic syntax with SHA256" do
   dream :to_gibble, :respond_to?
   dream '995b827e46b9169bb6f8f29457f61fca24f88593c99d9660f36ec66e528b32f9', :to_gibble 
   drill "Hash", Hash
+end
+
+tryouts "Benchmarks", :benchmark do
   
+  drill "Setup variables" do
+    @@array = (1..100000).map { rand }
+  end
+  
+  drill("array sort!", 4, :mean, 5) { @@array.dup.sort! }
+  xdrill("array sort", 3.0, :lte)  { @@array.dup.sort }
+
 end
