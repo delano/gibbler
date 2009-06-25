@@ -4,7 +4,7 @@ require 'digest/sha1'
 class Object
   
   @@gibbler_digest_type = Digest::SHA1
-  @@gibbler_debug = false
+  @@gibbler_debug = true
   
   def self.gibbler_digest_type=(v)
     @@gibbler_digest_type = v
@@ -33,7 +33,7 @@ class Object
       a=__generate_gibbler d.join($/)
       gibbler_debug [klass, a]
       a
-    elsif h.kind_of?(Array) || h.respond_to?(:each)
+    elsif h.kind_of?(Array)
       d, index = [], 0
       h.each do |value| 
         d << '%s:%s:%s' % [h.class, index, __generate_gibbler(value)]
@@ -43,7 +43,7 @@ class Object
       gibbler_debug [klass, a]
       a
     elsif h.respond_to? :gibble
-      
+     
     else
       value = h.nil? ? "\0" : h.to_s
       a=@@gibbler_digest_type.hexdigest "%s:%d:%s" % [klass, value.size, value]
