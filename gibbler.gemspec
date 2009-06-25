@@ -1,12 +1,12 @@
 @spec = Gem::Specification.new do |s|
-	s.name = "gash"
-  s.rubyforge_project = "gash"
+	s.name = "gibbler"
+  s.rubyforge_project = "gibbler"
 	s.version = "0.1"
-	s.summary = "Gash: Git-like hashes for Ruby objects"
+	s.summary = "Gibbler: Git-like hashes for Ruby objects"
 	s.description = s.summary
 	s.author = "Delano Mandelbaum"
 	s.email = "delano@solutious.com"
-	s.homepage = "http://github.com/delano/gash"
+	s.homepage = "http://github.com/delano/gibbler"
   
   # = EXECUTABLES =
   # The list of executables in your project (if any). Don't include the path, 
