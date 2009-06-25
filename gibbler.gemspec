@@ -18,15 +18,16 @@
   
   # Specific files to include rdocs from
   s.extra_rdoc_files = ["README.rdoc", "LICENSE.txt"]
+  s.has_rdoc = true
   
   # Update --main to reflect the default page to display
   s.rdoc_options = ["--line-numbers", "--title", s.summary, "--main", "README.rdoc"]
   
   # = MANIFEST =
   s.files = %w(
+  README.rdoc
   CHANGES.txt
   LICENSE.txt
-  README.rdoc
   Rakefile
   gibbler.gemspec
   lib/gibbler.rb

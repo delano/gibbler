@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rake/clean'
 require 'rake/gempackagetask'
-require 'rake/rdoctask'
+require 'hanna/rdoctask'
 require 'fileutils'
 include FileUtils
  
