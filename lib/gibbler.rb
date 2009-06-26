@@ -18,6 +18,7 @@ class Object
   def self.gibbler_digest_type=(v)
     @@gibbler_digest_type = v
   end
+  
     # Returns the current digest class. 
   def self.gibbler_digest_type; @@gibbler_digest_type; end
     # Returns the current debug status (true or false)
