@@ -17,7 +17,7 @@ tryouts "Basic syntax with SHA1" do
   drill "Hash", Hash 
   
   dream :to_gibble, :respond_to?
-  dream 'ab33b9dec202d136d0e695a3a7b06ee678134882', :to_gibble 
+  dream '83c4994bb01eefc06aa267aa99aa12b55696616e', :to_gibble 
   drill "Array", Array
   
   dream :to_gibble, :respond_to?
