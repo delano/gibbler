@@ -22,10 +22,10 @@ tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
   dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
-  xdrill "Empty Hash instance", Hash.new
+  drill "Empty Hash instance", Hash.new
   
   dream :gibble, "6a0eace5245ec00306c2a15f652a9d520d49b657"
-  xdrill "Populated Hash instance" do
+  drill "Populated Hash instance" do
     {
       :a => [1,2,3, [4,5,6]],
       :b => { :c => Class }
@@ -34,14 +34,14 @@ tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
   dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
-  xdrill "Empty Array instance", Array.new
+  drill "Empty Array instance", Array.new
   
   dream :gibble, "213c82119d256e29d0e786cfcc5400c3bb043517"
-  xdrill "Populated Array instance" do
+  drill "Populated Array instance" do
     [1, 222222, :runtime, [2, "three", [Object]]]
   end 
   
-  xdrill "Knows when an Hash has changed" do
+  drill "Knows when an Hash has changed" do
     a = {}
     stash :clean, a.clone
     a.gibble 
@@ -51,7 +51,7 @@ tryouts "Basic syntax with SHA1" do
   end
   
   dream :gibble, "b2a0746137cbf8fb575d86af84cdaf6aa0dd72fc"
-  xdrill "works on arbitrary objects" do
+  drill "works on arbitrary objects" do
     class ::Poop
       attr_reader :dave2
       def __c2ustom_gibbler
@@ -84,5 +84,5 @@ tryouts "Basic syntax with SHA256" do
   
   dream :respond_to?, :gibble
   dream :gibble, '995b827e46b9169bb6f8f29457f61fca24f88593c99d9660f36ec66e528b32f9' 
-  xdrill "Hash", Hash
+  drill "Hash", Hash
 end
