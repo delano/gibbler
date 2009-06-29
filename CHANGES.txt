@@ -1,6 +1,14 @@
 GIBBLER, CHANGES
 
 
-#### 0.2 (2009-06-25) ###############################
+#### 0.3 (2009-06-25) #################################
+
+* CHANGE: Renamed to_gibble -> gibbler
+* CHANGE: Created Gibbler module, all other modules can 
+  include its junk into their namespace. 
+* ADDED: Object#hash and performance tryouts
+
+
+#### 0.2 (2009-06-25) #################################
 
 NOTE: Initial release
