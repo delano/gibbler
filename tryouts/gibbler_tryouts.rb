@@ -75,7 +75,7 @@ end
 
 tryouts "Basic syntax with SHA256" do
   setup do
-    Gibbler.gibble _digest_type = Digest::SHA256
+    Gibbler.gibbler_digest_type = Digest::SHA256
   end
   
   dream :respond_to?, :gibble
