@@ -42,7 +42,7 @@ module Gibbler
   
   # Has this object been modified?
   def gibbled?
-    was, now = @__gibble__.clone, self.gibbler
+    was, now = @__gibble__.clone, self.gibble
     gibbler_debug [:gibbled?, was, now]
     was != now
   end
