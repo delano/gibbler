@@ -15,14 +15,14 @@ tryouts "Speed", :benchmark do
     @@array.hash
   end 
   drill "Array#gibbler", 15 do
-    @@array.gibbler
+    @@array.gibble 
   end
   
   drill "Hash#hash", 15 do
     @@hash.hash
   end
   drill "Hash#gibbler", 15 do
-    @@hash.gibbler
+    @@hash.gibble 
   end
   
 end
@@ -54,7 +54,7 @@ tryouts "Uniqueness", :api do
     seen = []
     repetitions.times do
       srand
-      seen << ((sample_size).map { rand }).gibbler
+      seen << ((sample_size).map { rand }).gibble 
     end
     seen.size - seen.uniq.size
   end
@@ -63,7 +63,7 @@ tryouts "Uniqueness", :api do
     seen = []
     repetitions.times do
       srand
-      seen << Hash[(sample_size).map { rand }.zip((sample_size).map { rand })].gibbler
+      seen << Hash[(sample_size).map { rand }.zip((sample_size).map { rand })].gibble 
     end
     seen.size - seen.uniq.size
   end

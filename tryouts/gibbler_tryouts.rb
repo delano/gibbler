@@ -4,27 +4,27 @@ group "Gibbler Gazette"
 
 tryouts "Basic syntax with SHA1" do
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2' 
+  dream :respond_to?, :gibble
+  dream :gibble, '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2' 
   drill "Object", Object
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
+  dream :respond_to?, :gibble
+  dream :gibble, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
   drill "Class", Class
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, 'c93bfdb675f9b0aae27b8c6660690f88bb6603b5' 
+  dream :respond_to?, :gibble
+  dream :gibble, 'c93bfdb675f9b0aae27b8c6660690f88bb6603b5' 
   drill "Hash", Hash 
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '83c4994bb01eefc06aa267aa99aa12b55696616e' 
+  dream :respond_to?, :gibble
+  dream :gibble, '83c4994bb01eefc06aa267aa99aa12b55696616e' 
   drill "Array", Array
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
+  dream :respond_to?, :gibble
+  dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
   xdrill "Empty Hash instance", Hash.new
   
-  dream :gibbler, "6a0eace5245ec00306c2a15f652a9d520d49b657"
+  dream :gibble, "6a0eace5245ec00306c2a15f652a9d520d49b657"
   xdrill "Populated Hash instance" do
     {
       :a => [1,2,3, [4,5,6]],
@@ -32,26 +32,25 @@ tryouts "Basic syntax with SHA1" do
     }
   end
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
+  dream :respond_to?, :gibble
+  dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
   xdrill "Empty Array instance", Array.new
   
-  dream :gibbler, "213c82119d256e29d0e786cfcc5400c3bb043517"
+  dream :gibble, "213c82119d256e29d0e786cfcc5400c3bb043517"
   xdrill "Populated Array instance" do
-    stash :poop, 11111111
     [1, 222222, :runtime, [2, "three", [Object]]]
   end 
   
   xdrill "Knows when an Hash has changed" do
     a = {}
     stash :clean, a.clone
-    a.gibbler
+    a.gibble 
     a[:magic] = []
     stash :changed, a.clone
     a.gibbled?
   end
   
-  dream :gibbler, "b2a0746137cbf8fb575d86af84cdaf6aa0dd72fc"
+  dream :gibble, "b2a0746137cbf8fb575d86af84cdaf6aa0dd72fc"
   xdrill "works on arbitrary objects" do
     class ::Poop
       attr_reader :dave2
@@ -76,14 +75,14 @@ end
 
 tryouts "Basic syntax with SHA256" do
   setup do
-    Gibbler.gibbler_digest_type = Digest::SHA256
+    Gibbler.gibble _digest_type = Digest::SHA256
   end
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '5dbdeb534f4c2fff44fc695453ae2da221cdc38c9e3329b5691aa6542669148c' 
+  dream :respond_to?, :gibble
+  dream :gibble, '5dbdeb534f4c2fff44fc695453ae2da221cdc38c9e3329b5691aa6542669148c' 
   drill "Object", Object
   
-  dream :respond_to?, :gibbler
-  dream :gibbler, '995b827e46b9169bb6f8f29457f61fca24f88593c99d9660f36ec66e528b32f9' 
+  dream :respond_to?, :gibble
+  dream :gibble, '995b827e46b9169bb6f8f29457f61fca24f88593c99d9660f36ec66e528b32f9' 
   xdrill "Hash", Hash
 end

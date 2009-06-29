@@ -1,5 +1,5 @@
 
-library :gibbler2, File.dirname(__FILE__), '..', 'lib'
+library :gibbler, File.dirname(__FILE__), '..', 'lib'
 group "Object#hash"
 
 tryout "Object#hash (Ruby 1.9 only)", :api do

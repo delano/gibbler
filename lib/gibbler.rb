@@ -29,15 +29,15 @@ module Gibbler
   # Objects that are a kind of Hash or Array are processed
   # recursively. The length of the returned String depends 
   # on the digest type. 
-  def gibbler
+  def gibble
     #if h.respond_to? :__custom_gibbler
     #  d = h.__custom_gibbler
-    #  a = __default_gibbler '%s:%s:%s' % [klass, d.size, d]
+    #  a = __gibbler '%s:%s:%s' % [klass, d.size, d]
     #  gibbler_debug [klass, a]
     #  a
     #end
     gibbler_debug [:GIBBLER, self.class, self]
-    @__gibble__ = self.__default_gibbler
+    @__gibble__ = self.__gibbler
   end
   
   # Has this object been modified?
@@ -56,13 +56,13 @@ end
 class Hash
   include Gibbler
   
-  def __default_gibbler(h=self)
+  def __gibbler(h=self)
     klass = h.class
     d = h.keys.sort { |a,b| a.inspect <=> b.inspect }
     d.collect! do |name| 
-      '%s:%s:%s' % [klass, name, h[name].__default_gibbler]
+      '%s:%s:%s' % [klass, name, h[name].__gibbler]
     end 
-    a = d.join($/).__default_gibbler 
+    a = d.join($/).__gibbler 
     gibbler_debug [klass, a]
     a  
   end
@@ -72,14 +72,14 @@ end
 class Array
   extend Gibbler
   
-  def __default_gibbler(h=self)
+  def __gibbler(h=self)
     klass = h.class
     d, index = [], 0
     h.each do |value| 
-      d << '%s:%s:%s' % [h.class, index, value.__default_gibbler]
+      d << '%s:%s:%s' % [h.class, index, value.__gibbler]
       index += 1
     end
-    a = d.join($/).__default_gibbler
+    a = d.join($/).__gibbler
     gibbler_debug [klass, a]
     a
   end
@@ -89,7 +89,7 @@ end
 class Object
   include Gibbler
   
-  def __default_gibbler(h=self)
+  def __gibbler(h=self)
     klass = h.class
     value = h.nil? ? "\0" : h.to_s
     a=@@gibbler_digest_type.hexdigest "%s:%d:%s" % [klass, value.size, value]
