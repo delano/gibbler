@@ -2,6 +2,9 @@
 library :gibbler, File.dirname(__FILE__), '..', 'lib'
 group "Gibbler Gazette"
 
+
+Gibbler.enable_debug if Tryouts.verbose > 3
+
 tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
@@ -13,7 +16,7 @@ tryouts "Basic syntax with SHA1" do
   drill "Class", Class
   
   dream :respond_to?, :gibble
-  dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
+  dream :gibble, '4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf' 
   drill "Empty Hash instance", Hash.new
   
   dream :gibble, 'a9cad665549bd22a4346fcf602d9d3c3b0482bbe'
@@ -26,7 +29,7 @@ tryouts "Basic syntax with SHA1" do
     100000000000
   end
   
-  dream :gibble, "eb06424859fd665b49ab938669229d3424721a54"
+  dream :gibble, "1d4b62e1e9f2c097b0cefb6877bf47c2015cdd21"
   drill "Populated Hash instance" do
     {
       :a => [1,2,3, [4,5,6]],
@@ -35,31 +38,36 @@ tryouts "Basic syntax with SHA1" do
   end
   
   dream :respond_to?, :gibble
-  dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
+  dream :gibble, '48fda57c05684c9e5c3259557851943572183a21' 
   drill "Empty Array instance", Array.new
   
-  dream :gibble, "cb398d1deb081e91e7bf7243a5dd670abe9e23bf"
+  dream :gibble, "884e5713aa70468333459f80aea1bb05394ca4ba"
   drill "Populated Array instance" do
-    [1, 222222, :runtime, [2, "three", [Object]]]
+    [1, 22222222222, :runtime, [2, "three", [Object, true]]]
   end 
   
-  drill "Knows when an Hash has changed" do
-    a = {}
-    stash :clean, a.clone
-    a.gibble 
-    a[:magic] = []
-    stash :changed, a.clone
+  drill "Knows when a Hash has not changed", false do
+    a = { :magic => true }
+    a.gibble
+    a[:magic] = true
     a.gibbled?
   end
   
-  dream :gibble, "8f3615b8e22ee9c6caac00d31527adb37904f38d"
+  drill "Knows when a Hash has changed", true do
+    a = { :magic => true }
+    a.gibble
+    a[:magic] = false
+    a.gibbled?
+  end
+  
+  dream :gibble, "6ea546919dc4caa2bab69799b71d48810a1b48fa"
   drill "works on arbitrary objects" do
     class ::FullHouse
       include Gibbler::Complex
-      attr_accessor :actors
+      attr_accessor :roles
     end
     a = FullHouse.new
-    a.actors = [:jesse, :joey, :danny]
+    a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]
     a
   end
   
@@ -69,7 +77,7 @@ end
 
 tryouts "Basic syntax with SHA256" do
   setup do
-    Gibbler.gibbler_digest_type = Digest::SHA256
+    Gibbler.digest_type = Digest::SHA256
   end
   
   dream :respond_to?, :gibble
@@ -81,7 +89,7 @@ tryouts "Basic syntax with SHA256" do
   drill "Class", Class
   
   dream :respond_to?, :gibble
-  dream :gibble, '91e0dc8b5132520064d037ef4c5a12781a02febedd1980e27e5f25e3eb56e70c' 
-  drill "Hash", {}
+  dream :gibble, '88d2bcbd68ce593fd2e0e06f276f7301357516291b95c0c53038e61a9bf091e5' 
+  drill "Empty Hash instance", {}
   
 end
