@@ -1,25 +1,61 @@
-= Gibbler - v0.3
+= Gibbler - v0.4
 
 Git-like hashes for Ruby objects.
 
-    
+== Examples
+
     config = {}
-    config.gibble              # => 2e124aa78e365a6222bfa0f1c725181ab5d33440
+    config.gibble              # => 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf
+    config.gibbled?            # => false
     
     config[:server] = { 
       :users => [:dave, :ali], 
       :ports => [22, 80, 443]
     }
-    config.gibble              # => ac95d3ecfefa7e691f7f1524d586eca74ffd9625 
+    config.gibbled?            # => true
+    config.gibble              # => ef23d605f8c4fc80a8e580f9a0e8dab8426454a8 
     
     config[:server][:users] << :yanni
     
-    config.gibble              # => 4629a5e966cd1a5290be9237bf47411096234911
+    config.gibble              # => 4c558a56bc2abf5f8a845a69e47ceb5e0003683f
+
+
+== Supported Classes
+
+Gibbler methods are available only to the classes which explicitly include them (see RDocs[http://delano.github.com/gibbler] for details on which classes are supported by default). You can also extend custom objects:
+
+    class FullHouse
+      include Gibbler::Complex
+      attr_accessor :roles
+    end
+    
+    a = FullHouse.new
+    a.gibble                   # => 4192d4cb59975813f117a51dcd4454ac16df6703
+    
+    a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]
+    a.gibble                   # => 6ea546919dc4caa2bab69799b71d48810a1b48fa
+    
+Gibbler::Complex creates a digest based on the name of the class and the names and values of the instance variables. See the RDocs[http://delano.github.com/gibbler] for other Gibbler::* types. 
+
+If you want to support all Ruby objects, add the following to your application:
+
+    class Object
+      include Gibbler::String
+    end
+
+Gibbler::String creates a digest based on the output of the to_s method. This is a reasonable default for more objects however any object that includes the object address in to_s (e.g. "<Object:0x0x4ac9f0...") will produce unreliable gibbles (because the address can change).
 
 
 == ALPHA NOTICE (2009-06-30)
 
 This code is hella fresh. It's ugly and barely tested, but it's fun to play with. I'll happily accept patches. 
+
+NOTE: Gibbles have changed between 0.3 and 0.4. Ones created with 0.3 and earlier will not match ones created with 0.4 for the same object. 
+
+
+== Known Issues
+
+* The gibble method or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous gibble value to compare to)
 
 
 == More Info
