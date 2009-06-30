@@ -42,6 +42,10 @@ module Gibbler
   end
   
   # Has this object been modified?
+  #
+  # This method compares the return value from gibble with the 
+  # previous value returned by gibble (the value is stored in
+  # <tt>@__gibble__</tt>)
   def gibbled?
     was, now = @__gibble__.clone, self.gibble
     gibbler_debug [:gibbled?, was, now]
@@ -52,6 +56,14 @@ module Gibbler
     return unless @@gibbler_debug == true
     p *args 
   end
+  
+  # Gets the list of instance variables from the standard implementation
+  # of the instance_variables method and removes <tt>@__gibble</tt>. 
+  def instance_variables
+    vars = super
+    vars.reject! { |x| x.to_s == '@__gibble__'}
+    vars
+  end
 end
 
 class Hash
@@ -61,7 +73,8 @@ class Hash
     klass = h.class
     d = h.keys.sort { |a,b| a.inspect <=> b.inspect }
     d.collect! do |name| 
-      '%s:%s:%s' % [klass, name, h[name].__gibbler]
+      value = h[name]
+      '%s:%s:%s' % [value.class, name, value.__gibbler]
     end 
     a = d.join($/).__gibbler 
     gibbler_debug [klass, a]
@@ -77,7 +90,7 @@ class Array
     klass = h.class
     d, index = [], 0
     h.each do |value| 
-      d << '%s:%s:%s' % [h.class, index, value.__gibbler]
+      d << '%s:%s:%s' % [value.class, index, value.__gibbler]
       index += 1
     end
     a = d.join($/).__gibbler
@@ -97,4 +110,5 @@ class Object
     gibbler_debug [klass, value.size, value, a]
     a
   end
+  
 end

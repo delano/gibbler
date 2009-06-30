@@ -1,30 +1,38 @@
-= Gibbler - v0.2 
+= Gibbler - v0.3
 
 Git-like hashes for Ruby objects.
 
     
     config = {}
-    config.gibble              # => 57589e9811fe00c307ed3ab740cdac516c9975cb
+    config.gibble              # => 2e124aa78e365a6222bfa0f1c725181ab5d33440
     
     config[:server] = { 
       :users => [:dave, :ali], 
       :ports => [22, 80, 443]
     }
-    config.gibble              # => 87d792aefceb893b2d966828827c61636b0ace3e 
+    config.gibble              # => ac95d3ecfefa7e691f7f1524d586eca74ffd9625 
     
     config[:server][:users] << :yanni
     
-    config.gibble              # => 126ea10af73149ae4e69b0e036aa1d47a7651f07
+    config.gibble              # => 4629a5e966cd1a5290be9237bf47411096234911
 
 
-== ALPHA NOTICE
+== ALPHA NOTICE (2009-06-30)
 
 This code is hella fresh. It's ugly and barely tested, but it's fun to play with. I'll happily accept patches. 
 
 
+== More Info
+
+* Codes[http://github.com/delano/gibbler]
+* RDocs[http://delano.github.com/gibbler]
+* Sponsor[http://solutious.com/]
+* Inspiration[http://www.youtube.com/watch?v=fipD4DdV48g]
+
+
 == Credits
 
-* Delano Mandelbaum (delano@solutious.com)
+* Delano (@solutious.com)
 
 
 == License

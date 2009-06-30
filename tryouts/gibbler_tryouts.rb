@@ -24,7 +24,7 @@ tryouts "Basic syntax with SHA1" do
   dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
   drill "Empty Hash instance", Hash.new
   
-  dream :gibble, "6a0eace5245ec00306c2a15f652a9d520d49b657"
+  dream :gibble, "eb06424859fd665b49ab938669229d3424721a54"
   drill "Populated Hash instance" do
     {
       :a => [1,2,3, [4,5,6]],
@@ -36,7 +36,7 @@ tryouts "Basic syntax with SHA1" do
   dream :gibble, '2e124aa78e365a6222bfa0f1c725181ab5d33440' 
   drill "Empty Array instance", Array.new
   
-  dream :gibble, "213c82119d256e29d0e786cfcc5400c3bb043517"
+  dream :gibble, "cb398d1deb081e91e7bf7243a5dd670abe9e23bf"
   drill "Populated Array instance" do
     [1, 222222, :runtime, [2, "three", [Object]]]
   end 
@@ -50,24 +50,25 @@ tryouts "Basic syntax with SHA1" do
     a.gibbled?
   end
   
-  dream :gibble, "b2a0746137cbf8fb575d86af84cdaf6aa0dd72fc"
-  xdrill "works on arbitrary objects" do
-    class ::Poop
-      attr_reader :dave2
-      def __c2ustom_gibbler
-        @poopp = 3
-        # todo, add class vars and values, and instance vars values
-        vars = instance_variables.clone
-        vars.reject! { |x| x.to_s == '@__gibble__'}
-        a = (vars + methods).join(':')
-        p a
-        a
-      end
-      def poop
+  dream :gibble, "24ef0a2737a995b233c0891d768862ecf0a3aa5d"
+  drill "works on arbitrary objects" do
+    class ::House
+      attr_accessor :uj
+      def __gibbler
+        d = []
+        instance_variables.each do |n|
+          value = instance_variable_get(n)
+          d << '%s:%s:%s' % [value.class, n, value.__gibbler]
+        end
+        #public_methods.each do |n|
+        #  d << '%s:%s:%s' % [:public_method, n.size, n.__gibbler]
+        #end
+        a = d.join(':')
+        @@gibbler_digest_type.hexdigest "%s:%d:%s" % [self.class, a.size, a]
       end
     end
-    a = Poop.new
-    #p a
+    a = House.new
+    a.uj = 1
     a
   end
   
