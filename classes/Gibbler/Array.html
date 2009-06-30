@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: Gibbler::Array [Gibbler: Git-like hashes for Ruby objects]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Module</span>
+          Gibbler::Array
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/gibbler_rb.html">lib/gibbler.rb</a>
+          </li>
+        </ol>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000015">__gibbler</a></li>
+            </ol>
+          </div>
+          <div id='context'>
+            <div id='includes'>
+              <h2>Included modules</h2>
+              <ol>
+                <li><a href="../Gibbler.html">Gibbler</a></li>
+              </ol>
+            </div>
+          </div>
+          <div id='section'>
+            <div id='methods'>
+              <h2>Public instance methods</h2>
+              <div class='public-instance method' id='method-M000015'>
+                <a name='M000015'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>__gibbler</span>
+                  <span class='arguments'>(h=self)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Creates a gibble based on:
+                  </p>
+                  <ul>
+                  <li>parse each element into an <a href="Array.html">Array</a> of gibbles like:
+                  <tt>CLASS:INDEX:VALUE.__gibbler</tt>
+                  
+                  <ul>
+                  <li>The gibble method is called on each element so if it is a <a
+                  href="Hash.html">Hash</a> or <a href="Array.html">Array</a> etc it will be
+                  parsed recursively according to the gibbler method for that class type.
+                  
+                  </li>
+                  </ul>
+                  </li>
+                  <li>Gibble the <a href="Array.html">Array</a> of gibbles
+                  
+                  </li>
+                  <li>Return the digest for <tt>class:length:value</tt> where:
+                  
+                  <ul>
+                  <li>&#8220;class&#8221; is equal to the current object class (e.g. <a
+                  href="Array.html">Array</a>).
+                  
+                  </li>
+                  <li>&#8220;length&#8221; is the size of the <a href="Array.html">Array</a> of
+                  gibbles (which should equal the number of elements in the original <a
+                  href="Array.html">Array</a> object).
+                  
+                  </li>
+                  <li>&#8220;value&#8221; is the <a href="Array.html">Array</a> of gibbles joined
+                  with a colon (&#8220;:&#8221;).
+                  
+                  </li>
+                  </ul>
+                  </li>
+                  </ul>
+                  <p>
+                  This method can be used by any class with an <tt>each</tt> method.
+                  </p>
+                  <p>
+                  e.g.
+                  </p>
+                  <pre>class NamedArray&#x000A;  include Gibbler::Array&#x000A;end</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000015-source'>     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 196</span>&#x000A;196:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">h</span>=<span class="ruby-keyword kw">self</span>)&#x000A;197:       <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">class</span>&#x000A;198:       <span class="ruby-identifier">d</span>, <span class="ruby-identifier">index</span> = [], <span class="ruby-value">0</span>&#x000A;199:       <span class="ruby-identifier">h</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> &#x000A;200:         <span class="ruby-identifier">d</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">index</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">__gibbler</span>]&#x000A;201:         <span class="ruby-identifier">index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;202:       <span class="ruby-keyword kw">end</span>&#x000A;203:       <span class="ruby-identifier">d</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>).<span class="ruby-identifier">__gibbler</span>&#x000A;204:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;205:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;206:       <span class="ruby-identifier">a</span>&#x000A;207:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

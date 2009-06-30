@@ -31,25 +31,80 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-06-29 12:01:17 -0400</span>
+          <span class='datetime'>2009-06-30 11:08:51 -0400</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.2</h1>
+            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.4</h1>
             <p>
             Git-like hashes for Ruby objects.
             </p>
-            <pre>config = {}&#x000A;config.gibble              # =&gt; 57589e9811fe00c307ed3ab740cdac516c9975cb&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibble              # =&gt; 87d792aefceb893b2d966828827c61636b0ace3e&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibble              # =&gt; 126ea10af73149ae4e69b0e036aa1d47a7651f07</pre>
-            <h2>ALPHA NOTICE</h2>
+            <h2>Examples</h2>
+            <pre>config = {}&#x000A;config.gibble              # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?            # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?            # =&gt; true&#x000A;config.gibble              # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibble              # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f</pre>
+            <h2>Supported Classes</h2>
+            <p>
+            <a href="../classes/Gibbler.html">Gibbler</a> methods are available only to
+            the classes which explicitly include them (see <a
+            href="http://delano.github.com/gibbler">RDocs</a> for details on which
+            classes are supported by default). You can also extend custom objects:
+            </p>
+            <pre>class FullHouse&#x000A;  include Gibbler::Complex&#x000A;  attr_accessor :roles&#x000A;end&#x000A;&#x000A;a = FullHouse.new&#x000A;a.gibble                   # =&gt; 4192d4cb59975813f117a51dcd4454ac16df6703&#x000A;&#x000A;a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]&#x000A;a.gibble                   # =&gt; 6ea546919dc4caa2bab69799b71d48810a1b48fa</pre>
+            <p>
+            <a href="../classes/Gibbler/Complex.html">Gibbler::Complex</a> creates a
+            digest based on the name of the class and the names and values of the
+            instance variables. See the <a
+            href="http://delano.github.com/gibbler">RDocs</a> for other Gibbler::*
+            types.
+            </p>
+            <p>
+            If you want to support all Ruby objects, add the following to your
+            application:
+            </p>
+            <pre>class Object&#x000A;  include Gibbler::String&#x000A;end</pre>
+            <p>
+            <a href="../classes/Gibbler/String.html">Gibbler::String</a> creates a
+            digest based on the output of the to_s method. This is a reasonable default
+            for more objects however any object that includes the object address in
+            to_s (e.g. &#8220;<Object:0x0x4ac9f0...&#8220;) will produce unreliable
+            gibbles (because the address can change).
+            </p>
+            <h2>ALPHA NOTICE (2009-06-30)</h2>
             <p>
             This code is hella fresh. It&#8217;s ugly and barely tested, but it&#8217;s
             fun to play with. I&#8217;ll happily accept patches.
             </p>
+            <p>
+            NOTE: Gibbles have changed between 0.3 and 0.4. Ones created with 0.3 and
+            earlier will not match ones created with 0.4 for the same object.
+            </p>
+            <h2>Known Issues</h2>
+            <ul>
+            <li>The gibble method or gibbled? must be called at least once before gibbled?
+            will be able to return a useful value (otherwise there is no previous
+            gibble value to compare to)
+            
+            </li>
+            </ul>
+            <h2>More Info</h2>
+            <ul>
+            <li><a href="http://github.com/delano/gibbler">Codes</a>
+            
+            </li>
+            <li><a href="http://delano.github.com/gibbler">RDocs</a>
+            
+            </li>
+            <li><a href="http://solutious.com/">Sponsor</a>
+            
+            </li>
+            <li><a href="http://www.youtube.com/watch?v=fipD4DdV48g">Inspiration</a>
+            
+            </li>
+            </ul>
             <h2>Credits</h2>
             <ul>
-            <li>Delano Mandelbaum (delano@solutious.com)
+            <li>Delano (@solutious.com)
             
             </li>
             </ul>

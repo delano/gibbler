@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-06-29 20:25:54 -0400</span>
+          <span class='datetime'>2009-06-30 10:04:26 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -40,6 +40,44 @@
             <p>
             GIBBLER, CHANGES
             </p>
+            <p>
+            #### 0.4 (2009-06-30) #################################
+            </p>
+            <p>
+            NOTE: Calculated gibbles have changed since 0.3. Most gibbles created with
+            0.3 and earlier will not match those created in 0.4 for the same object
+            </p>
+            <ul>
+            <li>FIXED: <a href="../classes/Hash.html">Hash</a> and <a
+            href="../classes/Array.html">Array</a> now use the class of the value for
+            hashing rather than <a href="../classes/Hash.html">Hash</a> or <a
+            href="../classes/Array.html">Array</a> (respectively).
+            
+            </li>
+            <li>FIXED: __gibbler methods now return a digest based on their own class.
+            Previously, all digests were created by String.__gibbler so the class name
+            from the original object got lost.
+            
+            </li>
+            <li>CHANGE: <a href="../classes/Gibbler.html">Gibbler</a> methods are no longer
+            available to all Ruby classes by default. The default list is now: <a
+            href="../classes/String.html">String</a>, <a
+            href="../classes/Hash.html">Hash</a>, <a
+            href="../classes/Array.html">Array</a>, <a
+            href="../classes/Symbol.html">Symbol</a>, <a
+            href="../classes/Class.html">Class</a>, <a
+            href="../classes/Fixnum.html">Fixnum</a>, <a
+            href="../classes/Bignum.html">Bignum</a>.
+            
+            </li>
+            <li>CHANGE: Renamed Gibbler.gibbler_digest_type to <a
+            href="../classes/Gibbler.html#M000005">Gibbler.digest_type</a>
+            
+            </li>
+            <li>ADDED: Custom objects can now &#8220;include Gibbler::Complex&#8220;
+            
+            </li>
+            </ul>
             <p>
             #### 0.3 (2009-06-29) #################################
             </p>
