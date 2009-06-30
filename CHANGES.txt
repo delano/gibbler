@@ -7,7 +7,9 @@ NOTE: Calculated gibbles will be different than previous releases.
 
 * FIXED: Hash and Array now use the class of the value for hashing
   rather than Hash or Array (respectively).
-* CHANGE: 
+* CHANGE: Gibbler methods are no longer available to all Ruby classes
+  by default. The default list is now: String, Hash, Array, Symbol, 
+  Class, Fixnum, Bigint. 
 
 #### 0.3 (2009-06-29) #################################
 

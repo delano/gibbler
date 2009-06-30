@@ -170,6 +170,10 @@ class Fixnum
   include Gibbler::String
 end
 
+class Bigint
+  include Gibbler::String
+end
+
 
 
 
