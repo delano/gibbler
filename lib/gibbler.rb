@@ -9,6 +9,7 @@ module Gibbler
   VERSION = "0.4.0"
   
   require 'gibbler/history'
+  require 'gibble'
   
   @@gibbler_debug = false
   @@gibbler_digest_type = Digest::SHA1
@@ -40,7 +41,7 @@ module Gibbler
     #  a
     #end
     gibbler_debug :GIBBLER, self.class, self
-    @__gibble__ = self.__gibbler
+    @__gibble__ = Gibble.new self.__gibbler
     @__gibble__
   end
   

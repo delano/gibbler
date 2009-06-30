@@ -8,8 +8,18 @@ Gibbler.enable_debug if Tryouts.verbose > 3
 tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
-  dream :gibble, '92d5f7cd308925bfb38b05e60ba2e4cc58b3807e' 
-  drill "Symbol can gibble", :anything
+  dream :gibble, '52be7494a602d85ff5d8a8ab4ffe7f1b171587df' 
+  drill "Symbol can gibble", :kimmy
+  
+  dream :respond_to?, :gibble
+  dream :gibble, 'c8027100ecc54945ab15ddac529230e38b1ba6a1' 
+  drill "String can gibble" do
+    "kimmy"
+  end
+  
+  drill "String and Symbol return different gibbles", true do
+    :kimmy.gibble != "kimmy"
+  end
   
   dream :respond_to?, :gibble
   dream :gibble, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
@@ -78,10 +88,12 @@ tryouts "Basic syntax with SHA1" do
     a.instance_variables.member? val
   end
   
+  
 end
 
 tryouts "Basic syntax with SHA256" do
-  setup do
+  
+  drill "Can change Digest type", Digest::SHA256 do
     Gibbler.digest_type = Digest::SHA256
   end
   
@@ -97,6 +109,19 @@ tryouts "Basic syntax with SHA256" do
   dream :gibble, '88d2bcbd68ce593fd2e0e06f276f7301357516291b95c0c53038e61a9bf091e5' 
   drill "Empty Hash instance", {}
   
+  drill "Can return Digest type", Digest::SHA1 do
+    Gibbler.digest_type = Digest::SHA1
+  end
+  
 end
 
 
+tryouts "Gibble object" do
+  
+  dream :class, Gibble
+  dream 'c8027100'  
+  drill "has short method" do
+    "kimmy".gibble.short
+  end
+  
+end

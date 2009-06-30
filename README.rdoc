@@ -2,7 +2,7 @@
 
 Git-like hashes for Ruby objects.
 
-== Example
+== Example 1 -- Basic Usage
 
     config = {}
     config.gibble              # => 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf
@@ -20,6 +20,23 @@ Git-like hashes for Ruby objects.
     config.gibble              # => 4c558a56bc2abf5f8a845a69e47ceb5e0003683f
 
 
+== Example 2 -- Object History 
+    
+    class Hash
+      include Gibbler::History
+    end
+      
+    a = { :magic => :original }
+    a.gibble_snapshot               # => d70499...
+    a[:magic] = :updated
+    a.gibble                        # => b66809...
+    a.gibble_revert
+    a.gibble                        # => d70499...
+    a                               # => { :magic => :original }
+
+http://delano.github.com/gibbler/img/whoababy.gif
+
+    
 == Supported Classes
 
 Gibbler methods are available only to the classes which explicitly include them (see RDocs[http://delano.github.com/gibbler] for details on which classes are supported by default). You can also extend custom objects:
