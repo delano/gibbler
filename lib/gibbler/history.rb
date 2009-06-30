@@ -2,6 +2,11 @@
 
 
 module Gibbler
+  class NoRevert < RuntimeError
+    def initialize(obj); @obj = obj; end
+    def message; "Revert not implemented for #{@obj}" end
+  end
+  
   module History
     
     @@mutex = Mutex.new
@@ -37,8 +42,11 @@ module Gibbler
       gibble
     end
     
+    # Ruby does not support replacing self (<tt>self = previous_self</tt>) so each 
+    # object type needs to implement its own gibble_revert method. This default
+    # raises a Gibbler::NoRevert exception. 
     def gibble_revert
-      raise "Revert is not implement for #{self.class}"
+      raise NoRevert, self.class
     end
     
   end

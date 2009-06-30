@@ -1,6 +1,11 @@
 GIBBLER, CHANGES
 
 
+#### 0.5 (2009-06-??) #################################
+
+* ADDED: Gibbler::History, supporting gibbler_snapshots and gibbler_revert
+
+
 #### 0.4 (2009-06-30) #################################
 
 NOTE: Calculated gibbles have changed since 0.3. Most gibbles created with 
