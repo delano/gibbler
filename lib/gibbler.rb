@@ -6,7 +6,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.3.0"
+  VERSION = "0.4.0"
   
   @@gibbler_debug = false
   @@gibbler_digest_type = Digest::SHA1
