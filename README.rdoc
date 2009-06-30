@@ -2,7 +2,7 @@
 
 Git-like hashes for Ruby objects.
 
-== Examples
+== Example
 
     config = {}
     config.gibble              # => 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf

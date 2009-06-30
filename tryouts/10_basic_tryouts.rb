@@ -9,11 +9,11 @@ tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
   dream :gibble, '92d5f7cd308925bfb38b05e60ba2e4cc58b3807e' 
-  drill "Symbol", :anything
+  drill "Symbol can gibble", :anything
   
   dream :respond_to?, :gibble
   dream :gibble, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
-  drill "Class", Class
+  drill "Class can gibble", Class
   
   dream :respond_to?, :gibble
   dream :gibble, '4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf' 
@@ -71,7 +71,12 @@ tryouts "Basic syntax with SHA1" do
     a
   end
   
-
+  drill "doesn't reveal @__gibble__ instance variable", false do
+    a = {}
+    a.gibble  # We need to gibble first so it sets a value to the instance var
+    val = Tryouts.sysinfo.ruby[1] == 9 ? :'@__gibble__' : '@__gibble__'
+    a.instance_variables.member? val
+  end
   
 end
 
@@ -82,14 +87,16 @@ tryouts "Basic syntax with SHA256" do
   
   dream :respond_to?, :gibble
   dream :gibble, '754f87ca720ec256633a286d9270d68478850b2abd7b0ae65021cb769ae70c08' 
-  drill "Symbol", :anything
+  drill "A Symbol can gibble", :anything
   
   dream :respond_to?, :gibble
   dream :gibble, 'd345c0afb4e8da0133a3946d3bd9b2622b0acdd8d6cc1237470cc637a9e4777f' 
-  drill "Class", Class
+  drill "Class can gibble", Class
   
   dream :respond_to?, :gibble
   dream :gibble, '88d2bcbd68ce593fd2e0e06f276f7301357516291b95c0c53038e61a9bf091e5' 
   drill "Empty Hash instance", {}
   
 end
+
+

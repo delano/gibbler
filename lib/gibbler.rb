@@ -8,6 +8,8 @@ require 'digest/sha1'
 module Gibbler
   VERSION = "0.4.0"
   
+  require 'gibbler/history'
+  
   @@gibbler_debug = false
   @@gibbler_digest_type = Digest::SHA1
   
@@ -39,6 +41,7 @@ module Gibbler
     #end
     gibbler_debug :GIBBLER, self.class, self
     @__gibble__ = self.__gibbler
+    @__gibble__
   end
   
   # Sends +str+ to Digest::SHA1.hexdigest. If another digest class
@@ -76,7 +79,7 @@ module Gibbler
   # gibble value to affect the next gibble. 
   def instance_variables
     vars = super
-    vars.reject! { |x| x.to_s == '@__gibble__' }
+    vars.reject! { |e| e.to_s =~ /^@__gibble/ }
     vars
   end
 
@@ -234,6 +237,14 @@ end
 
 class Hash
   include Gibbler::Hash
+  
+  def gibble_revert
+    raise "No history (#{self.class})" if @__gibbles__.nil? || @__gibbles__.empty?
+    @@mutex.synchronize {
+      self.clear
+      self.merge! @__gibbles__[:objects][ @__gibbles__[:order].last ]
+    }
+  end
 end
 
 class Array
