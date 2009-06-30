@@ -3,7 +3,7 @@ library :gibbler, File.dirname(__FILE__), '..', 'lib'
 group "Performance"
 
 tryouts "Speed", :benchmark do
-  
+  # NOTE: gibble is slower when history is enabled. 
   drill "Setup variables" do
     @@array = (1..10000).map { rand }
     values = (1..10000).map { rand }
@@ -11,22 +11,22 @@ tryouts "Speed", :benchmark do
     @@hash = Hash[zipped]
   end
   
-  drill "Array#hash", 15 do
+  drill "Array#hash", 5 do
     @@array.hash
   end 
   
   
   dream :mean, 0.2
-  drill "Array#gibbler", 15 do
+  drill "Array#gibble", 5 do
     @@array.gibble 
   end
   
-  drill "Hash#hash", 15 do
+  drill "Hash#hash", 5 do
     @@hash.hash
   end
   
   dream :mean, 1.0
-  drill "Hash#gibbler", 15 do
+  drill "Hash#gibble", 5 do
     @@hash.gibble 
   end
   
@@ -55,7 +55,7 @@ tryouts "Uniqueness", :api do
     seen.size - seen.uniq.size
   end
   
-  drill "Array#gibbler, all unique", 0 do
+  drill "Array#gibble, all unique", 0 do
     seen = []
     repetitions.times do
       srand
@@ -64,7 +64,7 @@ tryouts "Uniqueness", :api do
     seen.size - seen.uniq.size
   end
   
-  drill "Hash#gibbler, all unique", 0 do
+  drill "Hash#gibble, all unique", 0 do
     seen = []
     repetitions.times do
       srand
