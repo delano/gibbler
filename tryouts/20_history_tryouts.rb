@@ -36,7 +36,7 @@ tryouts "History" do
     a.gibble_history
   end
   
-  dream :magic => :original
+  dream 'd7049916ddb25e6cc438b1028fb957e5139f9910'
   drill "can revert Hash" do
     a = { :magic => :original }
     a.gibble_snapshot

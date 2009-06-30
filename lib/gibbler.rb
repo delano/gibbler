@@ -242,9 +242,12 @@ class Hash
     raise "No history (#{self.class})" if @__gibbles__.nil? || @__gibbles__.empty?
     @@mutex.synchronize {
       self.clear
-      self.merge! @__gibbles__[:objects][ @__gibbles__[:order].last ]
+      @__gibble__ = @__gibbles__[:order].last
+      self.merge! @__gibbles__[:objects][ @__gibble__ ]
     }
+    @__gibble__
   end
+  
 end
 
 class Array
