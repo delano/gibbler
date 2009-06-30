@@ -3,9 +3,11 @@ GIBBLER, CHANGES
 
 #### 0.3.1 (2009-06-30) #################################
 
+NOTE: Calculated gibbles will be different than previous releases. 
+
 * FIXED: Hash and Array now use the class of the value for hashing
   rather than Hash or Array (respectively).
-
+* CHANGE: 
 
 #### 0.3 (2009-06-29) #################################
 

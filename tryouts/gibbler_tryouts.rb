@@ -6,11 +6,11 @@ tryouts "Basic syntax with SHA1" do
   
   dream :respond_to?, :gibble
   dream :gibble, '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2' 
-  drill "Object", Object
+  xdrill "Object", Object
   
   dream :respond_to?, :gibble
   dream :gibble, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
-  drill "Class", Class
+  xdrill "Class", Class
   
   dream :respond_to?, :gibble
   dream :gibble, 'c93bfdb675f9b0aae27b8c6660690f88bb6603b5' 
@@ -53,19 +53,9 @@ tryouts "Basic syntax with SHA1" do
   dream :gibble, "24ef0a2737a995b233c0891d768862ecf0a3aa5d"
   drill "works on arbitrary objects" do
     class ::House
+      include Gibbler::Complex
       attr_accessor :uj
-      def __gibbler
-        d = []
-        instance_variables.each do |n|
-          value = instance_variable_get(n)
-          d << '%s:%s:%s' % [value.class, n, value.__gibbler]
-        end
-        #public_methods.each do |n|
-        #  d << '%s:%s:%s' % [:public_method, n.size, n.__gibbler]
-        #end
-        a = d.join(':')
-        @@gibbler_digest_type.hexdigest "%s:%d:%s" % [self.class, a.size, a]
-      end
+
     end
     a = House.new
     a.uj = 1
@@ -81,7 +71,7 @@ tryouts "Basic syntax with SHA256" do
   
   dream :respond_to?, :gibble
   dream :gibble, '5dbdeb534f4c2fff44fc695453ae2da221cdc38c9e3329b5691aa6542669148c' 
-  drill "Object", Object
+  xdrill "Object", Object
   
   dream :respond_to?, :gibble
   dream :gibble, '995b827e46b9169bb6f8f29457f61fca24f88593c99d9660f36ec66e528b32f9' 
