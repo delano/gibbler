@@ -9,7 +9,9 @@ NOTE: Calculated gibbles will be different than previous releases.
   rather than Hash or Array (respectively).
 * CHANGE: Gibbler methods are no longer available to all Ruby classes
   by default. The default list is now: String, Hash, Array, Symbol, 
-  Class, Fixnum, Bigint. 
+  Class, Fixnum, Bignum. 
+* ADDED: Custom objects can now "include Gibbler::Complex"
+
 
 #### 0.3 (2009-06-29) #################################
 
