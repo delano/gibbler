@@ -51,7 +51,7 @@ tryouts "Basic syntax with SHA1" do
   end
   
   dream :gibble, "b2a0746137cbf8fb575d86af84cdaf6aa0dd72fc"
-  drill "works on arbitrary objects" do
+  xdrill "works on arbitrary objects" do
     class ::Poop
       attr_reader :dave2
       def __c2ustom_gibbler

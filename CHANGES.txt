@@ -1,7 +1,7 @@
 GIBBLER, CHANGES
 
 
-#### 0.3 (2009-06-25) #################################
+#### 0.3 (2009-06-29) #################################
 
 * CHANGE: Renamed to_gibble -> gibble
 * CHANGE: Renamed __default_gibbler to __gibbler
