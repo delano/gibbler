@@ -233,14 +233,18 @@ module Gibbler
   ##end
   ##++
   
-  
+  # Does the current object have any history?
+  def has_history?
+    !@__gibbles__.nil? && !@__gibbles__.empty?
+  end
+    
 end
 
 class Hash
   include Gibbler::Hash
   
   def gibble_revert
-    raise "No history (#{self.class})" if @__gibbles__.nil? || @__gibbles__.empty?
+    raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
       self.clear
       @__gibble__ = @__gibbles__[:order].last
@@ -253,6 +257,16 @@ end
 
 class Array
   include Gibbler::Array
+  
+  def gibble_revert
+    raise "No history (#{self.class})" unless has_history?
+    @@mutex.synchronize {
+      self.clear
+      @__gibble__ = @__gibbles__[:order].last
+      self.push *(@__gibbles__[:objects][ @__gibble__ ])
+    }
+    @__gibble__
+  end
 end
 
 class String

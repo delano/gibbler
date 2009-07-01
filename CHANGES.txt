@@ -4,6 +4,7 @@ GIBBLER, CHANGES
 #### 0.5 (2009-06-??) #################################
 
 * ADDED: Gibbler::History, supporting gibbler_snapshots and gibbler_revert
+  for the following objects: Array, Hash
 
 
 #### 0.4 (2009-06-30) #################################

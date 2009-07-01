@@ -51,5 +51,4 @@ module Gibbler
     
   end
   
-  
 end
