@@ -25,7 +25,7 @@
   
   # = MANIFEST =
   s.files = %w(
-  CHANGES.txt
+  CCHANGES.txt
   LICENSE.txt
   README.rdoc
   Rakefile
