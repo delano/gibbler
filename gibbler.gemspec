@@ -25,12 +25,20 @@
   
   # = MANIFEST =
   s.files = %w(
-  README.rdoc
   CHANGES.txt
   LICENSE.txt
+  README.rdoc
   Rakefile
   gibbler.gemspec
+  lib/gibble.rb
   lib/gibbler.rb
+  lib/gibbler/history.rb
+  tryouts/10_basic_tryouts.rb
+  tryouts/11_basic_sha256_tryouts.rb
+  tryouts/20_gibble_tryouts.rb
+  tryouts/50_history_tryouts.rb
+  tryouts/80_performance_tryouts.rb
+  tryouts/object_hash_demo.rb
   )
   
   s.has_rdoc = true
