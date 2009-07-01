@@ -117,7 +117,6 @@ tryouts "History (String)" do
     a.gibble_revert
   end
   
-  
 end
 
 

@@ -53,7 +53,7 @@ module Gibbler
   
 end
 
-class Hash
+class Gibbler::Hash
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
@@ -65,7 +65,7 @@ class Hash
   end
 end
 
-class Array
+class Gibbler::Array
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
@@ -77,7 +77,7 @@ class Array
   end
 end
   
-class String
+class Gibbler::String
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
