@@ -10,6 +10,10 @@ module Gibbler
   
   require 'gibble'
   
+  class Error < RuntimeError
+    def initialize(obj); @obj = obj; end
+  end
+  
   @@gibbler_debug = false
   @@gibbler_digest_type = Digest::SHA1
   
@@ -111,10 +115,11 @@ module Gibbler
       a
     end
     
-    def gibble_revert
-      raise "No history (#{self.class})" unless has_history?
+    def gibble_revert(g=nil)
+      raise NoHistory, self.class unless has_history?
+      raise BadGibble, g if !g.nil? && !gibble_valid?(g)
       Gibbler::History.mutex.synchronize {
-        @__gibble__ = @__gibbles__[:order].last
+        @__gibble__ = g || @__gibbles__[:order].last
         state = @__gibbles__[:objects][ @__gibble__ ]
         state.instance_variables do |n|
           v = state.instance_variable_get n
@@ -245,11 +250,7 @@ module Gibbler
   ##  
   ##end
   ##++
-  
-  # Does the current object have any history?
-  def has_history?
-    !@__gibbles__.nil? && !@__gibbles__.empty?
-  end
+
     
 end
 

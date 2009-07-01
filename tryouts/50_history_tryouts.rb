@@ -46,6 +46,38 @@ tryouts "History (Hash)" do
     a.gibble_revert
   end
   
+  drill "knows a valid gibble", true do
+    a = { :magic => :original }
+    a.gibble_commit
+    a.gibble_valid? 'd7049916ddb25e6cc438b1028fb957e5139f9910'
+  end
+  
+  drill "knows an invalid gibble", false do
+    a = { :magic => :original }
+    a.gibble_commit
+    a.gibble_valid? '2222222222222222222222222222222222222222'
+  end
+  
+  dream Hash[:magic => :original]
+  drill "can revert to any valid gibble" do
+    a = { :magic => :original }
+    a.gibble_commit
+    a[:magic] = :updated
+    a.gibble_commit
+    a[:magic] = :updated2
+    a.gibble_commit
+    a.gibble_revert 'd7049916ddb25e6cc438b1028fb957e5139f9910'
+    a
+  end
+  
+  dream :exception, Gibble::BadGibble
+  drill "raises exception when reverting to invalid gibble" do
+    a = {}
+    a.gibble_commit
+    a.gibble_revert '2222222222222222222222222222222222222222'
+  end
+  
+  
 end
 
 tryouts "History (Array)" do

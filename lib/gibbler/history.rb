@@ -2,18 +2,26 @@
 
 
 module Gibbler
-  class NoRevert < RuntimeError
-    def initialize(obj); @obj = obj; end
+  class NoRevert < Gibbler::Error
     def message; "Revert not implemented for #{@obj}" end
   end
-  
+  class NoHistory < Gibbler::Error
+    def message; "No history for #{@obj}"; end
+  end
+  class BadGibble < Gibbler::Error
+    def message; "Unknown gibble: #{@obj}"; end
+  end
+    
   module History
     
     @@mutex = Mutex.new
     
     def self.mutex; @@mutex; end
     
+    # Returns an Array of gibbles in the order theyr were committed. 
     def gibble_history
+      
+      # Only a single thread should attempt to initialize the store.
       @@mutex.synchronize {
         @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
       }
@@ -26,9 +34,9 @@ module Gibbler
     # nothing but return the gibble. 
     #
     # NOTE: This method is not fully thread safe. It uses a Mutex.synchronize
-    # but there's a race condition where two threads attempt a snapshot at 
-    # near the same time. The first will get the lock and create the snapshot. 
-    # The second will get the lock and create another snapshot immediately 
+    # but there's a race condition where two threads can attempt to commit at 
+    # near the same time. The first will get the lock and create the commit. 
+    # The second will get the lock and create another commit immediately 
     # after. What we probably want is for the second thread to return the 
     # gibble for that first snapshot, but how do we know this was a result
     # of the race conditioon rather than two legitimate calls for a snapshot?
@@ -53,17 +61,29 @@ module Gibbler
     #end
     #++
     
+    # Is the given gibble +g+ contained in the history for this object?
+    def gibble_valid?(g)
+      return false unless has_history?
+      gibble_history.member? g
+    end
+    
+    # Does the current object have any history?
+    def has_history?
+      !@__gibbles__.nil? && !@__gibbles__.empty?
+    end
+    
   end
   
 end
 
 class Hash
   include Gibbler::History
-  def gibble_revert
-    raise "No history (#{self.class})" unless has_history?
+  def gibble_revert(g=nil)
+    raise NoHistory, self.class unless has_history?
+    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
     @@mutex.synchronize {
       self.clear
-      @__gibble__ = @__gibbles__[:order].last
+      @__gibble__ = g || @__gibbles__[:order].last
       self.merge! @__gibbles__[:objects][ @__gibble__ ]
     }
     @__gibble__
@@ -72,11 +92,12 @@ end
 
 class Array
   include Gibbler::History
-  def gibble_revert
-    raise "No history (#{self.class})" unless has_history?
+  def gibble_revert(g=nil)
+    raise NoHistory, self.class unless has_history?
+    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
     @@mutex.synchronize {
       self.clear
-      @__gibble__ = @__gibbles__[:order].last
+      @__gibble__ = g || @__gibbles__[:order].last
       self.push *(@__gibbles__[:objects][ @__gibble__ ])
     }
     @__gibble__
@@ -85,11 +106,12 @@ end
   
 class String
   include Gibbler::History
-  def gibble_revert
-    raise "No history (#{self.class})" unless has_history?
+  def gibble_revert(g=nil)
+    raise NoHistory, self.class unless has_history?
+    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
     @@mutex.synchronize {
       self.clear
-      @__gibble__ = @__gibbles__[:order].last
+      @__gibble__ = g || @__gibbles__[:order].last
       self << (@__gibbles__[:objects][ @__gibble__ ])
     }
     @__gibble__
