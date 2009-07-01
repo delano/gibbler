@@ -32,6 +32,7 @@ module Gibbler
     # Returns the object stored under the given gibble +g+.
     # If +g+ is not a valid gibble, returns nil. 
     def gibble_object(g) 
+      g = gibble_find_long g
       return unless gibble_valid? g
       @__gibbles__[:objects][ g ]
     end
@@ -39,6 +40,7 @@ module Gibbler
     # Returns the timestamp (a Time object) when the gibble +g+ was committed. 
     # If +g+ is not a valid gibble, returns nil. 
     def gibble_stamp(g)
+      g = gibble_find_long g
       return unless gibble_valid? g
       @__gibbles__[:stamp][ g ]
     end
@@ -92,8 +94,10 @@ module Gibbler
     def gibble_revert(g=nil)
       raise NoRevert unless self.respond_to?(:__gibble_revert)
       raise NoHistory, self.class unless gibble_history?
+      raise BadGibble, g if !g.nil? && !gibble_valid?(g)
+      
       g = self.gibble_history.last if g.nil?
-      raise BadGibble, g unless gibble_valid? g
+      g = gibble_find_long g 
       
       # Do nothing if the given gibble matches the current gibble. 
       # NOTE: We use __gibbler b/c it doesn't update @@__gibble__.
@@ -111,7 +115,7 @@ module Gibbler
     # Is the given gibble +g+ contained in the history for this object?
     def gibble_valid?(g)
       return false unless gibble_history?
-      gibble_history.member? g
+      gibble_history.member? gibble_find_long(g)
     end
     
     # Does the current object have any history?
@@ -119,6 +123,11 @@ module Gibbler
       !gibble_history.empty?
     end
     
+    def gibble_find_long(g)
+      return if g.nil?
+      return g if g.size > 8
+      gibble_history.select { |d| d.match /\A#{g}/ }.first
+    end
   end
   
 end
