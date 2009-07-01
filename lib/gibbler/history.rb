@@ -23,10 +23,10 @@ module Gibbler
       # Only a single thread should attempt to initialize the store.
       if @__gibbles__.nil?
         @@mutex.synchronize {
-          @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
+          @__gibbles__ ||= { :history => [], :objects => {}, :stamp => {} }
         }
       end
-      @__gibbles__[:order]
+      @__gibbles__[:history]
     end
     
     # Returns the object stored under the given gibble +g+.
@@ -59,13 +59,13 @@ module Gibbler
       
       if @__gibbles__.nil?
         @@mutex.synchronize {
-          @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
+          @__gibbles__ ||= { :history => [], :objects => {}, :stamp => {} }
         }
       end
       
       @@mutex.synchronize {
         now, gibble, point = Time.now, self.gibble, self.clone
-        @__gibbles__[:order] << gibble
+        @__gibbles__[:history] << gibble
         @__gibbles__[:stamp][now.to_i] = gibble
         @__gibbles__[:objects][gibble] = point
       }
