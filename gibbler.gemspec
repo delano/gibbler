@@ -25,7 +25,7 @@
   
   # = MANIFEST =
   s.files = %w(
-  CCHANGES.txt
+  CHANGES.txt
   LICENSE.txt
   README.rdoc
   Rakefile
@@ -35,10 +35,17 @@
   lib/gibbler/history.rb
   lib/gibbler/mixins.rb
   lib/gibbler/mixins/string.rb
+  tryouts/01_mixins_tryouts.rb
+  tryouts/05_gibble_tryouts.rb
   tryouts/10_basic_tryouts.rb
   tryouts/11_basic_sha256_tryouts.rb
   tryouts/20_gibble_tryouts.rb
   tryouts/50_history_tryouts.rb
+  tryouts/51_hash_history_tryouts.rb
+  tryouts/52_array_history_tryouts.rb
+  tryouts/53_string_history_tryouts.rb
+  tryouts/57_arbitrary_history_tryouts.rb
+  tryouts/59_history_exceptions_tryouts.rb
   tryouts/80_performance_tryouts.rb
   tryouts/object_hash_demo.rb
   )
