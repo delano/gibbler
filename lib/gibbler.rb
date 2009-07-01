@@ -9,6 +9,7 @@ module Gibbler
   VERSION = "0.4.0"
   
   require 'gibble'
+  require 'gibbler/mixins'
   
   class Error < RuntimeError
     def initialize(obj); @obj = obj; end
