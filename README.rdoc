@@ -1,6 +1,6 @@
-= Gibbler - v0.4
+= Gibbler - v0.5 ALPHA
 
-Git-like hashes for Ruby objects.
+Git-like hashes and history for Ruby objects.
 
 == Example 1 -- Basic Usage
     
@@ -33,16 +33,29 @@ Gibbler can also keep track of the history of changes to an object. By default G
     
     a = { :magic => :original }     
     a.gibble_commit              # => d7049916ddb25e6cc438b1028fb957e5139f9910
+    
     a[:magic] = :updated            
-    a.gibble                     # => b668098e16d08898532bf3aa33ce2253a3a4150e
-    a                            # => { :magic => :updated }
+    a.gibble_commit              # => b668098e16d08898532bf3aa33ce2253a3a4150e
     
-    # Return to the previous commit with gibble_revert
-    a.gibble_revert                 
+    a[:magic] = :changed 
+    a.gibble_commit              # => 0b11c377fccd44554a601e5d2b135c46dc1c4cb1
     
+    a.gibble_history             # => d7049916, b668098e, 0b11c377
+    
+    a.gibble_revert 'd7049916'   # Return to a specific commit
     a.gibble                     # => d7049916ddb25e6cc438b1028fb957e5139f9910
-    a                            # => { :magic => :original }
-
+    a                            # => { :magic => :original } 
+    
+    a.delete :magic
+    
+    a.gibble_revert              # Return to the previous commit  
+    a.gibble                     # => 0b11c377fccd44554a601e5d2b135c46dc1c4cb1
+    a                            # => { :magic => :changed }
+        
+    
+    a.gibble_object 'b668098e'   # => { :magic => :updated }
+    a.gibble_stamp               # => 2009-07-01 18:56:52 -0400
+    
 http://delano.github.com/gibbler/img/whoababy.gif
 
     
