@@ -19,14 +19,20 @@ module Gibbler
     def self.mutex; @@mutex; end
     
     # Returns an Array of gibbles in the order they were committed. 
-    def gibble_history
+    # If +short+ is anything but false, the gibbles will be converted
+    # to the short 8 character gibbles.
+    def gibble_history(short=false)
       # Only a single thread should attempt to initialize the store.
       if @__gibbles__.nil?
         @@mutex.synchronize {
           @__gibbles__ ||= { :history => [], :objects => {}, :stamp => {} }
         }
       end
-      @__gibbles__[:history]
+      if short == false
+        @__gibbles__[:history]
+      else
+        @__gibbles__[:history].collect { |g| g.short }
+      end
     end
     
     # Returns the object stored under the given gibble +g+.
@@ -126,6 +132,8 @@ module Gibbler
       !gibble_history.empty?
     end
     
+    # Returns the long gibble associated to the short gibble +g+.
+    # If g is longer than 8 characters it returns the value of +g+.
     def gibble_find_long(g)
       return if g.nil?
       return g if g.size > 8
