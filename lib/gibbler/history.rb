@@ -31,16 +31,19 @@ module Gibbler
     
     # Returns the object stored under the given gibble +g+.
     # If +g+ is not a valid gibble, returns nil. 
-    def gibble_object(g) 
+    def gibble_object(g=nil) 
       g = gibble_find_long g
+      g = self.gibble_history.last if g.nil?
+
       return unless gibble_valid? g
       @__gibbles__[:objects][ g ]
     end
     
     # Returns the timestamp (a Time object) when the gibble +g+ was committed. 
     # If +g+ is not a valid gibble, returns nil. 
-    def gibble_stamp(g)
+    def gibble_stamp(g=nil)
       g = gibble_find_long g
+      g = self.gibble_history.last if g.nil?
       return unless gibble_valid? g
       @__gibbles__[:stamp][ g ]
     end
@@ -68,7 +71,7 @@ module Gibbler
       @@mutex.synchronize {
         now, gibble, point = Time.now, self.gibble, self.clone
         @__gibbles__[:history] << gibble
-        @__gibbles__[:stamp][now.to_i] = gibble
+        @__gibbles__[:stamp][gibble] = now
         @__gibbles__[:objects][gibble] = point
       }
       

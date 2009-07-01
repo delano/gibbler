@@ -80,4 +80,12 @@ tryouts "Hash History" do
     a
   end
   
+  dream 'd7049916ddb25e6cc438b1028fb957e5139f9910'
+  drill "can revert using short gibble" do
+    a = { :magic => :original }
+    a.gibble_commit
+    a[:magic] = :updated
+    a.gibble_revert 'd7049916'
+  end
+  
 end
