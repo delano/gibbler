@@ -33,6 +33,8 @@
   lib/gibble.rb
   lib/gibbler.rb
   lib/gibbler/history.rb
+  lib/gibbler/mixins.rb
+  lib/gibbler/mixins/string.rb
   tryouts/10_basic_tryouts.rb
   tryouts/11_basic_sha256_tryouts.rb
   tryouts/20_gibble_tryouts.rb
