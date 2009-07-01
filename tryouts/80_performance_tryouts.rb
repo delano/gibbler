@@ -8,7 +8,7 @@ tryouts "Speed", :benchmark do
     @@array = (1..10000).map { rand }
     values = (1..10000).map { rand }
     zipped = @@array.zip(values)
-    @@hash = Hash[zipped]
+    @@hash = Hash[*zipped]
   end
   
   drill "Array#hash", 5 do
@@ -50,7 +50,7 @@ tryouts "Uniqueness", :api do
     seen = []
     repetitions.times do
       srand
-      seen << Hash[(sample_size).map { rand }.zip((sample_size).map { rand })].hash
+      seen << Hash[*(sample_size).map { rand }.zip((sample_size).map { rand })].hash
     end
     seen.size - seen.uniq.size
   end
@@ -68,7 +68,7 @@ tryouts "Uniqueness", :api do
     seen = []
     repetitions.times do
       srand
-      seen << Hash[(sample_size).map { rand }.zip((sample_size).map { rand })].gibble 
+      seen << Hash[*(sample_size).map { rand }.zip((sample_size).map { rand })].gibble 
     end
     seen.size - seen.uniq.size
   end
