@@ -11,6 +11,8 @@ module Gibbler
     
     @@mutex = Mutex.new
     
+    def self.mutex; @@mutex; end
+    
     def gibble_history
       @@mutex.synchronize {
         @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
@@ -45,9 +47,9 @@ module Gibbler
     # Ruby does not support replacing self (<tt>self = previous_self</tt>) so each 
     # object type needs to implement its own gibble_revert method. This default
     # raises a Gibbler::NoRevert exception. 
-    def gibble_revert
-      raise NoRevert, self.class
-    end
+    #def gibble_revert
+    #  raise NoRevert, self.class
+    #end
     
   end
   

@@ -110,6 +110,20 @@ module Gibbler
       gibbler_debug klass, a, [klass, d.size, d]
       a
     end
+    
+    def gibble_revert
+      raise "No history (#{self.class})" unless has_history?
+      Gibbler::History.mutex.synchronize {
+        @__gibble__ = @__gibbles__[:order].last
+        state = @__gibbles__[:objects][ @__gibble__ ]
+        state.instance_variables do |n|
+          v = state.instance_variable_get n
+          self.instance_variable_set v
+        end
+      }
+      @__gibble__
+    end
+    
   end
   
   module String
