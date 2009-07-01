@@ -116,14 +116,12 @@ module Gibbler
       a
     end
     
-    def __gibble_revert(g=nil)
-      @__gibble__ = g || @__gibbles__[:order].last
-      state = @__gibbles__[:objects][ @__gibble__ ]
+    def __gibble_revert
+      state = self.gibble_object @__gibble__
       state.instance_variables do |n|
         v = state.instance_variable_get n
         self.instance_variable_set v
       end
-      @__gibble__
     end
     
   end

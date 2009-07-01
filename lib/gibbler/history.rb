@@ -18,15 +18,29 @@ module Gibbler
     
     def self.mutex; @@mutex; end
     
-    # Returns an Array of gibbles in the order theyr were committed. 
+    # Returns an Array of gibbles in the order they were committed. 
     def gibble_history
-      
       # Only a single thread should attempt to initialize the store.
-      @@mutex.synchronize {
-        @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
-      }
-      
+      if @__gibbles__.nil?
+        @@mutex.synchronize {
+          @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
+        }
+      end
       @__gibbles__[:order]
+    end
+    
+    # Returns the object stored under the given gibble +g+.
+    # If +g+ is not a valid gibble, returns nil. 
+    def gibble_object(g) 
+      return unless gibble_valid? g
+      @__gibbles__[:objects][ g ]
+    end
+    
+    # Returns the timestamp (a Time object) when the gibble +g+ was committed. 
+    # If +g+ is not a valid gibble, returns nil. 
+    def gibble_stamp(g)
+      return unless gibble_valid? g
+      @__gibbles__[:stamp][ g ]
     end
     
     # Stores a clone of the current object instance using the current
@@ -42,13 +56,20 @@ module Gibbler
     # of the race conditioon rather than two legitimate calls for a snapshot?
     def gibble_commit
       now, gibble, point = nil,nil,nil
+      
+      if @__gibbles__.nil?
+        @@mutex.synchronize {
+          @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
+        }
+      end
+      
       @@mutex.synchronize {
-        @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
         now, gibble, point = Time.now, self.gibble, self.clone
         @__gibbles__[:order] << gibble
         @__gibbles__[:stamp][now.to_i] = gibble
         @__gibbles__[:objects][gibble] = point
       }
+      
       gibble
     end
     
@@ -65,25 +86,37 @@ module Gibbler
     # * NoHistory: This object has no commits
     # * BadGibble: The given gibble is not in the history for this object
     #
+    # If +g+ matches the current gibble value this method does nothing. 
+    #
+    # Returns the new gibble (+g+). 
     def gibble_revert(g=nil)
       raise NoRevert unless self.respond_to?(:__gibble_revert)
-      raise NoHistory, self.class unless has_history?
-      raise BadGibble, g if !g.nil? && !gibble_valid?(g)
-      @@mutex.synchronize {
-        self.__gibble_revert g
-      }
+      raise NoHistory, self.class unless gibble_history?
+      g = self.gibble_history.last if g.nil?
+      raise BadGibble, g unless gibble_valid? g
+      
+      # Do nothing if the given gibble matches the current gibble. 
+      # NOTE: We use __gibbler b/c it doesn't update @@__gibble__.
+      unless self.__gibbler == g
+        @@mutex.synchronize {
+          # Always make sure @__gibble__ is a Gibble. 
+          @__gibble__ = g.is_a?(Gibble) ? g : Gibble.new(g)
+          self.__gibble_revert
+        }
+      end
+      
       @__gibble__
     end
     
     # Is the given gibble +g+ contained in the history for this object?
     def gibble_valid?(g)
-      return false unless has_history?
+      return false unless gibble_history?
       gibble_history.member? g
     end
     
     # Does the current object have any history?
-    def has_history?
-      !@__gibbles__.nil? && !@__gibbles__.empty?
+    def gibble_history?
+      !gibble_history.empty?
     end
     
   end
@@ -92,31 +125,25 @@ end
 
 class Hash
   include Gibbler::History
-  def __gibble_revert(g=nil)
+  def __gibble_revert
     self.clear
-    @__gibble__ = g || @__gibbles__[:order].last
-    self.merge! @__gibbles__[:objects][ @__gibble__ ]
-    @__gibble__
+    self.merge! self.gibble_object @__gibble__
   end
 end
 
 class Array
   include Gibbler::History
-  def __gibble_revert(g=nil)
+  def __gibble_revert
     self.clear
-    @__gibble__ = g || @__gibbles__[:order].last
-    self.push *(@__gibbles__[:objects][ @__gibble__ ])
-    @__gibble__
+    self.push *(self.gibble_object @__gibble__)
   end
 end
   
 class String
   include Gibbler::History
-  def __gibble_revert(g=nil)
+  def __gibble_revert
     self.clear
-    @__gibble__ = g || @__gibbles__[:order].last
-    self << (@__gibbles__[:objects][ @__gibble__ ])
-    @__gibble__
+    self << (self.gibble_object @__gibble__)
   end
 end
       

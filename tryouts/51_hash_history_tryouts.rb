@@ -71,9 +71,13 @@ tryouts "Hash History" do
     a
   end
   
-  dream 
+  dream Hash[:magic => :original]
+  dream :gibble, 'd7049916ddb25e6cc438b1028fb957e5139f9910'
   drill "revert does nothing if gibble is the same as current one" do
-    
+    a = { :magic => :original }
+    a.gibble_commit
+    a.gibble_revert
+    a
   end
   
 end
