@@ -24,7 +24,7 @@ tryouts "History (Hash)" do
   
   drill "can take a Hash snapshot", 'd7049916ddb25e6cc438b1028fb957e5139f9910' do
     a = { :magic => :original }
-    a.gibble_snapshot
+    a.gibble_commit
   end
   
   dream :class, Array
@@ -32,16 +32,16 @@ tryouts "History (Hash)" do
   dream ['d7049916ddb25e6cc438b1028fb957e5139f9910', 'b668098e16d08898532bf3aa33ce2253a3a4150e']
   drill "return a Hash history" do
     a = { :magic => :original }
-    a.gibble_snapshot
+    a.gibble_commit
     a[:magic] = :updated
-    a.gibble_snapshot
+    a.gibble_commit
     a.gibble_history
   end
   
   dream 'd7049916ddb25e6cc438b1028fb957e5139f9910'
   drill "can revert Hash" do
     a = { :magic => :original }
-    a.gibble_snapshot
+    a.gibble_commit
     a[:magic] = :updated
     a.gibble_revert
   end
@@ -58,7 +58,7 @@ tryouts "History (Array)" do
   
   drill "can take a Array snapshot", 'd95fcabb498ae282f356eba63da541e4f72c6efa' do
     a = [:jesse]
-    a.gibble_snapshot
+    a.gibble_commit
   end
   
   dream :class, Array
@@ -66,16 +66,16 @@ tryouts "History (Array)" do
   dream ['d95fcabb498ae282f356eba63da541e4f72c6efa', 'eebcb2e84e828b1a7207af4d588cf41fd4c6393a']
   drill "return an Array history" do
     a = [:jesse]
-    a.gibble_snapshot
+    a.gibble_commit
     a << :joey
-    a.gibble_snapshot
+    a.gibble_commit
     a.gibble_history
   end
   
   dream 'd95fcabb498ae282f356eba63da541e4f72c6efa'
   drill "can revert Array" do
     a = [:jesse]
-    stash :original, a.gibble_snapshot
+    stash :original, a.gibble_commit
     a << :joey
     stash :updated, a.gibble
     a.gibble_revert
@@ -94,7 +94,7 @@ tryouts "History (String)" do
   
   drill "can take a String snapshot", 'c8027100ecc54945ab15ddac529230e38b1ba6a1' do
     a = "kimmy"
-    a.gibble_snapshot
+    a.gibble_commit
   end
   
   dream :class, Array
@@ -102,16 +102,16 @@ tryouts "History (String)" do
   dream ['c8027100ecc54945ab15ddac529230e38b1ba6a1', '692c05d3186baf2da36e87b7bc5fe53ef13b902e']
   drill "return a String history" do
     a = "kimmy"
-    a.gibble_snapshot
+    a.gibble_commit
     a << " gibbler"
-    a.gibble_snapshot
+    a.gibble_commit
     a.gibble_history
   end
   
   dream 'c8027100ecc54945ab15ddac529230e38b1ba6a1'
   drill "can revert String" do
     a = "kimmy"
-    stash :original, a.gibble_snapshot
+    stash :original, a.gibble_commit
     a << " gibbler"
     stash :updated, a.gibble
     a.gibble_revert
@@ -132,22 +132,22 @@ tryouts "History (abitrary objects)" do
   
   drill "can take a FullHouse snapshot", '4192d4cb59975813f117a51dcd4454ac16df6703' do
     a = FullHouse.new
-    a.gibble_snapshot
+    a.gibble_commit
   end
   
   dream ['4192d4cb59975813f117a51dcd4454ac16df6703', '2c6957aa1e734d2a3a71caf569a7461a3bf26f11']
   drill "return a FullHouse history" do
     a = FullHouse.new
-    a.gibble_snapshot
+    a.gibble_commit
     a.roles = [:jesse]
-    a.gibble_snapshot
+    a.gibble_commit
     a.gibble_history
   end
   
   dream '4192d4cb59975813f117a51dcd4454ac16df6703'
   drill "can revert FullHouse" do
     a = FullHouse.new
-    stash :original, a.gibble_snapshot
+    stash :original, a.gibble_commit
     a.roles = [:jesse]
     stash :updated, a.gibble
     a.gibble_revert

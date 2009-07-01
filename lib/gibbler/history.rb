@@ -32,7 +32,7 @@ module Gibbler
     # after. What we probably want is for the second thread to return the 
     # gibble for that first snapshot, but how do we know this was a result
     # of the race conditioon rather than two legitimate calls for a snapshot?
-    def gibble_snapshot
+    def gibble_commit
       now, gibble, point = nil,nil,nil
       @@mutex.synchronize {
         @__gibbles__ ||= { :order => [], :objects => {}, :stamp => {} }
@@ -44,18 +44,21 @@ module Gibbler
       gibble
     end
     
+    #--
     # Ruby does not support replacing self (<tt>self = previous_self</tt>) so each 
     # object type needs to implement its own gibble_revert method. This default
     # raises a Gibbler::NoRevert exception. 
     #def gibble_revert
     #  raise NoRevert, self.class
     #end
+    #++
     
   end
   
 end
 
 class Hash
+  include Gibbler::History
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
@@ -68,6 +71,7 @@ class Hash
 end
 
 class Array
+  include Gibbler::History
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {
@@ -80,6 +84,7 @@ class Array
 end
   
 class String
+  include Gibbler::History
   def gibble_revert
     raise "No history (#{self.class})" unless has_history?
     @@mutex.synchronize {

@@ -3,7 +3,9 @@
 Git-like hashes for Ruby objects.
 
 == Example 1 -- Basic Usage
-
+    
+    require 'gibbler'
+    
     config = {}
     config.gibble              # => 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf
     config.gibbled?            # => false
@@ -18,16 +20,19 @@ Git-like hashes for Ruby objects.
     config[:server][:users] << :yanni
     
     config.gibble              # => 4c558a56bc2abf5f8a845a69e47ceb5e0003683f
+    
+    config.gibble.short        # => 4c558a56
 
 
 == Example 2 -- Object History 
     
-    class Hash
-      include Gibbler::History
-    end
-      
+Gibbler can also keep track of the history of changes to an object. By default Gibbler supports history for Hash, Array, and String objects. The <tt>gibble_commit</tt> method creates a clone of the current object and stores in an instance variable using the current hash digest as the key. 
+
+    require 'gibbler'
+    require 'gibbler/history'
+    
     a = { :magic => :original }     
-    a.gibble_snapshot               # => d70499...
+    a.gibble_commit               # => d70499...
     a[:magic] = :updated            
     a.gibble                        # => b66809...
     a                               # => { :magic => :updated }
