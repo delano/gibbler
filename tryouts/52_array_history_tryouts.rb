@@ -17,7 +17,7 @@ tryouts "Array History" do
   
   drill "can take a Array snapshot", 'd95fcabb498ae282f356eba63da541e4f72c6efa' do
     a = [:jesse]
-    a.gibble_commit
+    a.gibbler_commit
   end
   
   dream :class, Array
@@ -25,19 +25,19 @@ tryouts "Array History" do
   dream ['d95fcabb498ae282f356eba63da541e4f72c6efa', 'eebcb2e84e828b1a7207af4d588cf41fd4c6393a']
   drill "return an Array history" do
     a = [:jesse]
-    a.gibble_commit
+    a.gibbler_commit
     a << :joey
-    a.gibble_commit
-    a.gibble_history
+    a.gibbler_commit
+    a.gibbler_history
   end
   
   dream 'd95fcabb498ae282f356eba63da541e4f72c6efa'
   drill "can revert Array" do
     a = [:jesse]
-    stash :original, a.gibble_commit
+    stash :original, a.gibbler_commit
     a << :joey
-    stash :updated, a.gibble
-    a.gibble_revert
+    stash :updated, a.gibbler
+    a.gibbler_revert
   end
   
   

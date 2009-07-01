@@ -8,7 +8,7 @@ require 'digest/sha1'
 module Gibbler
   VERSION = "0.4.0"
   
-  require 'gibble'
+  require 'gibbler/digest'
   require 'gibbler/mixins'
   
   class Error < RuntimeError
@@ -16,7 +16,7 @@ module Gibbler
   end
   
   @@gibbler_debug = false
-  @@gibbler_digest_type = Digest::SHA1
+  @@gibbler_digest_type = ::Digest::SHA1
   
   # Specify a different digest class. The default is +Digest::SHA1+. You 
   # could try +Digest::SHA256+ by doing this: 
@@ -37,7 +37,7 @@ module Gibbler
   # Objects that are a kind of Hash or Array are processed
   # recursively. The length of the returned String depends 
   # on the digest type. 
-  def gibble
+  def gibbler
     #if h.respond_to? :__custom_gibbler
     #  d = h.__custom_gibbler
     #  a = __gibbler '%s:%s:%s' % [klass, d.size, d]
@@ -45,8 +45,8 @@ module Gibbler
     #  a
     #end
     gibbler_debug :GIBBLER, self.class, self
-    @__gibble__ = Gibble.new self.__gibbler
-    @__gibble__
+    @__gibbler_digest__ = Gibbler::Digest.new self.__gibbler
+    @__gibbler_digest__
   end
   
   # Sends +str+ to Digest::SHA1.hexdigest. If another digest class
@@ -58,12 +58,12 @@ module Gibbler
   
   # Has this object been modified?
   #
-  # This method compares the return value from gibble with the 
-  # previous value returned by gibble (the value is stored in
-  # <tt>@__gibble__</tt>)
+  # This method compares the return value from digest with the 
+  # previous value returned by gibbler (the value is stored in
+  # <tt>@__gibbler_digest__</tt>)
   def gibbled?
-    @__gibble__ ||= self.gibble
-    was, now = @__gibble__.clone, self.gibble
+    @__gibbler_digest__ ||= self.gibbler
+    was, now = @__gibbler_digest__.clone, self.gibbler
     gibbler_debug :gibbled?, was, now
     was != now
   end
@@ -78,10 +78,16 @@ module Gibbler
   end
   
   # Gets the list of instance variables from the standard implementation
-  # of the instance_variables method and removes <tt>@__gibble__</tt>. 
+  # of the instance_variables method and removes all that 
+  # begin with <tt>@__gibbler</tt>. 
   # Any class the includes Gibbler or Gibbler::* will use this version of
   # instance_variables. It's important because we don't want the current
-  # gibble value to affect the next gibble. 
+  # digest value to affect the next gibble.
+  # 
+  # This is also critical for objects that include Gibbler::Complex b/c
+  # it deals explicitly with instance variables. If it sees the __gibbler
+  # variables it will go bananas. 
+  #
   def instance_variables
     vars = super
     vars.reject! { |e| e.to_s =~ /^@__gibble/ }
@@ -90,16 +96,16 @@ module Gibbler
 
   module Complex
     include Gibbler
-    # Creates a gibble based on: 
+    # Creates a digest based on: 
     # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
-    #   * The gibble method is called on each element so if it is a Hash or Array etc it 
+    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
     #     will be parsed recursively according to the gibbler method for that class type.
-    # * Gibble the Array of gibbles 
+    # * Digest the Array of digests  
     # * Return the digest for <tt>class:length:value</tt> where:
     #   * "class" is equal to the current object class (e.g. FullHouse).
-    #   * "length" is the size of the Array of gibbles (which should equal
+    #   * "length" is the size of the Array of digests (which should equal
     #     the number of instance variables in the object).
-    #   * "value" is the Array of gibbles joined with a colon (":").
+    #   * "value" is the Array of digests joined with a colon (":").
     #
     # This method can be used by any class which stores values in instance variables. 
     #
@@ -116,8 +122,8 @@ module Gibbler
       a
     end
     
-    def __gibble_revert
-      state = self.gibble_object @__gibble__
+    def __gibbler_revert
+      state = self.gibbler_object @__gibbler_digest__
       state.instance_variables do |n|
         v = state.instance_variable_get n
         self.instance_variable_set v
@@ -128,7 +134,7 @@ module Gibbler
   
   module String
     include Gibbler
-    # Creates a gibble based on: <tt>CLASS:LENGTH:VALUE</tt>. 
+    # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
     # This method can be used for any class where the <tt>to_s</tt>
     # method returns an appropriate unique value for this instance. 
     # It's used by default for Symbol, Class, Fixnum, and Bignum.
@@ -155,16 +161,16 @@ module Gibbler
   module Hash 
     include Gibbler
     
-    # Creates a gibble based on: 
+    # Creates a digest based on: 
     # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
-    #   * The gibble method is called on each element so if it is a Hash or Array etc it 
+    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
     #     will be parsed recursively according to the gibbler method for that class type.
-    # * Gibble the Array of gibbles 
+    # * Digest the Array of digests  
     # * Return the digest for <tt>class:length:value</tt> where:
     #   * "class" is equal to the current object class (e.g. Hash).
-    #   * "length" is the size of the Array of gibbles (which should equal
+    #   * "length" is the size of the Array of digests (which should equal
     #     the number of keys in the original Hash object).
-    #   * "value" is the Array of gibbles joined with a colon (":").
+    #   * "value" is the Array of digests joined with a colon (":").
     #
     # This method can be used by any class with a <tt>keys</tt> method. 
     #
@@ -191,16 +197,16 @@ module Gibbler
   module Array
     include Gibbler
     
-    # Creates a gibble based on:
-    # * parse each element into an Array of gibbles like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
-    #   * The gibble method is called on each element so if it is a Hash or Array etc it 
+    # Creates a digest based on:
+    # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
+    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
     #     will be parsed recursively according to the gibbler method for that class type. 
-    # * Gibble the Array of gibbles
+    # * Digest the Array of digests 
     # * Return the digest for <tt>class:length:value</tt> where:
     #   * "class" is equal to the current object class (e.g. Array).
-    #   * "length" is the size of the Array of gibbles (which should equal
+    #   * "length" is the size of the Array of digests (which should equal
     #     the number of elements in the original Array object).
-    #   * "value" is the Array of gibbles joined with a colon (":").
+    #   * "value" is the Array of digests joined with a colon (":").
     #
     # This method can be used by any class with an <tt>each</tt> method.
     #

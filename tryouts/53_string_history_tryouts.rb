@@ -16,7 +16,7 @@ tryouts "String History" do
   
   drill "can take a String snapshot", 'c8027100ecc54945ab15ddac529230e38b1ba6a1' do
     a = "kimmy"
-    a.gibble_commit
+    a.gibbler_commit
   end
   
   dream :class, Array
@@ -24,19 +24,19 @@ tryouts "String History" do
   dream ['c8027100ecc54945ab15ddac529230e38b1ba6a1', '692c05d3186baf2da36e87b7bc5fe53ef13b902e']
   drill "return a String history" do
     a = "kimmy"
-    a.gibble_commit
+    a.gibbler_commit
     a << " gibbler"
-    a.gibble_commit
-    a.gibble_history
+    a.gibbler_commit
+    a.gibbler_history
   end
   
   dream 'c8027100ecc54945ab15ddac529230e38b1ba6a1'
   drill "can revert String" do
     a = "kimmy"
-    stash :original, a.gibble_commit
+    stash :original, a.gibbler_commit
     a << " gibbler"
-    stash :updated, a.gibble
-    a.gibble_revert
+    stash :updated, a.gibbler
+    a.gibbler_revert
   end
   
 end

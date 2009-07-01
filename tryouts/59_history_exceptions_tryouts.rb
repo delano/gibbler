@@ -9,22 +9,22 @@ Gibbler.enable_debug if Tryouts.verbose > 3
 
 tryouts "Exceptions" do
   
-  dream :exception, Gibble::BadGibble
+  dream :exception, Gibbler::BadDigest
   drill "raises exception when reverting to unknown gibble" do
     a = {}
-    a.gibble_commit
-    a.gibble_revert '2222222222222222222222222222222222222222'
+    a.gibbler_commit
+    a.gibbler_revert '2222222222222222222222222222222222222222'
   end
   
-  dream :exception, Gibble::NoHistory
+  dream :exception, Gibbler::NoHistory
   drill "raises exception when reverting and there's no history" do
     a = []
-    a.gibble_revert
+    a.gibbler_revert
   end
   
   dream :exception, NoMethodError
   drill "raises exception when reverting an unsupported object" do
-    :kimmy.gibble_revert
+    :kimmy.gibbler_revert
   end
   
 end
