@@ -17,4 +17,11 @@ class Gibble < String
     self[0..7]
   end
   
+  
+  def ==(g)
+    return true if self.to_s == g.to_s
+    return true if self.short.to_s == g.to_s
+    false
+  end
+  
 end
