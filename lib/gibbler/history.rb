@@ -52,3 +52,41 @@ module Gibbler
   end
   
 end
+
+class Hash
+  def gibble_revert
+    raise "No history (#{self.class})" unless has_history?
+    @@mutex.synchronize {
+      self.clear
+      @__gibble__ = @__gibbles__[:order].last
+      self.merge! @__gibbles__[:objects][ @__gibble__ ]
+    }
+    @__gibble__
+  end
+end
+
+class Array
+  def gibble_revert
+    raise "No history (#{self.class})" unless has_history?
+    @@mutex.synchronize {
+      self.clear
+      @__gibble__ = @__gibbles__[:order].last
+      self.push *(@__gibbles__[:objects][ @__gibble__ ])
+    }
+    @__gibble__
+  end
+end
+  
+class String
+  def gibble_revert
+    raise "No history (#{self.class})" unless has_history?
+    @@mutex.synchronize {
+      self.clear
+      @__gibble__ = @__gibbles__[:order].last
+      self << (@__gibbles__[:objects][ @__gibble__ ])
+    }
+    @__gibble__
+  end
+end
+      
+
