@@ -26,11 +26,12 @@ Git-like hashes for Ruby objects.
       include Gibbler::History
     end
       
-    a = { :magic => :original }
+    a = { :magic => :original }     
     a.gibble_snapshot               # => d70499...
-    a[:magic] = :updated
+    a[:magic] = :updated            
     a.gibble                        # => b66809...
-    a.gibble_revert
+    a                               # => { :magic => :updated }
+    a.gibble_revert                 
     a.gibble                        # => d70499...
     a                               # => { :magic => :original }
 
@@ -60,19 +61,19 @@ If you want to support all Ruby objects, add the following to your application:
       include Gibbler::String
     end
 
-Gibbler::String creates a digest based on the output of the to_s method. This is a reasonable default for more objects however any object that includes the object address in to_s (e.g. "<Object:0x0x4ac9f0...") will produce unreliable gibbles (because the address can change).
+Gibbler::String creates a digest based on the name of the class and the output of the to_s method. This is a reasonable default for most objects however any object that includes the object address in to_s (e.g. "<Object:0x0x4ac9f0...") will produce unreliable gibbles (because the address can change).
 
 
 == ALPHA NOTICE (2009-06-30)
 
-This code is hella fresh. It's ugly and barely tested, but it's fun to play with. I'll happily accept patches. 
+This code is hella fresh. It's barely tested and the interface may change, but it's fun to play with. I'll happily accept patches. 
 
 NOTE: Gibbles have changed between 0.3 and 0.4. Ones created with 0.3 and earlier will not match ones created with 0.4 for the same object. 
 
 
 == Known Issues
 
-* The gibble method or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous gibble value to compare to)
+* The gibble or gibbled? method must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous gibble value to compare to)
 
 
 == More Info
