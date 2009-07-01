@@ -16,4 +16,15 @@ tryouts "Exceptions" do
     a.gibble_revert '2222222222222222222222222222222222222222'
   end
   
+  dream :exception, Gibble::NoHistory
+  drill "raises exception when reverting and there's no history" do
+    a = []
+    a.gibble_revert
+  end
+  
+  dream :exception, NoMethodError
+  drill "raises exception when reverting an unsupported object" do
+    :kimmy.gibble_revert
+  end
+  
 end

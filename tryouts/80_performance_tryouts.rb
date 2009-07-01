@@ -16,7 +16,7 @@ tryouts "Speed", :benchmark do
   end 
   
   
-  dream :mean, 0.2
+  dream :mean, 0.21
   drill "Array#gibble", 5 do
     @@array.gibble 
   end
@@ -25,7 +25,7 @@ tryouts "Speed", :benchmark do
     @@hash.hash
   end
   
-  dream :mean, 1.0
+  dream :mean, 1.1
   drill "Hash#gibble", 5 do
     @@hash.gibble 
   end
