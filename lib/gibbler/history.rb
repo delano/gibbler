@@ -52,14 +52,28 @@ module Gibbler
       gibble
     end
     
-    #--
+    # Revert this object to a previously known state. If called without arguments
+    # it will revert to the most recent commit. If a gibble is specified +g+, it
+    # will revert to that point. 
+    #
     # Ruby does not support replacing self (<tt>self = previous_self</tt>) so each 
-    # object type needs to implement its own gibble_revert method. This default
-    # raises a Gibbler::NoRevert exception. 
-    #def gibble_revert
-    #  raise NoRevert, self.class
-    #end
-    #++
+    # object type needs to implement its own __gibble_revert method. This default
+    # run some common checks and then defers to self.__gibble_revert. 
+    # 
+    # Raise the following exceptions:
+    # * NoRevert: if this object doesn't have a __gibble_revert method
+    # * NoHistory: This object has no commits
+    # * BadGibble: The given gibble is not in the history for this object
+    #
+    def gibble_revert(g=nil)
+      raise NoRevert unless self.respond_to?(:__gibble_revert)
+      raise NoHistory, self.class unless has_history?
+      raise BadGibble, g if !g.nil? && !gibble_valid?(g)
+      @@mutex.synchronize {
+        self.__gibble_revert g
+      }
+      @__gibble__
+    end
     
     # Is the given gibble +g+ contained in the history for this object?
     def gibble_valid?(g)
@@ -78,42 +92,30 @@ end
 
 class Hash
   include Gibbler::History
-  def gibble_revert(g=nil)
-    raise NoHistory, self.class unless has_history?
-    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
-    @@mutex.synchronize {
-      self.clear
-      @__gibble__ = g || @__gibbles__[:order].last
-      self.merge! @__gibbles__[:objects][ @__gibble__ ]
-    }
+  def __gibble_revert(g=nil)
+    self.clear
+    @__gibble__ = g || @__gibbles__[:order].last
+    self.merge! @__gibbles__[:objects][ @__gibble__ ]
     @__gibble__
   end
 end
 
 class Array
   include Gibbler::History
-  def gibble_revert(g=nil)
-    raise NoHistory, self.class unless has_history?
-    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
-    @@mutex.synchronize {
-      self.clear
-      @__gibble__ = g || @__gibbles__[:order].last
-      self.push *(@__gibbles__[:objects][ @__gibble__ ])
-    }
+  def __gibble_revert(g=nil)
+    self.clear
+    @__gibble__ = g || @__gibbles__[:order].last
+    self.push *(@__gibbles__[:objects][ @__gibble__ ])
     @__gibble__
   end
 end
   
 class String
   include Gibbler::History
-  def gibble_revert(g=nil)
-    raise NoHistory, self.class unless has_history?
-    raise BadGibble, g if !g.nil? && !gibble_valid?(g)
-    @@mutex.synchronize {
-      self.clear
-      @__gibble__ = g || @__gibbles__[:order].last
-      self << (@__gibbles__[:objects][ @__gibble__ ])
-    }
+  def __gibble_revert(g=nil)
+    self.clear
+    @__gibble__ = g || @__gibbles__[:order].last
+    self << (@__gibbles__[:objects][ @__gibble__ ])
     @__gibble__
   end
 end

@@ -115,17 +115,13 @@ module Gibbler
       a
     end
     
-    def gibble_revert(g=nil)
-      raise NoHistory, self.class unless has_history?
-      raise BadGibble, g if !g.nil? && !gibble_valid?(g)
-      Gibbler::History.mutex.synchronize {
-        @__gibble__ = g || @__gibbles__[:order].last
-        state = @__gibbles__[:objects][ @__gibble__ ]
-        state.instance_variables do |n|
-          v = state.instance_variable_get n
-          self.instance_variable_set v
-        end
-      }
+    def __gibble_revert(g=nil)
+      @__gibble__ = g || @__gibbles__[:order].last
+      state = @__gibbles__[:objects][ @__gibble__ ]
+      state.instance_variables do |n|
+        v = state.instance_variable_get n
+        self.instance_variable_set v
+      end
       @__gibble__
     end
     
