@@ -8,9 +8,11 @@ have been modified so this release is not backwards compatible.
 
 * CHANGE: Now refer to "gibble" as "digest" in all docs and methods. 
 * CHANGE: Gibbler#gibble -> Gibbler#gibbler
+* CHANGE: Gibble is now Gibbler::Digest
 * ADDED: Gibbler::History, supporting gibbler_snapshots and gibbler_revert
   for the following objects: Array, Hash
 * ADDED: Support for short, 8-character digests
+* ADDED: Expanded test coverage
 
 
 #### 0.4 (2009-06-30) #################################

@@ -53,8 +53,8 @@ Gibbler can also keep track of the history of changes to an object. By default G
     a                            # => { :magic => :changed }
         
     
-    a.gibbler_object 'b668098e'   # => { :magic => :updated }
-    a.gibbler_stamp               # => 2009-07-01 18:56:52 -0400
+    a.gibbler_object 'b668098e'  # => { :magic => :updated }
+    a.gibbler_stamp              # => 2009-07-01 18:56:52 -0400
     
 http://delano.github.com/gibbler/img/whoababy.gif
 
@@ -69,10 +69,10 @@ Gibbler methods are available only to the classes which explicitly include them 
     end
     
     a = FullHouse.new
-    a.gibbler                   # => 4192d4cb59975813f117a51dcd4454ac16df6703
+    a.gibbler                    # => 4192d4cb59975813f117a51dcd4454ac16df6703
     
     a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]
-    a.gibbler                   # => 6ea546919dc4caa2bab69799b71d48810a1b48fa
+    a.gibbler                    # => 6ea546919dc4caa2bab69799b71d48810a1b48fa
     
 Gibbler::Complex creates a digest based on the name of the class and the names and values of the instance variables. See the RDocs[http://delano.github.com/gibbler] for other Gibbler::* types. 
 
@@ -91,7 +91,13 @@ This code is hella fresh (est 2009-06-25). It's barely tested and the interface 
 
 NOTE: Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
 
+
 == News
+
+=== 2009-07-01: Major namespace reorganization
+
+Many method names have been modified so this release is not backwards compatible with previous releases. This clears up ambiguity regarding "gibbles". They're now rightly referred to as digests. 
+
 
 === 2009-06-30: Digests have changed in 0.4
 
