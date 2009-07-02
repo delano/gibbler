@@ -7,8 +7,15 @@ Gibbler.enable_debug if Tryouts.verbose > 3
 
 tryouts "Basic syntax with SHA256" do
   
-  drill "Can change Digest type", Digest::SHA256 do
-    Gibbler.digest_type = Digest::SHA256
+  # NOTE: JRuby require that we use OpenSSL::Digest::SHA256
+  if Tryouts.sysinfo.vm == :java 
+    drill "Can change Digest type", OpenSSL::Digest::SHA256 do
+      Gibbler.digest_type = OpenSSL::Digest::SHA256
+    end
+  else
+    drill "Can change Digest type", Digest::SHA256 do
+      Gibbler.digest_type = Digest::SHA256
+    end
   end
   
   dream :respond_to?, :gibbler
