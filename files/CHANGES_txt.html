@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-06-30 10:04:26 -0400</span>
+          <span class='datetime'>2009-07-01 20:14:03 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -41,10 +41,43 @@
             GIBBLER, CHANGES
             </p>
             <p>
+            #### 0.5 (2009-07-01) #################################
+            </p>
+            <p>
+            NOTE: This is a significant change from 0.4. Many method names have been
+            modified so this release is not backwards compatible.
+            </p>
+            <ul>
+            <li>CHANGE: Now refer to &#8220;gibble&#8221; as &#8220;digest&#8221; in all
+            docs and methods.
+            
+            </li>
+            <li>CHANGE: Gibbler#gibble -> <a
+            href="../classes/Gibbler.html#M000010">Gibbler#gibbler</a>
+            
+            </li>
+            <li>CHANGE: Gibble is now <a
+            href="../classes/Gibbler/Digest.html">Gibbler::Digest</a>
+            
+            </li>
+            <li>ADDED: <a href="../classes/Gibbler/History.html">Gibbler::History</a>,
+            supporting gibbler_snapshots and gibbler_revert for the following objects:
+            <a href="../classes/Array.html">Array</a>, <a
+            href="../classes/Hash.html">Hash</a>
+            
+            </li>
+            <li>ADDED: Support for short, 8-character digests
+            
+            </li>
+            <li>ADDED: Expanded test coverage
+            
+            </li>
+            </ul>
+            <p>
             #### 0.4 (2009-06-30) #################################
             </p>
             <p>
-            NOTE: Calculated gibbles have changed since 0.3. Most gibbles created with
+            NOTE: Calculated digests have changed since 0.3. Most digests created with
             0.3 and earlier will not match those created in 0.4 for the same object
             </p>
             <ul>
@@ -71,7 +104,7 @@
             
             </li>
             <li>CHANGE: Renamed Gibbler.gibbler_digest_type to <a
-            href="../classes/Gibbler.html#M000005">Gibbler.digest_type</a>
+            href="../classes/Gibbler.html#M000009">Gibbler.digest_type</a>
             
             </li>
             <li>ADDED: Custom objects can now &#8220;include Gibbler::Complex&#8220;

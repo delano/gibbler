@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Hash [Gibbler: Git-like hashes for Ruby objects]</title>
+    <title>: Gibbler::NoRevert [Gibbler: Git-like hashes for Ruby objects]</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
         function popupCode(url) {
@@ -27,22 +27,16 @@
       <div class='header'>
         <h1 class='name'>
           <span class='type'>Class</span>
-          Hash
+          Gibbler::NoRevert
         </h1>
         <ol class='paths'>
           <li>
-            <a href="../files/lib/gibbler/history_rb.html">lib/gibbler/history.rb</a>
-          </li>
-          <li class='other'>
-            <a href="../files/lib/gibbler_rb.html">lib/gibbler.rb</a>
-          </li>
-          <li>
-            <a class='show' href='#' onclick='this.parentNode.parentNode.className += " expanded"; this.parentNode.removeChild(this); return false'>show all</a>
+            <a href="../../files/lib/gibbler/history_rb.html">lib/gibbler/history.rb</a>
           </li>
         </ol>
         <div class='parent'>
           Parent:
-          <strong>Object</strong>
+          <strong><a href="Error.html">Gibbler::Error</a></strong>
         </div>
       </div>
       <div id='content'>
@@ -51,32 +45,23 @@
             <h2>Methods</h2>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000003">__gibbler_revert</a></li>
+              <li><a href="#M000032">message</a></li>
             </ol>
-          </div>
-          <div id='context'>
-            <div id='includes'>
-              <h2>Included modules</h2>
-              <ol>
-                <li><a href="Gibbler/History.html">Gibbler::History</a></li>
-                <li><a href="Gibbler/Hash.html">Gibbler::Hash</a></li>
-              </ol>
-            </div>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000003'>
-                <a name='M000003'>      </a>
+              <div class='public-instance method' id='method-M000032'>
+                <a name='M000032'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>__gibbler_revert</span>
+                  <span class='name'>message</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000003-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000032-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000003-source'>     <span class="ruby-comment cmt"># File lib/gibbler/history.rb, line 148</span>&#x000A;148:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert</span>&#x000A;149:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clear</span>&#x000A;150:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-ivar">@__gibbler_digest__</span>&#x000A;151:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000032-source'>   <span class="ruby-comment cmt"># File lib/gibbler/history.rb, line 6</span>&#x000A;6:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">message</span>; <span class="ruby-node">&quot;Revert not implemented for #{@obj}&quot;</span> <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
