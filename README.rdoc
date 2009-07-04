@@ -82,7 +82,7 @@ If you want to support all Ruby objects, add the following to your application:
       include Gibbler::String
     end
 
-Gibbler::String creates a digest based on the name of the class and the output of the to_s method. This is a reasonable default for most objects however any object that includes the object address in to_s (e.g. "<Object:0x0x4ac9f0...") will produce unreliable digests (because the address can change).
+Gibbler::String creates a digest based on the name of the class and the output of the to_s method. This is a reasonable default for most objects however any object that includes the object address in to_s (e.g. "&lt;Object:0x0x4ac9f0...") will produce unreliable digests (because the address can change).
 
 
 == ALPHA Notice
