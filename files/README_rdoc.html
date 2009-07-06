@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-07-04 11:21:13 -0400</span>
+          <span class='datetime'>2009-07-06 11:30:47 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -42,7 +42,7 @@
             Git-like hashes and history for Ruby objects.
             </p>
             <h2>Example 1 &#8212; Basic Usage</h2>
-            <pre>require 'gibbler'&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56</pre>
+            <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56</pre>
             <h2>Example 2 &#8212; Object History</h2>
             <p>
             <a href="../classes/Gibbler.html">Gibbler</a> can also keep track of the
@@ -54,7 +54,7 @@
             <tt>gibbler_commit</tt> method creates a clone of the current object and
             stores in an instance variable using the current hash digest as the key.
             </p>
-            <pre>require 'gibbler'&#x000A;require 'gibbler/history'&#x000A;&#x000A;a = { :magic =&gt; :original }&#x000A;a.gibbler_commit             # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910&#x000A;&#x000A;a[:magic] = :updated&#x000A;a.gibbler_commit             # =&gt; b668098e16d08898532bf3aa33ce2253a3a4150e&#x000A;&#x000A;a[:magic] = :changed&#x000A;a.gibbler_commit             # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1&#x000A;&#x000A;a.gibbler_history            # =&gt; d7049916, b668098e, 0b11c377&#x000A;&#x000A;a.gibbler_revert 'd7049916'  # Return to a specific commit&#x000A;a.gibbler                    # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910&#x000A;a                            # =&gt; { :magic =&gt; :original }&#x000A;&#x000A;a.delete :magic&#x000A;&#x000A;a.gibbler_revert             # Return to the previous commit&#x000A;a.gibbler                    # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1&#x000A;a                            # =&gt; { :magic =&gt; :changed }&#x000A;&#x000A;a.gibbler_object 'b668098e'  # =&gt; { :magic =&gt; :updated }&#x000A;a.gibbler_stamp              # =&gt; 2009-07-01 18:56:52 -0400</pre>
+            <pre>require 'gibbler'&#x000A;require 'gibbler/history'&#x000A;&#x000A;a = { :magic =&gt; :original }&#x000A;a.gibbler_commit             # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910&#x000A;&#x000A;a[:magic] = :updated&#x000A;a.gibbler_commit             # =&gt; b668098e16d08898532bf3aa33ce2253a3a4150e&#x000A;&#x000A;a[:magic] = :changed&#x000A;a.gibbler_commit             # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1&#x000A;&#x000A;a.gibbler_history            # =&gt; d7049916, b668098e, 0b11c377&#x000A;&#x000A;a.gibbler_revert! 'd7049916' # Return to a specific commit&#x000A;a.gibbler                    # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910&#x000A;a                            # =&gt; { :magic =&gt; :original }&#x000A;&#x000A;a.delete :magic&#x000A;&#x000A;a.gibbler_revert!            # Return to the previous commit&#x000A;a.gibbler                    # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1&#x000A;a                            # =&gt; { :magic =&gt; :changed }&#x000A;&#x000A;a.gibbler_object 'b668098e'  # =&gt; { :magic =&gt; :updated }&#x000A;a.gibbler_stamp              # =&gt; 2009-07-01 18:56:52 -0400</pre>
             <p>
             <img src="http://delano.github.com/gibbler/img/whoababy.gif" />
             </p>
@@ -99,16 +99,18 @@
             rely on it for production code.
             </p>
             <h2>News</h2>
+            <h3>2009-07-06: Renamed gibbler_revert to gibbler_revert!</h3>
+            <p>
+            The gibbler_revert! modifies the object in place so this was an important
+            change to follow the Ruby convention of appending the exclamation mark.
+            Thanks to <a href="http://news.ycombinator.com/item?id=689750">ivey</a> for
+            pointing this out.
+            </p>
             <h3>2009-07-01: Major namespace reorganization</h3>
             <p>
             Many method names have been modified so this release is not backwards
             compatible with previous releases. This clears up ambiguity regarding
             &#8220;gibbles&#8221;. They&#8217;re now rightly referred to as digests.
-            </p>
-            <h3>2009-06-30: Digests have changed in 0.4</h3>
-            <p>
-            Digests have changed between 0.3 and 0.4. Ones created with 0.3 and earlier
-            will not match ones created with 0.4 for the same object.
             </p>
             <h2>Known Issues</h2>
             <ul>

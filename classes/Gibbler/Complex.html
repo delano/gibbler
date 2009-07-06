@@ -42,7 +42,7 @@
             <h3>public instance</h3>
             <ol>
               <li><a href="#M000025">__gibbler</a></li>
-              <li><a href="#M000026">__gibbler_revert</a></li>
+              <li><a href="#M000026">__gibbler_revert!</a></li>
             </ol>
           </div>
           <div id='context'>
@@ -115,14 +115,14 @@
               <div class='public-instance method' id='method-M000026'>
                 <a name='M000026'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>__gibbler_revert</span>
+                  <span class='name'>__gibbler_revert!</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000026-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000026-source'>     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 125</span>&#x000A;125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert</span>&#x000A;126:       <span class="ruby-identifier">state</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-ivar">@__gibbler_digest__</span>&#x000A;127:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variables</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A;128:         <span class="ruby-identifier">v</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">n</span>&#x000A;129:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">v</span>&#x000A;130:       <span class="ruby-keyword kw">end</span>&#x000A;131:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000026-source'>     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 125</span>&#x000A;125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert!</span>&#x000A;126:       <span class="ruby-identifier">state</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-ivar">@__gibbler_digest__</span>&#x000A;127:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variables</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A;128:         <span class="ruby-identifier">v</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">n</span>&#x000A;129:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">v</span>&#x000A;130:       <span class="ruby-keyword kw">end</span>&#x000A;131:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
