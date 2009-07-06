@@ -230,6 +230,31 @@ module Gibbler
     end
   end
   
+  # Return the digest for <tt>class:arity:binding</tt>, where:
+  # * class is the current class name (e.g. Proc)
+  # * arity is the value returned by <tt>Proc#arity</tt>
+  # * binding is the value returned by <tt>Proc#binding</tt>
+  #
+  # This method can be used by any subclass of Proc.
+  #
+  # NOTE: This is named "Block" because for some reason if this is 
+  # named "Proc" (as in Gibbler::Proc) and the Rye library is also
+  # required, a runtime error is raised (Ruby 1.9.1 only):
+  #
+  #     undefined method `new' for Gibbler::Proc:Module
+  #     /usr/local/lib/ruby/1.9.1/tempfile.rb:169:in `callback'
+  #     /usr/local/lib/ruby/1.9.1/tempfile.rb:61:in `initialize'
+  #     /Users/delano/Projects/opensource/rye/lib/rye.rb:210:in `new'
+  #
+  module Block
+    include Gibbler
+    def __gibbler(h=self)
+      klass = h.class
+      a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, h.binding]
+      gibbler_debug klass, a, [klass, h.arity, h.binding]
+      a
+    end
+  end
   
   ##--
   ## NOTE: this was used when Gibbler supported "include Gibbler". We
@@ -253,6 +278,10 @@ module Gibbler
   ##++
 
     
+end
+
+class Proc
+  include Gibbler::Block
 end
 
 class Hash

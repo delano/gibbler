@@ -99,7 +99,7 @@ NOTE: Gibbler history is not suitable for very large objects since it keeps comp
 
 === 2009-07-06: Renamed gibbler_revert to gibbler_revert!
 
-The gibbler_revert! modifies the object in place so this was an important change to follow the Ruby convention of appending the exclamation mark. Thanks to ivey[http://news.ycombinator.com/item?id=689750] for pointing this out. 
+The gibbler_revert! method modifies the object in place so this was an important change to follow the Ruby convention of appending the exclamation mark. Thanks to ivey[http://news.ycombinator.com/item?id=689750] for pointing this out. 
 
 
 === 2009-07-01: Major namespace reorganization
