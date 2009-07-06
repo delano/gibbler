@@ -44,7 +44,7 @@ tryouts "Hash History" do
     a = { :magic => :original }
     a.gibbler_commit
     a[:magic] = :updated
-    a.gibbler_revert
+    a.gibbler_revert!
   end
   
   drill "knows a valid gibble", true do
@@ -67,7 +67,7 @@ tryouts "Hash History" do
     a.gibbler_commit
     a[:magic] = :changed
     a.gibbler_commit
-    a.gibbler_revert 'd7049916ddb25e6cc438b1028fb957e5139f9910'
+    a.gibbler_revert! 'd7049916ddb25e6cc438b1028fb957e5139f9910'
     a
   end
   
@@ -76,7 +76,7 @@ tryouts "Hash History" do
   drill "revert does nothing if digest is the same as current one" do
     a = { :magic => :original }
     a.gibbler_commit
-    a.gibbler_revert
+    a.gibbler_revert!
     a
   end
   
@@ -85,7 +85,7 @@ tryouts "Hash History" do
     a = { :magic => :original }
     a.gibbler_commit
     a[:magic] = :updated
-    a.gibbler_revert 'd7049916'
+    a.gibbler_revert! 'd7049916'
   end
   
 end

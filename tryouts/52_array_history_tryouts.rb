@@ -37,7 +37,7 @@ tryouts "Array History" do
     stash :original, a.gibbler_commit
     a << :joey
     stash :updated, a.gibbler
-    a.gibbler_revert
+    a.gibbler_revert!
   end
   
   

@@ -36,7 +36,7 @@ tryouts "String History" do
     stash :original, a.gibbler_commit
     a << " gibbler"
     stash :updated, a.gibbler
-    a.gibbler_revert
+    a.gibbler_revert!
   end
   
 end

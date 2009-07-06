@@ -1,6 +1,11 @@
 GIBBLER, CHANGES
 
 
+#### 0.5.1 (2009-07-06) #################################
+
+* CHANGE: Renamed gibbler_revert to gibbler_revert! (Thanks ivey)
+
+
 #### 0.5 (2009-07-01) #################################
 
 NOTE: This is a significant change from 0.4. Many method names  

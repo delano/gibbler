@@ -38,7 +38,7 @@ tryouts "Arbitrary Object History" do
     stash :original, a.gibbler_commit
     a.roles = [:jesse]
     stash :updated, a.gibbler
-    a.gibbler_revert
+    a.gibbler_revert!
   end
   
 end

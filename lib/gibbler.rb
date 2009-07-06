@@ -6,7 +6,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.5.0"
+  VERSION = "0.5.1"
   
   require 'gibbler/digest'
   require 'gibbler/mixins'
@@ -122,7 +122,7 @@ module Gibbler
       a
     end
     
-    def __gibbler_revert
+    def __gibbler_revert!
       state = self.gibbler_object @__gibbler_digest__
       state.instance_variables do |n|
         v = state.instance_variable_get n

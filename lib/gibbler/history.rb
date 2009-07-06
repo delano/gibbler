@@ -89,19 +89,19 @@ module Gibbler
     # will revert to that point. 
     #
     # Ruby does not support replacing self (<tt>self = previous_self</tt>) so each 
-    # object type needs to implement its own __gibbler_revert method. This default
-    # run some common checks and then defers to self.__gibbler_revert. 
+    # object type needs to implement its own __gibbler_revert! method. This default
+    # run some common checks and then defers to self.__gibbler_revert!. 
     # 
     # Raise the following exceptions:
-    # * NoRevert: if this object doesn't have a __gibbler_revert method
+    # * NoRevert: if this object doesn't have a __gibbler_revert! method
     # * NoHistory: This object has no commits
     # * BadDigest: The given digest is not in the history for this object
     #
     # If +g+ matches the current digest value this method does nothing. 
     #
     # Returns the new digest (+g+). 
-    def gibbler_revert(g=nil)
-      raise NoRevert unless self.respond_to?(:__gibbler_revert)
+    def gibbler_revert!(g=nil)
+      raise NoRevert unless self.respond_to?(:__gibbler_revert!)
       raise NoHistory, self.class unless gibbler_history?
       raise BadDigest, g if !g.nil? && !gibbler_valid?(g)
       
@@ -114,7 +114,7 @@ module Gibbler
         @@mutex.synchronize {
           # Always make sure @__gibbler_digest__ is a Gibbler::Digest 
           @__gibbler_digest__ = g.is_a?(Gibbler::Digest) ? g : Gibbler::Digest.new(g)
-          self.__gibbler_revert
+          self.__gibbler_revert!
         }
       end
       
@@ -145,7 +145,7 @@ end
 
 class Hash
   include Gibbler::History
-  def __gibbler_revert
+  def __gibbler_revert!
     self.clear
     self.merge! self.gibbler_object @__gibbler_digest__
   end
@@ -153,7 +153,7 @@ end
 
 class Array
   include Gibbler::History
-  def __gibbler_revert
+  def __gibbler_revert!
     self.clear
     self.push *(self.gibbler_object @__gibbler_digest__)
   end
@@ -161,7 +161,7 @@ end
   
 class String
   include Gibbler::History
-  def __gibbler_revert
+  def __gibbler_revert!
     self.clear
     self << (self.gibbler_object @__gibbler_digest__)
   end
