@@ -6,7 +6,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.5.1"
+  VERSION = "0.5.2"
   
   require 'gibbler/object'
   require 'gibbler/digest'
