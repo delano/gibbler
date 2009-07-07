@@ -8,6 +8,7 @@ require 'digest/sha1'
 module Gibbler
   VERSION = "0.5.1"
   
+  require 'gibbler/object'
   require 'gibbler/digest'
   require 'gibbler/mixins'
   
@@ -32,22 +33,6 @@ module Gibbler
   def self.disable_debug;  @@gibbler_debug = false; end
   # Returns the current digest class. 
   def self.digest_type; @@gibbler_digest_type; end
-
-  # Calculates a digest for the current object instance. 
-  # Objects that are a kind of Hash or Array are processed
-  # recursively. The length of the returned String depends 
-  # on the digest type. 
-  def gibbler
-    #if h.respond_to? :__custom_gibbler
-    #  d = h.__custom_gibbler
-    #  a = __gibbler '%s:%s:%s' % [klass, d.size, d]
-    #  gibbler_debug [klass, a]
-    #  a
-    #end
-    gibbler_debug :GIBBLER, self.class, self
-    @__gibbler_digest__ = Gibbler::Digest.new self.__gibbler
-    @__gibbler_digest__
-  end
   
   # Sends +str+ to Digest::SHA1.hexdigest. If another digest class
   # has been specified, that class will be used instead. 
@@ -56,46 +41,13 @@ module Gibbler
     @@gibbler_digest_type.hexdigest str
   end
   
-  # Has this object been modified?
-  #
-  # This method compares the return value from digest with the 
-  # previous value returned by gibbler (the value is stored in
-  # <tt>@__gibbler_digest__</tt>)
-  def gibbled?
-    @__gibbler_digest__ ||= self.gibbler
-    was, now = @__gibbler_digest__.clone, self.gibbler
-    gibbler_debug :gibbled?, was, now
-    was != now
-  end
-  
-  def gibbler_debug(*args)
-    return unless Gibbler.debug?
-    p args
-  end
   def self.gibbler_debug(*args)
     return unless Gibbler.debug?
     p args
   end
   
-  # Gets the list of instance variables from the standard implementation
-  # of the instance_variables method and removes all that 
-  # begin with <tt>@__gibbler</tt>. 
-  # Any class the includes Gibbler or Gibbler::* will use this version of
-  # instance_variables. It's important because we don't want the current
-  # digest value to affect the next gibble.
-  # 
-  # This is also critical for objects that include Gibbler::Complex b/c
-  # it deals explicitly with instance variables. If it sees the __gibbler
-  # variables it will go bananas. 
-  #
-  def instance_variables
-    vars = super
-    vars.reject! { |e| e.to_s =~ /^@__gibble/ }
-    vars
-  end
-
   module Complex
-    include Gibbler
+    include Gibbler::Object
     # Creates a digest based on: 
     # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
     #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
@@ -133,7 +85,7 @@ module Gibbler
   end
   
   module String
-    include Gibbler
+    include Gibbler::Object
     # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
     # This method can be used for any class where the <tt>to_s</tt>
     # method returns an appropriate unique value for this instance. 
@@ -159,7 +111,7 @@ module Gibbler
   end
       
   module Hash 
-    include Gibbler
+    include Gibbler::Object
     
     # Creates a digest based on: 
     # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
@@ -195,7 +147,7 @@ module Gibbler
   end
   
   module Array
-    include Gibbler
+    include Gibbler::Object
     
     # Creates a digest based on:
     # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
@@ -247,7 +199,7 @@ module Gibbler
   #     /Users/delano/Projects/opensource/rye/lib/rye.rb:210:in `new'
   #
   module Block
-    include Gibbler
+    include Gibbler::Object
     def __gibbler(h=self)
       klass = h.class
       a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, h.binding]

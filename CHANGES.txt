@@ -1,9 +1,10 @@
 GIBBLER, CHANGES
 
 
-#### 0.5.2 (2009-07-06) #################################
+#### 0.5.2 (2009-07-??) #################################
 
 * ADDED: Proc.gibbler which is included by default
+* CHANGE: Moved Gibbler instance methods to Gibbler::Object
 
 
 #### 0.5.1 (2009-07-06) #################################
