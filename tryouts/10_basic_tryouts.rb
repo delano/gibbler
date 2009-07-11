@@ -84,9 +84,22 @@ tryouts "Basic syntax with SHA1" do
     a = {}
     a.gibbler  # We need to gibbler first so it sets a value to the instance var
     val = Tryouts.sysinfo.ruby[1] == 9 ? :'@__gibbler_digest__' : '@__gibbler_digest__'
+    stash :ivars, a.instance_variables
+    stash :smeths, Gibbler.singleton_methods
     a.instance_variables.member? val
   end
   
+  drill "previous digest", 'c8027100ecc54945ab15ddac529230e38b1ba6a1' do
+    a = "kimmy"
+    a.gibbler
+    #stash :methods, a.methods.sort
+    #
+    #stash :string_methods, String.methods.sort
+    #stash :gstring_methods, Gibbler::String.methods.sort
+    #stash :class_methods, a.class.methods.sort
+    stash :ivars, a.instance_variables
+    a.previous_digest
+  end
   
 end
 

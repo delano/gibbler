@@ -3,6 +3,9 @@
 module Gibbler
   
   module Object
+    extend Attic
+    
+    attic :previous_digest, :zogg
     
     # Gets the list of instance variables from the standard implementation
     # of the instance_variables method and removes all that 
@@ -35,6 +38,7 @@ module Gibbler
       #end
       gibbler_debug :GIBBLER, self.class, self
       @__gibbler_digest__ = Gibbler::Digest.new self.__gibbler
+      self.previous_digest = @__gibbler_digest__
       @__gibbler_digest__
     end
 

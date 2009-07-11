@@ -1,11 +1,18 @@
 
+local_libs = %w{attic}
+local_libs.each { |dir| $:.unshift File.join(File.dirname(__FILE__), '..', '..', dir, 'lib') }
+
 require 'digest/sha1'
+require 'attic'
 
 # = Gibbler
 # 
 # "Hola, Tanneritos"
 #
 module Gibbler
+  #include Attic
+  extend Attic
+  
   VERSION = "0.5.2"
   
   require 'gibbler/object'
@@ -86,6 +93,7 @@ module Gibbler
   
   module String
     include Gibbler::Object
+    
     # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
     # This method can be used for any class where the <tt>to_s</tt>
     # method returns an appropriate unique value for this instance. 
