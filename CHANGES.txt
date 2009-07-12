@@ -1,7 +1,14 @@
 GIBBLER, CHANGES
 
+#### 0.5.3 (2009-07-12) #################################
 
-#### 0.5.2 (2009-07-??) #################################
+* FIXED: Updated gemspec to fix missing files (aliases)
+* CHANGE: conversion to attic instead of weirdo instance 
+  variables (@__gibbler__ and @__gibbler_history)
+* NEW DEPENDENCY: attic
+
+
+#### 0.5.2 (2009-07-07) #################################
 
 * CHANGE: Moved Gibbler instance methods to Gibbler::Object
 * ADDED: Proc.gibbler which is included by default

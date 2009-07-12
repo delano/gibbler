@@ -1,7 +1,7 @@
 @spec = Gem::Specification.new do |s|
 	s.name = "gibbler"
   s.rubyforge_project = "gibbler"
-	s.version = "0.5.2"
+	s.version = "0.5.3"
 	s.summary = "Gibbler: Git-like hashes for Ruby objects"
 	s.description = s.summary
 	s.author = "Delano Mandelbaum"
@@ -23,6 +23,9 @@
   # Update --main to reflect the default page to display
   s.rdoc_options = ["--line-numbers", "--title", s.summary, "--main", "README.rdoc"]
   
+  # = DEPENDENCIES =
+  s.add_dependency 'attic'
+  
   # = MANIFEST =
   s.files = %w(
   CHANGES.txt
@@ -31,10 +34,12 @@
   Rakefile
   gibbler.gemspec
   lib/gibbler.rb
+  lib/gibbler/aliases.rb
   lib/gibbler/digest.rb
   lib/gibbler/history.rb
   lib/gibbler/mixins.rb
   lib/gibbler/mixins/string.rb
+  lib/gibbler/object.rb
   tryouts/01_mixins_tryouts.rb
   tryouts/05_gibbler_digest_tryouts.rb
   tryouts/10_basic_tryouts.rb
@@ -46,6 +51,7 @@
   tryouts/57_arbitrary_history_tryouts.rb
   tryouts/59_history_exceptions_tryouts.rb
   tryouts/80_performance_tryouts.rb
+  tryouts/90_alias_tryouts.rb
   tryouts/object_hash_demo.rb
   )
   

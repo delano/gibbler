@@ -144,6 +144,20 @@ The gibbler_revert! method modifies the object in place so this was an important
 * gibbler or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous digest value to compare to)
 
 
+== Installation
+
+Via Rubygems, one of:
+
+    $ gem install gibbler
+    $ gem install delano-gibbler
+
+
+or via download:
+* gibbler-latest.tar.gz[http://github.com/delano/gibbler/tarball/latest]
+* gibbler-latest.zip[http://github.com/delano/gibbler/zipball/latest]
+
+
+
 == More Info
 
 * Codes[http://github.com/delano/gibbler]

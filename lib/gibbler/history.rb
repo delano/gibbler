@@ -150,7 +150,7 @@ class Hash
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self.merge! self.gibbler_object self.__gibbler_cache
+    self.merge! self.gibbler_object(self.__gibbler_cache)
   end
 end
 
