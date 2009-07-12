@@ -52,7 +52,7 @@ tryouts "Basic syntax with SHA1" do
   
   dream :gibbler, "884e5713aa70468333459f80aea1bb05394ca4ba"
   drill "Populated Array instance" do
-    [1, 22222222222, :runtime, [2, "three", [Object, true]]]
+    [1, 2, :runtime, [3, "four", [Object, true]]]
   end 
   
   drill "Knows when a Hash has not changed", false do
@@ -98,7 +98,7 @@ tryouts "Basic syntax with SHA1" do
     #stash :gstring_methods, Gibbler::String.methods.sort
     #stash :class_methods, a.class.methods.sort
     stash :ivars, a.instance_variables
-    a.previous_digest
+    a.__gibbler_cache
   end
   
 end

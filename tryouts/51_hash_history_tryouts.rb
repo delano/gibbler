@@ -16,10 +16,10 @@ tryouts "Hash History" do
     end
   end
   
-  drill "doesn't reveal @__gibbler_history__ instance variable", false do
+  drill "doesn't reveal self.__gibbler_history instance variable", false do
     a = {}
     a.gibbler  # We need to gibbler first so it sets a value to the instance var
-    val = Tryouts.sysinfo.ruby[1] == 9 ? :'@__gibbler_history__' : '@__gibbler_history__'
+    val = Tryouts.sysinfo.ruby[1] == 9 ? :'self.__gibbler_history' : 'self.__gibbler_history'
     a.instance_variables.member? val
   end
   

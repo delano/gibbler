@@ -25,7 +25,7 @@ tryouts "Speed", :benchmark do
     @@hash.hash
   end
   
-  dream :mean, 1.1
+  dream :mean, 1.4
   drill "Hash#gibbler", 5 do
     @@hash.gibbler 
   end

@@ -82,7 +82,7 @@ module Gibbler
     end
     
     def __gibbler_revert!
-      state = self.gibbler_object @__gibbler_digest__
+      state = self.gibbler_object self.__gibbler_cache
       state.instance_variables do |n|
         v = state.instance_variable_get n
         self.instance_variable_set v

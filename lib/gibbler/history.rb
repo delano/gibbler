@@ -13,6 +13,9 @@ module Gibbler
   end
     
   module History
+    extend Attic
+    
+    attic :__gibbler_history
     
     @@mutex = Mutex.new
     
@@ -23,15 +26,15 @@ module Gibbler
     # to the short 8 character digests.
     def gibbler_history(short=false)
       # Only a single thread should attempt to initialize the store.
-      if @__gibbler_history__.nil?
+      if self.__gibbler_history.nil?
         @@mutex.synchronize {
-          @__gibbler_history__ ||= { :history => [], :objects => {}, :stamp => {} }
+          self.__gibbler_history ||= { :history => [], :objects => {}, :stamp => {} }
         }
       end
       if short == false
-        @__gibbler_history__[:history]
+        self.__gibbler_history[:history]
       else
-        @__gibbler_history__[:history].collect { |g| g.short }
+        self.__gibbler_history[:history].collect { |g| g.short }
       end
     end
     
@@ -42,7 +45,7 @@ module Gibbler
       g = self.gibbler_history.last if g.nil?
 
       return unless gibbler_valid? g
-      @__gibbler_history__[:objects][ g ]
+      self.__gibbler_history[:objects][ g ]
     end
     
     # Returns the timestamp (a Time object) when the digest +g+ was committed. 
@@ -51,7 +54,7 @@ module Gibbler
       g = gibbler_find_long g
       g = self.gibbler_history.last if g.nil?
       return unless gibbler_valid? g
-      @__gibbler_history__[:stamp][ g ]
+      self.__gibbler_history[:stamp][ g ]
     end
     
     # Stores a clone of the current object instance using the current
@@ -68,17 +71,17 @@ module Gibbler
     def gibbler_commit
       now, digest, point = nil,nil,nil
       
-      if @__gibbler_history__.nil?
+      if self.__gibbler_history.nil?
         @@mutex.synchronize {
-          @__gibbler_history__ ||= { :history => [], :objects => {}, :stamp => {} }
+          self.__gibbler_history ||= { :history => [], :objects => {}, :stamp => {} }
         }
       end
       
       @@mutex.synchronize {
         now, digest, point = Time.now, self.gibbler, self.clone
-        @__gibbler_history__[:history] << digest
-        @__gibbler_history__[:stamp][digest] = now
-        @__gibbler_history__[:objects][digest] = point
+        self.__gibbler_history[:history] << digest
+        self.__gibbler_history[:stamp][digest] = now
+        self.__gibbler_history[:objects][digest] = point
       }
       
       digest
@@ -101,7 +104,7 @@ module Gibbler
     #
     # Returns the new digest (+g+). 
     def gibbler_revert!(g=nil)
-      raise NoRevert unless self.respond_to?(:__gibbler_revert!)
+      raise NoRevert unless self.respond_to? :__gibbler_revert!
       raise NoHistory, self.class unless gibbler_history?
       raise BadDigest, g if !g.nil? && !gibbler_valid?(g)
       
@@ -109,16 +112,16 @@ module Gibbler
       g = gibbler_find_long g 
       
       # Do nothing if the given digest matches the current gibble. 
-      # NOTE: We use __gibbler b/c it doesn't update @@__gibbler_digest__.
+      # NOTE: We use __gibbler b/c it doesn't update self.__gibbler_cache.
       unless self.__gibbler == g
         @@mutex.synchronize {
-          # Always make sure @__gibbler_digest__ is a Gibbler::Digest 
-          @__gibbler_digest__ = g.is_a?(Gibbler::Digest) ? g : Gibbler::Digest.new(g)
+          # Always make sure self.gibbler_digest is a Gibbler::Digest 
+          self.__gibbler_cache = g.is_a?(Gibbler::Digest) ? g : Gibbler::Digest.new(g)
           self.__gibbler_revert!
         }
       end
       
-      @__gibbler_digest__
+      self.__gibbler_cache
     end
     
     # Is the given digest +g+ contained in the history for this object?
@@ -147,7 +150,7 @@ class Hash
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self.merge! self.gibbler_object @__gibbler_digest__
+    self.merge! self.gibbler_object self.__gibbler_cache
   end
 end
 
@@ -155,7 +158,7 @@ class Array
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self.push *(self.gibbler_object @__gibbler_digest__)
+    self.push *(self.gibbler_object self.__gibbler_cache)
   end
 end
   
@@ -163,7 +166,7 @@ class String
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self << (self.gibbler_object @__gibbler_digest__)
+    self << (self.gibbler_object self.__gibbler_cache)
   end
 end
       
