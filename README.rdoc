@@ -129,6 +129,10 @@ NOTE: Gibbler history is not suitable for very large objects since it keeps comp
 
 == News
 
+=== 2009-07-13: Fixed Attic gem
+
+Cripes! I added the Attic dependency but there was a problem with the attic gem (the gemspec was outdated). It's <i>all</i> good now, the attic-0.3.1 gem should be available on all Rubyforge mirrors and and gems.github.com soon. 
+
 === 2009-07-07: Added aliases
 
 The "gibbler" methods can be cumbersome so I added some aliases which can be included by request. See the example above. 
