@@ -161,6 +161,12 @@ or via download:
 * gibbler-latest.zip[http://github.com/delano/gibbler/zipball/latest]
 
 
+== What People Are Saying
+
+* "nice approach - everything is an object, every object is 'gittish'" -- @olgen_morten[http://twitter.com/olgen_morten/statuses/2629909133]
+* "gibbler is just awesome" -- @TomK32[http://twitter.com/TomK32/statuses/2618542872]
+* "wie cool ist Gibbler eigentlich?" -- @we5[http://twitter.com/we5/statuses/2615274279]
+* "it's nice idea and implementation!" -- HristoHristov[http://www.rubyinside.com/gibbler-git-like-hashes-and-history-for-ruby-objects-1980.html#comment-39092]
 
 == More Info
 
@@ -168,6 +174,11 @@ or via download:
 * RDocs[http://delano.github.com/gibbler]
 * Sponsor[http://solutious.com/]
 * Inspiration[http://www.youtube.com/watch?v=fipD4DdV48g]
+
+
+== Thanks
+
+* Kalin Harvey (krrh[http://github.com/krrh]) for the early feedback and artistic direction. 
 
 
 == Credits
