@@ -50,7 +50,7 @@ tryouts "Basic syntax with SHA1" do
   dream :gibbler, '48fda57c05684c9e5c3259557851943572183a21' 
   drill "Empty Array instance", Array.new
   
-  dream :gibbler, "884e5713aa70468333459f80aea1bb05394ca4ba"
+  dream :gibbler, "3e1d79d113a409a96a13ca3879fc4c42027aa74b"
   drill "Populated Array instance" do
     [1, 2, :runtime, [3, "four", [Object, true]]]
   end 
