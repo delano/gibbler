@@ -55,6 +55,12 @@ module Gibbler
   
   module Complex
     include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
     # Creates a digest based on: 
     # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
     #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
@@ -94,6 +100,11 @@ module Gibbler
   module String
     include Gibbler::Object
     
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
     # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
     # This method can be used for any class where the <tt>to_s</tt>
     # method returns an appropriate unique value for this instance. 
@@ -120,6 +131,11 @@ module Gibbler
       
   module Hash 
     include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
     
     # Creates a digest based on: 
     # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
@@ -156,6 +172,11 @@ module Gibbler
   
   module Array
     include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
     
     # Creates a digest based on:
     # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
@@ -208,6 +229,12 @@ module Gibbler
   #
   module Block
     include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
     def __gibbler(h=self)
       klass = h.class
       a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, h.binding]

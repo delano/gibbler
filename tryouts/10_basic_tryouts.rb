@@ -69,6 +69,35 @@ tryouts "Basic syntax with SHA1" do
     a.gibbled?
   end
   
+  dream ["667ce086", "92d5f7cd"]
+  drill "Symbols digests don't cross streams" do
+    a, b = :something, :anything
+    a.gibbler
+    b.gibbler
+    [a.__gibbler_cache.short, b.__gibbler_cache.short]
+  end
+  
+  dream ["ce0c7694", "c13b2f02"]
+  drill "String digests don't cross streams" do
+    a, b = 'something', 'anything'
+    a.gibbler
+    b.gibbler
+    [a.__gibbler_cache.short, b.__gibbler_cache.short]
+  end
+  
+  drill "Symbol has list of attic vars", [:__gibbler_cache] do
+    Symbol.attic_vars
+  end
+
+  drill "String has list of attic vars", [:__gibbler_cache] do
+    String.attic_vars
+  end
+  
+  drill "Hash has list of attic vars", [:__gibbler_cache] do
+    Hash.attic_vars
+  end
+  
+  
   dream :gibbler, "6ea546919dc4caa2bab69799b71d48810a1b48fa"
   drill "works on arbitrary objects" do
     class ::FullHouse

@@ -24,7 +24,7 @@
   s.rdoc_options = ["--line-numbers", "--title", s.summary, "--main", "README.rdoc"]
   
   # = DEPENDENCIES =
-  s.add_dependency 'attic'
+  s.add_dependency 'attic',   '>= 0.4.0'
   
   # = MANIFEST =
   s.files = %w(

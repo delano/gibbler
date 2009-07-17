@@ -3,9 +3,6 @@
 module Gibbler
   
   module Object
-    extend Attic
-    
-    attic :__gibbler_cache
     
     # Calculates a digest for the current object instance. 
     # Objects that are a kind of Hash or Array are processed

@@ -11,11 +11,11 @@ NOTE: Gibbler supports Ruby 1.8, 1.9 and JRuby.
     
     "kimmy".gibbler              # => c8027100ecc54945ab15ddac529230e38b1ba6a1
     :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-        
+    
     config = {}
     config.gibbler               # => 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf
     config.gibbled?              # => false
-                                 
+    
     config[:server] = {          
       :users => [:dave, :ali],   
       :ports => [22, 80, 443]    

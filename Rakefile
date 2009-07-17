@@ -15,7 +15,7 @@ CHANGES = "CHANGES.txt"
 LICENSE = "LICENSE.txt"
 
 # Files and directories to be deleted when you run "rake clean"
-CLEAN.include [ 'pkg', '*.gem', '.config']
+CLEAN.include [ 'pkg', '*.gem', '.config', 'doc']
 
 name = 'gibbler'
 load "#{name}.gemspec"
