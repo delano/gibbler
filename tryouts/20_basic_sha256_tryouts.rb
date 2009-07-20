@@ -25,10 +25,10 @@ tryouts "Basic syntax with SHA256" do
   dream :gibbler, '754f87ca720ec256633a286d9270d68478850b2abd7b0ae65021cb769ae70c08' 
   drill "A Symbol can gibbler", :anything
   
-  dream :gibbler, 'e81018430223e309ed7fb4d4c41aa5435386f825af7d7859ef19a95fb1a7a1be' 
+  dream :gibbler, 'd345c0afb4e8da0133a3946d3bd9b2622b0acdd8d6cc1237470cc637a9e4777f' 
   drill "Class can gibbler", Class
   
-  dream :gibbler, '0f0c65cf97e7b2e37b4030a77cfda347bc646ac70ae6c3eab3506b43fc17f243' 
+  dream :gibbler, 'b7b874a9bff7825caa57750a900652354ac601b77497b694d313f658c69d25b4' 
   drill "TrueClass can gibbler", TrueClass
   
   dream :gibbler, '88d2bcbd68ce593fd2e0e06f276f7301357516291b95c0c53038e61a9bf091e5' 

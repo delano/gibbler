@@ -36,16 +36,21 @@ module Gibbler
       p args
     end
     
-    # Creates a digest for the current state of self based on the 
-    # return values for Object#name and Object#class.
+    # Creates a digest for the current state of self based on:
+    # * Object#class
+    # * Length of Object#name || ''
+    # * Object#name || ''
+    # 
+    # e.g. Digest::SHA1.hexdigest "Class:6:Object" #=> 
     #
     # <b>This is a default method appropriate for only the most 
     # basic objects like Class and Module.</b>
     #
     def __gibbler(h=self)
       klass = h.class
-      a = Gibbler.digest '%s:%s:s' % [h.name, klass]
-      gibbler_debug klass, a, [h.name, klass]
+      nom = h.name || ''
+      a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom]
+      gibbler_debug klass, a, [klass, nom.size, nom]
       a
     end
   end

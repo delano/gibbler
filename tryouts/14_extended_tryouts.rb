@@ -13,25 +13,28 @@ tryouts "Extended object tryouts" do
   dream :gibbler, 'abee839edf5f9c101c505c28987ca35c31c7fc8d' 
   drill "false can gibbler", false
   
-  dream :gibbler, 'c688e148af1d223425cb63e55501df98cee44ee3' 
+  dream :gibbler, '583fb214ec50d2c4a123cc52de0c65e801d13516' 
   drill "TrueClass can gibbler", TrueClass
   
-  dream :gibbler, 'db109226e95cc484f22437025a764ab0fae3ff8d' 
+  dream :gibbler, '11f262be475ddf38a25888e9f6ec82f384a7c58b' 
   drill "FalseClass can gibbler", FalseClass
   
-  dream :gibbler, 'cd114c32b2137909505af243ed9ecba3600cc5fd' 
+  dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
   drill "Class can gibbler", Class
   
-  dream :gibbler, 'da23a14fc54b12b8fe8f747f51b2917d5d05e0ad' 
+  dream :gibbler, '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2' 
+  drill "Object can gibbler", Object
+  
+  dream :gibbler, '083feec632e6cd5347e3fb3c7048365c3a0d710e' 
   drill "Class instance can gibbler", Class.new
   
-  dream :gibbler, '8e145e26e5dc06688f9ee4411a43b08d2e7ed4fa' 
+  dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc' 
   drill "Module can gibbler", Module
   
-  dream :gibbler, '2dad58a8975d62f9c6e41c5d1efd9c2adef84d6a' 
+  dream :gibbler, '6b5a192fd377dfc5c2828a3ad6105b68b6db33d5' 
   drill "Module instance can gibbler", Module.new
   
-  dream :gibbler, '6b7978dae078bf62eb4082f2447bb81919ffc596' 
+  dream :gibbler, '8640f7abcbcb80e3825ed827bf36819e26119e16' 
   drill "Proc can gibbler", Proc
   
   
