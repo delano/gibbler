@@ -86,13 +86,21 @@ module Gibbler
     def self.included(obj)
       obj.extend Attic
       obj.attic :__gibbler_cache
+      obj.attic :__gibbler_ignore
+      obj.meta_def :gibbler_ignore do |*names|
+        __gibbler_ignore ||= []
+        __gibbler_ignore += names.collect { |n| "@#{n}" }
+      end
+      
     end
     
     # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
+      __gibbler_ignore ||= []
       d = []
       instance_variables.each do |n|
+        next if __gibbler_ignore.member?(n)
         value = instance_variable_get(n)
         d << '%s:%s:%s' % [value.class, n, value.__gibbler]
       end
