@@ -130,7 +130,7 @@ This code is hella fresh (est 2009-06-25). It's barely tested and the interface 
 
 == News
 
-=== 2009-07-20: Digests change for instance of Class, Module, and Proc
+=== 2009-07-20: Digest change for instances of Class, Module, and Proc
 
 Digest calculation has changed for Class, Module, and Proc objects. Digests created with Gibbler 0.5.x and earlier will not match the ones created by 0.6. 
 
