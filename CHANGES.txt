@@ -3,7 +3,13 @@ GIBBLER, CHANGES
 
 #### 0.5.5 (2009-07-20) #################################
 
+NOTE: Digest calculation for Proc and Class objects have changed.
+Digests created for these types will not match previous releases. 
+
+* FIXED: Proc digests no longer refer to Proc#binding
 * CHANGE: The Gibbler module now raises an exception if it's included
+* CHANGE: Module and Class now use the default Gibbler::Object digest
+* ADDED: Gibbler::Object now contains a default digest method
 
 
 #### 0.5.4 (2009-07-17) #################################

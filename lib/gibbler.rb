@@ -305,7 +305,11 @@ class Symbol
 end
 
 class Class
-  include Gibbler::String
+  include Gibbler::Object
+end
+
+class Module
+  include Gibbler::Object
 end
 
 class Fixnum
