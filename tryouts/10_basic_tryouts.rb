@@ -1,5 +1,5 @@
 
-library :gibbler, File.dirname(__FILE__), '..', 'lib'
+library :gibbler, 'lib'
 group "Gibbler Gazette"
 
 Gibbler.enable_debug if Tryouts.verbose > 3
@@ -21,7 +21,7 @@ tryouts "Basic syntax with SHA1" do
   end
   
   dream :respond_to?, :gibbler
-  dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
+  dream :gibbler, 'cd114c32b2137909505af243ed9ecba3600cc5fd' 
   drill "Class can gibbler", Class
   
   dream :respond_to?, :gibbler
@@ -38,7 +38,7 @@ tryouts "Basic syntax with SHA1" do
     100000000000
   end
   
-  dream :gibbler, "1d4b62e1e9f2c097b0cefb6877bf47c2015cdd21"
+  dream :gibbler, "0f3366306d6e8c0ccc4beea5f7cea3e95ad0fc31"
   drill "Populated Hash instance" do
     {
       :a => [1,2,3, [4,5,6]],
@@ -50,7 +50,7 @@ tryouts "Basic syntax with SHA1" do
   dream :gibbler, '48fda57c05684c9e5c3259557851943572183a21' 
   drill "Empty Array instance", Array.new
   
-  dream :gibbler, "3e1d79d113a409a96a13ca3879fc4c42027aa74b"
+  dream :gibbler, "b8c1175fc2b52bc732dc413f2e362a9f8e9382e0"
   drill "Populated Array instance" do
     [1, 2, :runtime, [3, "four", [Object, true]]]
   end 
