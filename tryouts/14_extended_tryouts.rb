@@ -22,6 +22,9 @@ tryouts "Extended object tryouts" do
   dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
   drill "Class can gibbler", Class
   
+  dream :gibbler, '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2' 
+  drill "Object can gibbler", Object
+  
   dream :gibbler, '083feec632e6cd5347e3fb3c7048365c3a0d710e' 
   drill "Class instance can gibbler", Class.new
   
