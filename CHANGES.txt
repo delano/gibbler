@@ -1,7 +1,7 @@
 GIBBLER, CHANGES
 
 
-#### 0.5.5 (2009-07-20) #################################
+#### 0.6.0 (2009-07-20) #################################
 
 NOTE: Digest calculation for Proc and Class objects have changed.
 Digests created for these types will not match previous releases. 

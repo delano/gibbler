@@ -6,6 +6,12 @@ Gibbler.enable_debug if Tryouts.verbose > 3
 
 tryouts "Basic syntax with SHA1" do
   
+  dream :exception, RuntimeError
+  drill "include Gibbler raises exception" do
+    a = Class.new
+    a.send :include, Gibbler
+  end
+  
   dream :respond_to?, :gibbler
   dream :gibbler, '52be7494a602d85ff5d8a8ab4ffe7f1b171587df' 
   drill "Symbol can gibbler", :kimmy
