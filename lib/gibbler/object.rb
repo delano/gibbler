@@ -4,6 +4,11 @@ module Gibbler
   
   module Object
     
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
     # Calculates a digest for the current object instance. 
     # Objects that are a kind of Hash or Array are processed
     # recursively. The length of the returned String depends 
@@ -31,6 +36,18 @@ module Gibbler
       p args
     end
     
+    # Creates a digest for the current state of self based on the 
+    # return values for Object#name and Object#class.
+    #
+    # <b>This is a default method appropriate for only the most 
+    # basic objects like Class and Module.</b>
+    #
+    def __gibbler(h=self)
+      klass = h.class
+      a = Gibbler.digest '%s:%s:s' % [h.name, klass]
+      gibbler_debug klass, a, [h.name, klass]
+      a
+    end
   end
   
 end
