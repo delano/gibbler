@@ -66,6 +66,7 @@
               <li><a href="#M000008">disable_debug</a></li>
               <li><a href="#M000007">enable_debug</a></li>
               <li><a href="#M000011">gibbler_debug</a></li>
+              <li><a href="#M000012">included</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -91,7 +92,7 @@
                   <tr class='top-aligned-row context-row'>
                     <td class='context-item-name'>VERSION</td>
                     <td>=</td>
-                    <td class='context-item-value'>&quot;0.5.4&quot;</td>
+                    <td class='context-item-value'>&quot;0.6.0&quot;</td>
                   </tr>
                 </table>
               </div>
@@ -211,6 +212,38 @@
                     [show source]
                   </a>
                   <pre id='M000011-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 51</span>&#x000A;51:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_debug</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;52:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>&#x000A;53:     <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>&#x000A;54:   <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-class method' id='method-M000012'>
+                <a name='M000012'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>included</span>
+                  <span class='arguments'>(obj)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Raises an exception. The correct usage is to include a Gibbler::Object:
+                  </p>
+                  <ul>
+                  <li><a href="Gibbler/Complex.html">Gibbler::Complex</a>
+                  
+                  </li>
+                  <li><a href="Gibbler/String.html">Gibbler::String</a>
+                  
+                  </li>
+                  <li><a href="Gibbler/Object.html">Gibbler::Object</a>
+                  
+                  </li>
+                  <li>etc &#8230;
+                  
+                  </li>
+                  </ul>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000012-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 61</span>&#x000A;61:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A;62:     <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You probably want to include Gibbler::Complex or Gibbler::Object&quot;</span>&#x000A;63:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

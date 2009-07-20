@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-07-17 09:37:58 -0400</span>
+          <span class='datetime'>2009-07-20 14:55:50 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -40,6 +40,33 @@
             <p>
             GIBBLER, CHANGES
             </p>
+            <p>
+            #### 0.6.0 (2009-07-20) #################################
+            </p>
+            <p>
+            NOTE: Digest calculation for <a href="../classes/Proc.html">Proc</a> and <a
+            href="../classes/Class.html">Class</a> objects have changed. Digests
+            created for these types will not match previous releases.
+            </p>
+            <ul>
+            <li>FIXED: <a href="../classes/Proc.html">Proc</a> digests no longer refer to
+            Proc#binding
+            
+            </li>
+            <li>CHANGE: The <a href="../classes/Gibbler.html">Gibbler</a> module now raises
+            an exception if it&#8217;s included
+            
+            </li>
+            <li>CHANGE: <a href="../classes/Module.html">Module</a> and <a
+            href="../classes/Class.html">Class</a> now use the default <a
+            href="../classes/Gibbler/Object.html">Gibbler::Object</a> digest
+            
+            </li>
+            <li>ADDED: <a href="../classes/Gibbler/Object.html">Gibbler::Object</a> now
+            contains a default digest method
+            
+            </li>
+            </ul>
             <p>
             #### 0.5.4 (2009-07-17) #################################
             </p>

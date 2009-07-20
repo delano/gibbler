@@ -37,16 +37,60 @@
       </div>
       <div id='content'>
         <div id='text'>
+          <div id='description'>
+            <p>
+            Creates a digest based on:
+            </p>
+            <ul>
+            <li>An <a href="Array.html">Array</a> of instance variable names and values in
+            the format: <tt>CLASS:LENGTH:VALUE</tt>
+            
+            <ul>
+            <li>The gibbler method is called on each element so if it is a <a
+            href="Hash.html">Hash</a> or <a href="Array.html">Array</a> etc it will be
+            parsed recursively according to the gibbler method for that class type.
+            
+            </li>
+            </ul>
+            </li>
+            <li><a href="Digest.html">Digest</a> the <a href="Array.html">Array</a> of
+            digests
+            
+            </li>
+            <li>Return the digest for <tt>class:length:value</tt> where:
+            
+            <ul>
+            <li>&#8220;class&#8221; is equal to the current object class (e.g. FullHouse).
+            
+            </li>
+            <li>&#8220;length&#8221; is the size of the <a href="Array.html">Array</a> of
+            digests (which should equal the number of instance variables in the
+            object).
+            
+            </li>
+            <li>&#8220;value&#8221; is the <a href="Array.html">Array</a> of digests joined
+            with a colon (&#8220;:&#8221;).
+            
+            </li>
+            </ul>
+            </li>
+            </ul>
+            <p>
+            This method can be used by any class which stores values in instance
+            variables.
+            </p>
+            <pre>class Episodes&#x000A;  include Gibbler::Complex&#x000A;  attr_accessor :season, :year, :cast&#x000A;end</pre>
+          </div>
           <div id='method-list'>
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000034">included</a></li>
+              <li><a href="#M000037">included</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000035">__gibbler</a></li>
-              <li><a href="#M000036">__gibbler_revert!</a></li>
+              <li><a href="#M000038">__gibbler</a></li>
+              <li><a href="#M000039">__gibbler_revert!</a></li>
             </ol>
           </div>
           <div id='context'>
@@ -60,87 +104,49 @@
           <div id='section'>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000034'>
-                <a name='M000034'>      </a>
+              <div class='public-class method' id='method-M000037'>
+                <a name='M000037'>      </a>
                 <div class='synopsis'>
                   <span class='name'>included</span>
                   <span class='arguments'>(obj)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000034-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000037-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000034-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 59</span>&#x000A;59:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A;60:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>&#x000A;61:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-identifier">:__gibbler_cache</span>&#x000A;62:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000037-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 86</span>&#x000A;86:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A;87:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>&#x000A;88:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-identifier">:__gibbler_cache</span>&#x000A;89:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000035'>
-                <a name='M000035'>      </a>
+              <div class='public-instance method' id='method-M000038'>
+                <a name='M000038'>      </a>
                 <div class='synopsis'>
                   <span class='name'>__gibbler</span>
                   <span class='arguments'>(h=self)</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Creates a digest based on:
-                  </p>
-                  <ul>
-                  <li>An <a href="Array.html">Array</a> of instance variable names and values in
-                  the format: <tt>CLASS:LENGTH:VALUE</tt>
-                  
-                  <ul>
-                  <li>The gibbler method is called on each element so if it is a <a
-                  href="Hash.html">Hash</a> or <a href="Array.html">Array</a> etc it will be
-                  parsed recursively according to the gibbler method for that class type.
-                  
-                  </li>
-                  </ul>
-                  </li>
-                  <li><a href="Digest.html">Digest</a> the <a href="Array.html">Array</a> of
-                  digests
-                  
-                  </li>
-                  <li>Return the digest for <tt>class:length:value</tt> where:
-                  
-                  <ul>
-                  <li>&#8220;class&#8221; is equal to the current object class (e.g. FullHouse).
-                  
-                  </li>
-                  <li>&#8220;length&#8221; is the size of the <a href="Array.html">Array</a> of
-                  digests (which should equal the number of instance variables in the
-                  object).
-                  
-                  </li>
-                  <li>&#8220;value&#8221; is the <a href="Array.html">Array</a> of digests joined
-                  with a colon (&#8220;:&#8221;).
-                  
-                  </li>
-                  </ul>
-                  </li>
-                  </ul>
-                  <p>
-                  This method can be used by any class which stores values in instance
-                  variables.
+                  Creates a digest for the current state of self.
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000035-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000038-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000035-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 77</span>&#x000A;77:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">h</span>=<span class="ruby-keyword kw">self</span>)&#x000A;78:       <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">class</span>&#x000A;79:       <span class="ruby-identifier">d</span> = []&#x000A;80:       <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A;81:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">n</span>)&#x000A;82:         <span class="ruby-identifier">d</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">n</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">__gibbler</span>]&#x000A;83:       <span class="ruby-keyword kw">end</span>&#x000A;84:       <span class="ruby-identifier">d</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>).<span class="ruby-identifier">__gibbler</span>&#x000A;85:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">&quot;%s:%d:%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;86:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;87:       <span class="ruby-identifier">a</span>&#x000A;88:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000038-source'>     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 92</span>&#x000A; 92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">h</span>=<span class="ruby-keyword kw">self</span>)&#x000A; 93:       <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">class</span>&#x000A; 94:       <span class="ruby-identifier">d</span> = []&#x000A; 95:       <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A; 96:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">n</span>)&#x000A; 97:         <span class="ruby-identifier">d</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">n</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">__gibbler</span>]&#x000A; 98:       <span class="ruby-keyword kw">end</span>&#x000A; 99:       <span class="ruby-identifier">d</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>).<span class="ruby-identifier">__gibbler</span>&#x000A;100:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">&quot;%s:%d:%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;101:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]&#x000A;102:       <span class="ruby-identifier">a</span>&#x000A;103:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000036'>
-                <a name='M000036'>      </a>
+              <div class='public-instance method' id='method-M000039'>
+                <a name='M000039'>      </a>
                 <div class='synopsis'>
                   <span class='name'>__gibbler_revert!</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000036-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000039-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000036-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 90</span>&#x000A;90:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert!</span>&#x000A;91:       <span class="ruby-identifier">state</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">__gibbler_cache</span>&#x000A;92:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variables</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A;93:         <span class="ruby-identifier">v</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">n</span>&#x000A;94:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">v</span>&#x000A;95:       <span class="ruby-keyword kw">end</span>&#x000A;96:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000039-source'>     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 105</span>&#x000A;105:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert!</span>&#x000A;106:       <span class="ruby-identifier">state</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">__gibbler_cache</span>&#x000A;107:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variables</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>&#x000A;108:         <span class="ruby-identifier">v</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">n</span>&#x000A;109:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">v</span>&#x000A;110:       <span class="ruby-keyword kw">end</span>&#x000A;111:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
