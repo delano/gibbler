@@ -228,7 +228,7 @@ module Gibbler
   # Return the digest for <tt>class:arity:binding</tt>, where:
   # * class is the current class name (e.g. Proc)
   # * arity is the value returned by <tt>Proc#arity</tt>
-  # * binding is the value returned by <tt>Proc#binding</tt>
+  # * value of lambda? if available (Ruby 1.9) or false otherwise
   #
   # This method can be used by any subclass of Proc.
   #
@@ -252,11 +252,13 @@ module Gibbler
     # Creates a digest for the current state of self.
     def __gibbler(h=self)
       klass = h.class
-      a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, h.binding]
-      gibbler_debug klass, a, [klass, h.arity, h.binding]
+      is_lambda = h.respond_to?(:lambda?) ? h.lambda? : false
+      a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, is_lambda]
+      gibbler_debug klass, a, [klass, h.arity, is_lambda]
       a
     end
   end
+  
   
   ##--
   ## NOTE: this was used when Gibbler supported "include Gibbler". We
