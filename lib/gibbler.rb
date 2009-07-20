@@ -53,6 +53,33 @@ module Gibbler
     p args
   end
   
+  # Raises an exception. The correct usage is to include a Gibbler::Object:
+  # * Gibbler::Complex
+  # * Gibbler::String
+  # * Gibbler::Object
+  # * etc ...
+  def self.included(obj)
+    raise "You probably want to include Gibbler::Complex or Gibbler::Object"
+  end
+  
+  # Creates a digest based on: 
+  # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
+  #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
+  #     will be parsed recursively according to the gibbler method for that class type.
+  # * Digest the Array of digests  
+  # * Return the digest for <tt>class:length:value</tt> where:
+  #   * "class" is equal to the current object class (e.g. FullHouse).
+  #   * "length" is the size of the Array of digests (which should equal
+  #     the number of instance variables in the object).
+  #   * "value" is the Array of digests joined with a colon (":").
+  #
+  # This method can be used by any class which stores values in instance variables. 
+  #
+  #     class Episodes
+  #       include Gibbler::Complex
+  #       attr_accessor :season, :year, :cast
+  #     end
+  #
   module Complex
     include Gibbler::Object
     
@@ -61,19 +88,7 @@ module Gibbler
       obj.attic :__gibbler_cache
     end
     
-    # Creates a digest based on: 
-    # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
-    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
-    #     will be parsed recursively according to the gibbler method for that class type.
-    # * Digest the Array of digests  
-    # * Return the digest for <tt>class:length:value</tt> where:
-    #   * "class" is equal to the current object class (e.g. FullHouse).
-    #   * "length" is the size of the Array of digests (which should equal
-    #     the number of instance variables in the object).
-    #   * "value" is the Array of digests joined with a colon (":").
-    #
-    # This method can be used by any class which stores values in instance variables. 
-    #
+    # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
       d = []
@@ -97,6 +112,21 @@ module Gibbler
     
   end
   
+  # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
+  # This method can be used for any class where the <tt>to_s</tt>
+  # method returns an appropriate unique value for this instance. 
+  # It's used by default for Symbol, Class, Fixnum, and Bignum.
+  # e.g.
+  # 
+  #     "str" => String:3:str => 509a839ca1744c72e37759e7684ff0daa3b61427
+  #     :sym  => Symbol:3:sym => f3b7b3ca9529002c6826b1ef609d3583c356c8c8
+  #
+  # To use use method in other classes simply:
+  #
+  #     class MyStringLikeClass 
+  #       include Gibbler::String
+  #     end
+  #
   module String
     include Gibbler::Object
     
@@ -105,21 +135,7 @@ module Gibbler
       obj.attic :__gibbler_cache
     end
     
-    # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
-    # This method can be used for any class where the <tt>to_s</tt>
-    # method returns an appropriate unique value for this instance. 
-    # It's used by default for Symbol, Class, Fixnum, and Bignum.
-    # e.g.
-    # 
-    #     "str" => String:3:str => 509a839ca1744c72e37759e7684ff0daa3b61427
-    #     :sym  => Symbol:3:sym => f3b7b3ca9529002c6826b1ef609d3583c356c8c8
-    #
-    # To use use method in other classes simply:
-    #
-    #     class MyClass
-    #       include Gibbler::String
-    #     end
-    #
+    # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
       value = h.nil? ? "\0" : h.to_s
@@ -128,7 +144,24 @@ module Gibbler
       a
     end
   end
-      
+  
+  # Creates a digest based on: 
+  # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
+  #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
+  #     will be parsed recursively according to the gibbler method for that class type.
+  # * Digest the Array of digests  
+  # * Return the digest for <tt>class:length:value</tt> where:
+  #   * "class" is equal to the current object class (e.g. Hash).
+  #   * "length" is the size of the Array of digests (which should equal
+  #     the number of keys in the original Hash object).
+  #   * "value" is the Array of digests joined with a colon (":").
+  #
+  # This method can be used by any class with a <tt>keys</tt> method. 
+  #
+  #     class MyOrderedHash
+  #       include Gibbler::Hash
+  #     end
+  #
   module Hash 
     include Gibbler::Object
     
@@ -137,25 +170,7 @@ module Gibbler
       obj.attic :__gibbler_cache
     end
     
-    # Creates a digest based on: 
-    # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
-    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
-    #     will be parsed recursively according to the gibbler method for that class type.
-    # * Digest the Array of digests  
-    # * Return the digest for <tt>class:length:value</tt> where:
-    #   * "class" is equal to the current object class (e.g. Hash).
-    #   * "length" is the size of the Array of digests (which should equal
-    #     the number of keys in the original Hash object).
-    #   * "value" is the Array of digests joined with a colon (":").
-    #
-    # This method can be used by any class with a <tt>keys</tt> method. 
-    #
-    # e.g. 
-    #
-    #     class OrderedHash
-    #       include Gibbler::Hash
-    #     end
-    #
+    # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
       d = h.keys.sort { |a,b| a.inspect <=> b.inspect }
@@ -170,6 +185,23 @@ module Gibbler
     end
   end
   
+  # Creates a digest based on:
+  # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
+  #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
+  #     will be parsed recursively according to the gibbler method for that class type. 
+  # * Digest the Array of digests 
+  # * Return the digest for <tt>class:length:value</tt> where:
+  #   * "class" is equal to the current object class (e.g. Array).
+  #   * "length" is the size of the Array of digests (which should equal
+  #     the number of elements in the original Array object).
+  #   * "value" is the Array of digests joined with a colon (":").
+  #
+  # This method can be used by any class with an <tt>each</tt> method.
+  #
+  #     class MyNamedArray 
+  #       include Gibbler::Array
+  #     end
+  #
   module Array
     include Gibbler::Object
     
@@ -178,25 +210,7 @@ module Gibbler
       obj.attic :__gibbler_cache
     end
     
-    # Creates a digest based on:
-    # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
-    #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
-    #     will be parsed recursively according to the gibbler method for that class type. 
-    # * Digest the Array of digests 
-    # * Return the digest for <tt>class:length:value</tt> where:
-    #   * "class" is equal to the current object class (e.g. Array).
-    #   * "length" is the size of the Array of digests (which should equal
-    #     the number of elements in the original Array object).
-    #   * "value" is the Array of digests joined with a colon (":").
-    #
-    # This method can be used by any class with an <tt>each</tt> method.
-    #
-    # e.g.
-    #
-    #     class NamedArray 
-    #       include Gibbler::Array
-    #     end
-    #
+    # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
       d, index = [], 0
@@ -235,6 +249,7 @@ module Gibbler
       obj.attic :__gibbler_cache
     end
     
+    # Creates a digest for the current state of self.
     def __gibbler(h=self)
       klass = h.class
       a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, h.binding]
