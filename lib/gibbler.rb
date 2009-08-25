@@ -322,6 +322,41 @@ module Gibbler
     
   end
   
+  # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>
+  # where LENGTH is the number of elements in the range
+  # and VALUE is the string representation of the range. 
+  # e.g.
+  #     
+  #     (1..100)  =>  Range:100:1..100 => 
+  #     
+  #
+  # To use use method in other classes simply:
+  #
+  #     class ClassLikeRange 
+  #       include Gibbler::Range
+  #     end
+  #
+  module Range
+    include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
+    # Creates a digest for the current state of self. 
+    def __gibbler(h=self)
+      klass = h.class
+      value = h.nil? ? "\0" : h.to_s
+      size = h.nil? ? 0 : h.to_a.size
+      a = Gibbler.digest "%s:%d:%s" % [klass, size, value]
+      gibbler_debug klass, a, [klass, size, value]
+      a
+    end
+    
+  end
+  
+  
   
   ##--
   ## NOTE: this was used when Gibbler supported "include Gibbler". We
@@ -407,5 +442,8 @@ class DateTime
   include Gibbler::DateTime
 end
 
+class Range
+  include Gibbler::Range
+end
 
 

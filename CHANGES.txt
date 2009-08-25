@@ -1,6 +1,5 @@
 GIBBLER, CHANGES
 
-TODO: Range
 TODO: Calculate Proc based on running quietly executing it in a container 
       which implements method_missing. Tally the order, number, and names 
       of method calls. 
@@ -10,6 +9,7 @@ TODO: Calculate Proc based on running quietly executing it in a container
 
 * ADDED: Support for Date, Time, and DateTime. Time and DateTime 
   refers to times in UTC. 
+* ADDED: Support for Range. 
 
 
 #### 0.6.0 (2009-07-20) #################################

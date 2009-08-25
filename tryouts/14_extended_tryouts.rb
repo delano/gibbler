@@ -37,6 +37,16 @@ tryouts "Extended object tryouts" do
   dream :gibbler, '8640f7abcbcb80e3825ed827bf36819e26119e16' 
   drill "Proc can gibbler", Proc
   
+  dream :gibbler, 'd73ae2a7bc2058b05dbc1952d8abf004167109e0' 
+  drill "Range instance (..) can gibbler", 1..100
+  
+  dream :gibbler, '46c8a7d0163144819c440bf6734a8101cd72c04a' 
+  drill "Range instance (...) can gibbler", 1...100
+  
+  drill "Range (..) doesn't equal range (...)", true do
+     ('a'..'e').gibbler != ('a'...'e').gibbler
+  end
+  
   
   dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc' 
   drill "Module can gibbler", Module
