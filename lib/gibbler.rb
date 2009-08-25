@@ -327,8 +327,8 @@ module Gibbler
   # and VALUE is the string representation of the range. 
   # e.g.
   #     
-  #     (1..100)  =>  Range:100:1..100 => 
-  #     
+  #     (1..100)   =>  Range:100:1..100  =>  d73ae2a7
+  #     (1...100)  =>  Range:99:1...100  =>  46c8a7d0
   #
   # To use use method in other classes simply:
   #
