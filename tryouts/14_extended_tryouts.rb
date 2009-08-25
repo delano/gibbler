@@ -38,21 +38,20 @@ tryouts "Extended object tryouts" do
   drill "Proc can gibbler", Proc
   
   
-#  dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc22' 
-#  drill "Module can gibbler", Module
+  dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc' 
+  drill "Module can gibbler", Module
 
-#  dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc' 
-#  drill "Module instance can gibbler", Module.new
+  dream :gibbler, '6b5a192fd377dfc5c2828a3ad6105b68b6db33d5' 
+  drill "Module instance can gibbler", Module.new
 
-#  dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
-#  drill "Class can gibbler", Class
+  dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
+  drill "Class can gibbler", Class
+  
   
   # NOTE: Digests will not match for Procs between 1.8 and 1.9 b/c:
   # * Proc#arity returns different values
   # * Proc#lambda? does not exist in Ruby 1.8
   if Tryouts.sysinfo.ruby[0..1] == [1, 8]
-
-
 
     dream :gibbler, '129ff20898335147365341f87d4e051af1ae4e43' 
     drill "Proc.new can gibbler", Proc.new() { }
@@ -69,7 +68,6 @@ tryouts "Extended object tryouts" do
     dream :gibbler, '338c3ef066504967dd544cd73994c81071f94c94' 
     drill "proc gibbler is aware of arity", proc { |v| }
   else
-
 
     dream :gibbler, '9aaaa4dd6c8df16f71e679f18687645359a6db16' 
     drill "Proc.new can gibbler", Proc.new() { }
@@ -90,4 +88,3 @@ tryouts "Extended object tryouts" do
   
 end
 
-p 

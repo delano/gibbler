@@ -259,6 +259,69 @@ module Gibbler
     end
   end
   
+  # Creates a digest based on: <tt>CLASS:LENGTH:TIME</tt>. 
+  # Times are calculated based on the equivalent time in UTC. 
+  # e.g.
+  # 
+  #     Time.parse('2009-08-25 16:43:53 UTC')     => 73b4635f
+  #     Time.parse('2009-08-25 12:43:53 -04:00')  => 73b4635f
+  #
+  # To use use method in other classes simply:
+  #
+  #     class ClassLikeTime 
+  #       include Gibbler::Time
+  #     end
+  #
+  module Time
+    include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
+    # Creates a digest for the current state of self. 
+    def __gibbler(h=self)
+      klass = h.class
+      value = h.nil? ? "\0" : h.utc.to_s
+      a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value]
+      gibbler_debug klass, a, [klass, value.size, value]
+      a
+    end
+  end
+  
+  # Creates a digest based on: <tt>CLASS:LENGTH:DATETIME</tt>. 
+  # Dates are calculated based on the equivalent datetime in UTC. 
+  # e.g.
+  # 
+  #     DateTime.parse('2009-08-25T17:00:40+00:00')  => ad64c769
+  #     DateTime.parse('2009-08-25T13:00:40-04:00')  => ad64c769
+  #
+  # To use use method in other classes simply:
+  #
+  #     class ClassLikeTime 
+  #       include Gibbler::Time
+  #     end
+  #
+  module DateTime
+    include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
+    # Creates a digest for the current state of self. 
+    def __gibbler(h=self)
+      klass = h.class
+      value = h.nil? ? "\0" : h.new_offset(0).to_s
+      a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value]
+      gibbler_debug klass, a, [klass, value.size, value]
+      a
+    end
+    
+  end
+  
   
   ##--
   ## NOTE: this was used when Gibbler supported "include Gibbler". We
@@ -332,6 +395,17 @@ class Float
   include Gibbler::String
 end
 
+class Time
+  include Gibbler::Time
+end
+
+class Date
+  include Gibbler::String
+end
+
+class DateTime
+  include Gibbler::DateTime
+end
 
 
 

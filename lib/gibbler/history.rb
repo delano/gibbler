@@ -78,7 +78,7 @@ module Gibbler
       end
       
       @@mutex.synchronize {
-        now, digest, point = Time.now, self.gibbler, self.clone
+        now, digest, point = ::Time.now, self.gibbler, self.clone
         self.__gibbler_history[:history] << digest
         self.__gibbler_history[:stamp][digest] = now
         self.__gibbler_history[:objects][digest] = point
