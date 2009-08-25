@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-07-20 16:21:44 -0400</span>
+          <span class='datetime'>2009-08-24 20:06:13 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -47,6 +47,11 @@
             href="../classes/Module.html">Module</a>, and <a
             href="../classes/Proc.html">Proc</a> objects. See &#8220;News&#8221; below
             for more info.</b>
+            </p>
+            <p>
+            Check out the <a
+            href="http://www.rubypulse.com/episode-0.3-gibbler.html">screencast</a>
+            created by Alex Peuchert.
             </p>
             <h2>Example 1 &#8212; Basic Usage</h2>
             <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56</pre>
@@ -243,6 +248,10 @@
             <ul>
             <li>Kalin Harvey (<a href="http://github.com/krrh">krrh</a>) for the early
             feedback and artistic direction.
+            
+            </li>
+            <li>Alex Peuchert (<a href="http://github.com/aaalex">aaalex</a>) for creating
+            the screencast.
             
             </li>
             </ul>
