@@ -115,6 +115,7 @@ tryouts "Basic syntax with SHA1" do
     a
   end
   
+  # TODO: Update for Attic 0.4
   drill "doesn't reveal @__gibbler_digest__ instance variable", false do
     a = {}
     a.gibbler  # We need to gibbler first so it sets a value to the instance var
@@ -137,4 +138,7 @@ tryouts "Basic syntax with SHA1" do
   end
   
 end
+
+
+
 

@@ -1,5 +1,10 @@
 GIBBLER, CHANGES
 
+TODO: Range
+TODO: fix "undefined method _gibbler' for 2009-07-24 01:52:28 UTC:Time"
+TODO: Calculate Proc based on running quietly executing it in a container 
+      which implements method_missing. Tally the order, number, and names 
+      of method calls. 
 
 #### 0.6.0 (2009-07-20) #################################
 

@@ -4,6 +4,9 @@ Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby.
 
 <b>NOTE: Digests changed in the 0.6 release for Class, Module, and Proc objects. See "News" below for more info.</b>
 
+Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] created by Alex Peuchert.
+
+
 == Example 1 -- Basic Usage
     
     require 'gibbler'
@@ -182,6 +185,7 @@ or via download:
 == Thanks
 
 * Kalin Harvey (krrh[http://github.com/krrh]) for the early feedback and artistic direction. 
+* Alex Peuchert (aaalex[http://github.com/aaalex]) for creating the screencast.
 
 
 == Credits
