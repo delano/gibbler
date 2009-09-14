@@ -47,6 +47,9 @@ tryouts "Extended object tryouts" do
      ('a'..'e').gibbler != ('a'...'e').gibbler
   end
   
+  dream '06fdf26b2a64e90cd35ea9162d9cc48c9f6bb13c'
+  drill "nil has a gibbler", nil.gibbler
+  
   
   dream :gibbler, '7295241e929ffd7cc974cf8d4481291e070937fc' 
   drill "Module can gibbler", Module
@@ -96,5 +99,6 @@ tryouts "Extended object tryouts" do
     
   end
   
+
 end
 

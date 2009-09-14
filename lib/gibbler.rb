@@ -356,7 +356,64 @@ module Gibbler
     
   end
   
+  # Creates a digest based on: <tt>CLASS:\0</tt>
+  #
+  # e.g.
+  #
+  #     nil.gibbler      # => 06fdf26b
+  #
+  module Nil
+    include Gibbler::Object
+
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+
+    # Creates a digest for the current state of self. 
+    def __gibbler(h=self)
+      klass = h.class
+      a = Gibbler.digest "%s:%s" % [klass, "\0"]
+      gibbler_debug klass, a, [klass, "\0"]
+      a
+    end
+  end
   
+  # Creates a digest based on: <tt>CLASS:PATHLENGTH:PATH</tt>
+  # where PATHLENGTH is the length of the PATH string. PATH is
+  # not modified in any way (it is not converted to an absolute
+  # path). 
+  # 
+  # NOTE: You may expect this method to include other information
+  # like the file contents and modified date (etc...). The reason
+  # we do not is because Gibbler is concerned only about Ruby and
+  # not the outside world. There are many complexities in parsing
+  # file data and attributes which would make it difficult to run
+  # across platforms and Ruby versions / engines. If you want to 
+  #
+  # e.g.
+  #    
+  #    File.new('.')        # => c8bc8b3a
+  #    File.new('/tmp')     # => 3af85a19
+  #    File.new('/tmp/')    # => 92cbcb7d
+  #   
+  module File
+    include Gibbler::Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :__gibbler_cache
+    end
+    
+    # Creates a digest for the current state of self. 
+    def __gibbler(h=self)
+      klass = h.class
+      value = h.nil? ? "\0" : h.path
+      a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value]
+      gibbler_debug klass, a, [klass, value.size, value]
+      a
+    end
+  end
   
   ##--
   ## NOTE: this was used when Gibbler supported "include Gibbler". We
@@ -446,4 +503,20 @@ class Range
   include Gibbler::Range
 end
 
+class NilClass
+  include Gibbler::Nil
+end
 
+module URI
+  class Generic
+    include Gibbler::String
+  end
+end
+
+class File
+  include Gibbler::File
+end
+
+class TempFile
+  include Gibbler::File
+end

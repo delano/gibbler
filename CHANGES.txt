@@ -4,6 +4,12 @@ TODO: Calculate Proc based on running quietly executing it in a container
       which implements method_missing. Tally the order, number, and names 
       of method calls. 
 
+TODO: File, URI
+
+#### 0.6.2 (2009-09-??) #################################
+
+* ADDED: Support for NilClass, File, and URI
+
 
 #### 0.6.1 (2009-08-25) #################################
 
