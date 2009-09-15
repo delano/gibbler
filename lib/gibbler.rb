@@ -13,7 +13,7 @@ module Gibbler
   #include Attic
   extend Attic
   
-  VERSION = "0.6.1"
+  VERSION = "0.6.2"
   
   require 'gibbler/object'
   require 'gibbler/digest'
