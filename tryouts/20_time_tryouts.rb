@@ -13,7 +13,12 @@ tryouts "Time tryouts" do
   
   dream :gibbler, '73b4635fc63b8dd32b622776201f98a37478be90'
   drill "Time instance can gibbler", Time.parse('2009-08-25 16:43:53 UTC')
-
+  
+  dream :gibbler, 'd35546d6517c02f2a219ecfa2261a5274d217cb7'
+  drill "Time instance can gibbler with single digit values" do 
+    Time.parse('2009-01-01 01:01:01 UTC')
+  end
+  
   dream :gibbler, 'ad64c7694a50becf55c53485dce5d0013ff65785'
   drill "DateTime instance can gibbler", DateTime.parse('2009-08-25T17:00:40+00:00')
   

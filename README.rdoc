@@ -150,7 +150,7 @@ With the upgrade to Attic 0.4, the gibbled? method and object history is now ava
 == Known Issues
 
 * gibbler or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous digest value to compare to)
-* Digests for Bignum objects are different between (MRI) Ruby and JRuby. Does anyone know why?
+* Digests for Bignum objects are different between Ruby 1.8, 1.9, and JRuby. Does anyone know why?
 * Digests for Proc objects are different between Ruby 1.8 and 1.9 because Proc.arity returns different values and 1.8 has no lambda? method.
 
 

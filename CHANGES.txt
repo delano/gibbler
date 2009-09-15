@@ -1,13 +1,11 @@
 GIBBLER, CHANGES
 
-TODO: Calculate Proc based on running quietly executing it in a container 
-      which implements method_missing. Tally the order, number, and names 
-      of method calls. 
 
-TODO: File, URI
+#### 0.6.2 (2009-09-15) #################################
 
-#### 0.6.2 (2009-09-??) #################################
-
+* FIXED: Enforce specific string format for Time objects. Fixes
+  an issue with Ruby 1.8.7 which formats the to_s value differently
+  than 1.8.6 and 1.9.1.
 * ADDED: Support for NilClass, File, and URI
 
 

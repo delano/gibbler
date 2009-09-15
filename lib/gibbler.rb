@@ -283,7 +283,7 @@ module Gibbler
     # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
-      value = h.nil? ? "\0" : h.utc.to_s
+      value = h.nil? ? "\0" : h.utc.strftime('%Y-%m-%d %H:%M:%S UTC')
       a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value]
       gibbler_debug klass, a, [klass, value.size, value]
       a

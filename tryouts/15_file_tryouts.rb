@@ -31,7 +31,6 @@ tryouts "File object tryouts" do
   
   dream :gibbler, '6d93f752fc23f36bffa5ddf9ee97d04be82efbdb'
   drill "File doesn't care about file contents" do
-    p 1
     f = File.open tempfile, 'w'
     f.puts "World's Finest Number: " << "#{rand}"
     f.close
