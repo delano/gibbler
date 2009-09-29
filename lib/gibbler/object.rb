@@ -19,8 +19,9 @@ module Gibbler
     # on the digest type. 
     def gibbler
       gibbler_debug :GIBBLER, self.class, self
-      return self.gibbler_cache if self.frozen?
-      self.gibbler_cache = Gibbler::Digest.new self.__gibbler
+      digest = Gibbler::Digest.new self.__gibbler
+      self.gibbler_cache = digest unless self.frozen?
+      digest
     end
 
     # Has this object been modified?
