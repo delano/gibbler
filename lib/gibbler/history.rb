@@ -112,16 +112,16 @@ module Gibbler
       g = gibbler_find_long g 
       
       # Do nothing if the given digest matches the current gibble. 
-      # NOTE: We use __gibbler b/c it doesn't update self.__gibbler_cache.
+      # NOTE: We use __gibbler b/c it doesn't update self.gibbler_cache.
       unless self.__gibbler == g
         @@mutex.synchronize {
           # Always make sure self.gibbler_digest is a Gibbler::Digest 
-          self.__gibbler_cache = g.is_a?(Gibbler::Digest) ? g : Gibbler::Digest.new(g)
+          self.gibbler_cache = g.is_a?(Gibbler::Digest) ? g : Gibbler::Digest.new(g)
           self.__gibbler_revert!
         }
       end
       
-      self.__gibbler_cache
+      self.gibbler_cache
     end
     
     # Is the given digest +g+ contained in the history for this object?
@@ -150,7 +150,7 @@ class Hash
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self.merge! self.gibbler_object(self.__gibbler_cache)
+    self.merge! self.gibbler_object(self.gibbler_cache)
   end
 end
 
@@ -158,7 +158,7 @@ class Array
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self.push *(self.gibbler_object self.__gibbler_cache)
+    self.push *(self.gibbler_object self.gibbler_cache)
   end
 end
   
@@ -166,7 +166,7 @@ class String
   include Gibbler::History
   def __gibbler_revert!
     self.clear
-    self << (self.gibbler_object self.__gibbler_cache)
+    self << (self.gibbler_object self.gibbler_cache)
   end
 end
       

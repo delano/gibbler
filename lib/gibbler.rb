@@ -85,7 +85,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -103,7 +103,7 @@ module Gibbler
     end
     
     def __gibbler_revert!
-      state = self.gibbler_object self.__gibbler_cache
+      state = self.gibbler_object self.gibbler_cache
       state.instance_variables do |n|
         v = state.instance_variable_get n
         self.instance_variable_set v
@@ -132,7 +132,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -167,7 +167,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -207,7 +207,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -246,7 +246,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self.
@@ -277,7 +277,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -308,7 +308,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -341,7 +341,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 
@@ -367,7 +367,7 @@ module Gibbler
 
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
 
     # Creates a digest for the current state of self. 
@@ -402,7 +402,7 @@ module Gibbler
     
     def self.included(obj)
       obj.extend Attic
-      obj.attic :__gibbler_cache
+      obj.attic :gibbler_cache
     end
     
     # Creates a digest for the current state of self. 

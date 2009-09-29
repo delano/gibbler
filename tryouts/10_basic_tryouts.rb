@@ -80,7 +80,7 @@ tryouts "Basic syntax with SHA1" do
     a, b = :something, :anything
     a.gibbler
     b.gibbler
-    [a.__gibbler_cache.short, b.__gibbler_cache.short]
+    [a.gibbler_cache.short, b.gibbler_cache.short]
   end
   
   dream ["ce0c7694", "c13b2f02"]
@@ -88,18 +88,18 @@ tryouts "Basic syntax with SHA1" do
     a, b = 'something', 'anything'
     a.gibbler
     b.gibbler
-    [a.__gibbler_cache.short, b.__gibbler_cache.short]
+    [a.gibbler_cache.short, b.gibbler_cache.short]
   end
   
-  drill "Symbol has list of attic vars", [:__gibbler_cache] do
+  drill "Symbol has list of attic vars", [:gibbler_cache] do
     Symbol.attic_vars
   end
 
-  drill "String has list of attic vars", [:__gibbler_cache] do
+  drill "String has list of attic vars", [:gibbler_cache] do
     String.attic_vars
   end
   
-  drill "Hash has list of attic vars", [:__gibbler_cache] do
+  drill "Hash has list of attic vars", [:gibbler_cache] do
     Hash.attic_vars
   end
   
@@ -134,7 +134,7 @@ tryouts "Basic syntax with SHA1" do
     #stash :gstring_methods, Gibbler::String.methods.sort
     #stash :class_methods, a.class.methods.sort
     stash :ivars, a.instance_variables
-    a.__gibbler_cache
+    a.gibbler_cache
   end
   
 end

@@ -1,6 +1,11 @@
 GIBBLER, CHANGES
 
 
+#### 0.6.3 (2009-09-??) #################################
+
+* CHANGE: Renamed __gibbler_cache to gibbler_cache (with backwards compatability)
+
+
 #### 0.6.2 (2009-09-15) #################################
 
 * FIXED: Enforce specific string format for Time objects. Fixes
