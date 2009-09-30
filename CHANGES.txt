@@ -1,7 +1,7 @@
 GIBBLER, CHANGES
 
 
-#### 0.6.3 (2009-09-??) #################################
+#### 0.6.3 (2009-09-30) #################################
 
 * FIXED: Won't save digest to cache if the object is frozen
 * CHANGE: Renamed __gibbler_cache to gibbler_cache (with backwards compatability)
