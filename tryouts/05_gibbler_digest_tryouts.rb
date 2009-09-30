@@ -18,9 +18,14 @@ tryouts "All methods" do
     Gibbler::Digest.new("1234567890").short
   end
   
-  drill "can return true if compared with short", true do
+  drill "==  is strict  (only exact matches)", false do
     Gibbler::Digest.new("1234567890") == "12345678"
   end
+
+  drill "=== is relaxed (allows partial matches)", true do
+    Gibbler::Digest.new("1234567890") === "12345678"
+  end
+
   
 end
 

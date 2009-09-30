@@ -39,10 +39,25 @@ class Gibbler::Digest < String
     self[0..3]
   end
   
-  def ==(g)
-    return true if self.to_s == g.to_s
-    return true if self.short.to_s == g.to_s
+  # Returns true when +ali+ matches +self+
+  #
+  #    "kimmy".gibbler == "c8027100ecc54945ab15ddac529230e38b1ba6a1"  # => true
+  #    "kimmy".gibbler == "c8027100"                                  # => false
+  #
+  def ==(ali)
+    return true if self.to_s == ali.to_s
     false
   end
   
+  # Returns true when +g+ matches one of: +self+, +short+, +shorter+, +tiny+
+  #
+  #    "kimmy".gibbler === "c8027100ecc54945ab15ddac529230e38b1ba6a1" # => true
+  #    "kimmy".gibbler === "c8027100"                                 # => true
+  #    "kimmy".gibbler === "c80271"                                   # => true
+  #    "kimmy".gibbler === "c802"                                     # => true
+  #
+  def ===(g)
+    return true if [to_s, short, shorter, tiny].member?(g.to_s)
+    false
+  end
 end

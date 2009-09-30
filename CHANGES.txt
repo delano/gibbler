@@ -5,7 +5,8 @@ GIBBLER, CHANGES
 
 * FIXED: Won't save digest to cache if the object is frozen
 * CHANGE: Renamed __gibbler_cache to gibbler_cache (with backwards compatability)
-* ADDED: Gibbler::Digest#shorter, Gibbler::Digest#tiny
+* CHANGE: Gibbler::Digest#== now returns true only for exact matches
+* ADDED: Gibbler::Digest#shorter, Gibbler::Digest#tiny, Gibbler::Digest#===
 
 
 #### 0.6.2 (2009-09-15) #################################
