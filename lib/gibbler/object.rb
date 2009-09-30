@@ -11,8 +11,6 @@ module Gibbler
       obj.send :alias_method, :__gibbler_cache, :gibbler_cache
     end
     
-    
-    
     # Calculates a digest for the current object instance. 
     # Objects that are a kind of Hash or Array are processed
     # recursively. The length of the returned String depends 
