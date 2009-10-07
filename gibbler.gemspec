@@ -1,7 +1,7 @@
 @spec = Gem::Specification.new do |s|
 	s.name = "gibbler"
   s.rubyforge_project = "gibbler"
-	s.version = "0.6.4"
+	s.version = "0.7.0"
 	s.summary = "Gibbler: Git-like hashes for Ruby objects"
 	s.description = s.summary
 	s.author = "Delano Mandelbaum"
@@ -41,9 +41,14 @@
   lib/gibbler/mixins/string.rb
   lib/gibbler/object.rb
   tryouts/01_mixins_tryouts.rb
+  tryouts/02_compat_tryouts.rb
   tryouts/05_gibbler_digest_tryouts.rb
   tryouts/10_basic_tryouts.rb
   tryouts/11_basic_sha256_tryouts.rb
+  tryouts/14_extended_tryouts.rb
+  tryouts/15_file_tryouts.rb
+  tryouts/16_uri_tryouts.rb
+  tryouts/20_time_tryouts.rb
   tryouts/50_history_tryouts.rb
   tryouts/51_hash_history_tryouts.rb
   tryouts/52_array_history_tryouts.rb

@@ -136,7 +136,7 @@ This code is fresh so the interface may change. Some things to keep in mind:
 
 === 2009-10-07: Digest calculation for Proc objects has changed.
 
-Proc digests are now based the name of the class and the value of Proc#name (if available). Procs or objects containing Procs will have different digests than those created in previous releases.
+Proc digests are now based on the name of the class and the value of Proc#name (if available). Procs or objects containing Procs will have different digests than those created in previous releases.
 
 After much deliberation, I realized that Gibbler cares about the data and not the code. Procs are code, but a reference to a Proc in an instance variable is data. With this change all Proc objects have the same digest. This decision has the side benefit of increasing compatibility between Ruby 1.8, 1.9 & JRuby. 
 
