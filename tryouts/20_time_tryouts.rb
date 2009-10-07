@@ -1,4 +1,4 @@
-
+require 'date'
 
 library :gibbler, 'lib'
 group "Gibbler Gazette"
@@ -21,7 +21,6 @@ tryouts "Time tryouts" do
   
   dream :gibbler, 'ad64c7694a50becf55c53485dce5d0013ff65785'
   drill "DateTime instance can gibbler", DateTime.parse('2009-08-25T17:00:40+00:00')
-  
   
   dream Time.parse('2009-08-25 12:43:53 -04:00').gibbler
   drill "Time digest is based on UTC" do

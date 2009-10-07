@@ -1,10 +1,12 @@
-= Gibbler - v0.6 ALPHA
+= Gibbler - v0.7 ALPHA
 
 Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby. 
 
-<b>NOTE: Digests changed in the 0.6 release for Class, Module, and Proc objects. See "News" below for more info.</b>
-
 Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] created by Alex Peuchert.
+
+=== Important Information Regarding Your Digests
+
+<i>Digest calculation changed in the 0.7 release for Proc objects. See "News" below for more info.</i>
 
 
 == Example 1 -- Basic Usage
@@ -70,8 +72,7 @@ http://delano.github.com/gibbler/img/whoababy.gif
 == Example 3 -- Method Aliases
 
 If you have control over the namespaces of your objects, you can use the method aliases to tighten up your code a bit. The "gibbler" and "gibbled?" methods can be accessed via "digest" and "changed?", respectively. (The reason they're not enabled by default is to avoid conflicts.)
-
-    require 'gibbler'
+  
     require 'gibbler/aliases'
     
     "kimmy".digest               # => c8027100ecc54945ab15ddac529230e38b1ba6a1
@@ -84,11 +85,9 @@ If you have control over the namespaces of your objects, you can use the method 
 
 
 The history methods also have aliases which remove the "gibbler_".
-
-    require 'gibbler'
-    require 'gibbler/history'
-    require 'gibbler/aliases'
     
+    require 'gibbler/aliases'
+    require 'gibbler/history'
     
     a = { :magic => :original }     
     a.commit                     
@@ -121,15 +120,29 @@ If you want to support all Ruby objects, add the following to your application:
 
 Gibbler::String creates a digest based on the name of the class and the output of the to_s method. This is a reasonable default for most objects however any object that includes the object address in to_s (e.g. "Object:0x0x4ac9f0...") will produce unreliable digests (because the address can change).
 
+As of 0.7 all Proc objects have the same digest: <tt>12075835e94be34438376cd7a54c8db7e746f15d</tt>. 
+
 
 == ALPHA Notice
 
-This code is hella fresh (est 2009-06-25). It's barely tested and the interface may change, but it's fun to play with. I'll happily accept patches. Some things to keep in mind:
+This code is fresh so the interface may change. Some things to keep in mind:
 
 * Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
-* Digest calculation may change between minor releases (e.g. 0.5 to 0.6, etc)
+* Digest calculation may change between minor releases (e.g. 0.6 to 0.7, etc)
+* Don't forget to enjoy what you do!
+
 
 == News
+
+=== 2009-10-07: Digest calculation for Proc objects has changed.
+
+Proc digests are now based the name of the class and the value of Proc#name (if available). Procs or objects containing Procs will have different digests than those created in previous releases.
+
+After much deliberation, I realized that Gibbler cares about the data and not the code. Procs are code, but a reference to a Proc in an instance variable is data. With this change all Proc objects have the same digest. This decision has the side benefit of increasing compatibility between Ruby 1.8, 1.9 & JRuby. 
+
+This is the only change between 0.6.4 and 0.7.0 so if you prefer the previous calculation for Procs you can find it in that version. 
+
+Happy Digesting!
 
 === 2009-10-07: Support for freezing and Regexp
 

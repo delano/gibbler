@@ -59,46 +59,39 @@ tryouts "Extended object tryouts" do
 
   dream :gibbler, '25ac269ae3ef18cdb4143ad02ca315afb5026de9' 
   drill "Class can gibbler", Class
-  
-  
-  # NOTE: Digests will not match for Procs between 1.8 and 1.9 b/c:
-  # * Proc#arity returns different values
-  # * Proc#lambda? does not exist in Ruby 1.8
-  if Tryouts.sysinfo.ruby[0..1] == [1, 8]
-
-    dream :gibbler, '129ff20898335147365341f87d4e051af1ae4e43' 
-    drill "Proc.new can gibbler", Proc.new() { }
-
-    dream :gibbler, '129ff20898335147365341f87d4e051af1ae4e43' 
-    drill "proc can gibbler", proc {}
-
-    dream :gibbler, '129ff20898335147365341f87d4e051af1ae4e43' 
-    drill "lambda can gibbler", lambda {}
-    
-    dream :gibbler, '338c3ef066504967dd544cd73994c81071f94c94' 
-    drill "lambda gibbler is aware of arity", lambda { |v| }
-    
-    dream :gibbler, '338c3ef066504967dd544cd73994c81071f94c94' 
-    drill "proc gibbler is aware of arity", proc { |v| }
-  else
-
-    dream :gibbler, '9aaaa4dd6c8df16f71e679f18687645359a6db16' 
-    drill "Proc.new can gibbler", Proc.new() { }
-
-    dream :gibbler, '9aaaa4dd6c8df16f71e679f18687645359a6db16' 
-    drill "proc can gibbler", proc {}
-
-    dream :gibbler, 'f240cb3b0bc3b4469271de03596acfeb74062597' 
-    drill "lambda can gibbler", lambda {}
-    
-    dream :gibbler, 'e6371b83695c2b3c24f61c212ab6b8424880d7ef' 
-    drill "lambda gibbler is aware of arity", lambda { |v| }
-    
-    dream :gibbler, '338c3ef066504967dd544cd73994c81071f94c94' 
-    drill "proc gibbler is aware of arity", proc { |v| }
-    
-  end
-  
 
 end
 
+
+tryouts "Proc" do
+  
+  setup do
+    class ::MyProc < Proc; end
+  end
+  
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "Proc.new can gibbler", Proc.new() { }
+  
+  dream :gibbler, '8640f7abcbcb80e3825ed827bf36819e26119e16' 
+  drill "Proc can gibbler", Proc
+    
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "proc can gibbler", proc {}
+
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "lambda can gibbler", lambda {}
+  
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "lambda gibbler is not aware of arity", lambda { |v| }
+  
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "proc gibbler is not aware of arity", proc { |v| }
+  
+  dream :gibbler, '12075835e94be34438376cd7a54c8db7e746f15d' 
+  drill "Proc gibbler is not aware of proc payload", proc { |v| 1; }
+  
+  dream :gibbler, "c979a45653acaddcb9c1581a7de49c94ac96e128"
+  drill "MyProc has a different digest" do
+    MyProc.new() { }
+  end
+end

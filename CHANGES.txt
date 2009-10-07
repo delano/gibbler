@@ -1,6 +1,16 @@
 GIBBLER, CHANGES
 
 
+#### 0.7.0 (2009-10-07) #################################
+
+NOTE: Digest calculation for Proc objects has changed. Procs
+or objects containing Procs will have different digests than
+those created in previous releases.
+
+* CHANGE: Proc digests are now based on the values of obj.class 
+  and obj.name (if available).
+  
+
 #### 0.6.4 (2009-10-07) #################################
 
 * FIXED: Now using correct superclass for DateTime (Date)
