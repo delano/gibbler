@@ -127,11 +127,15 @@ Gibbler::String creates a digest based on the name of the class and the output o
 This code is hella fresh (est 2009-06-25). It's barely tested and the interface may change, but it's fun to play with. I'll happily accept patches. Some things to keep in mind:
 
 * Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
-* Digest calculation may change between non-trivial releases. 
-* There has been very little testing for concurrency issues. (Anyone interested?)
-
+* Digest calculation may change between minor releases (e.g. 0.5 to 0.6, etc)
 
 == News
+
+=== 2009-10-07: Support for freezing and Regexp
+
+In 0.6.4, all Gibbler objects will create a new digest when <tt>obj.freeze</tt> is called. All subsequent calls to <tt>obj.gibbler</tt> will return the most recent digest without having to run the calculation again. 
+
+I've also added support for Regexp out of the box. 
 
 === 2009-07-20: Digest change for instances of Class, Module, and Proc
 
@@ -142,15 +146,11 @@ Digest calculation has changed for Class, Module, and Proc objects. Digests crea
 
 Also note that this change affects the digests for Hashes and Arrays that contain instances of Class, Module, or Proc. 
 
-=== 2009-07-17: Improved support for Symbol and Fixnum
-
-With the upgrade to Attic 0.4, the gibbled? method and object history is now available for Symbol and Fixnum objects. 
-
 
 == Known Issues
 
 * gibbler or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous digest value to compare to)
-* Digests for Bignum objects are different between Ruby 1.8, 1.9, and JRuby. Does anyone know why?
+* Digests for Bignum objects are different between Ruby and JRuby. Does anyone know why?
 * Digests for Proc objects are different between Ruby 1.8 and 1.9 because Proc.arity returns different values and 1.8 has no lambda? method.
 
 

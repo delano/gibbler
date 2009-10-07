@@ -434,84 +434,29 @@ module Gibbler
     
 end
 
-class Proc
-  include Gibbler::Block
-end
+class Proc;                include Gibbler::Block;     end
+class Hash;                include Gibbler::Hash;      end
+class Array;               include Gibbler::Array;     end
+class String;              include Gibbler::String;    end
+class Symbol;              include Gibbler::String;    end
+class Class;               include Gibbler::Object;    end
+class Module;              include Gibbler::Object;    end
+class Fixnum;              include Gibbler::String;    end
+class Bignum;              include Gibbler::String;    end
+class TrueClass;           include Gibbler::String;    end
+class FalseClass;          include Gibbler::String;    end
+class Float;               include Gibbler::String;    end
+class Time;                include Gibbler::Time;      end
+class Date;                include Gibbler::String;    end
+class DateTime < Date;     include Gibbler::DateTime;  end
+class Range;               include Gibbler::Range;     end
+class NilClass;            include Gibbler::Nil;       end
+module URI; class Generic; include Gibbler::String;    end; end
+class File;                include Gibbler::File;      end
+class TempFile;            include Gibbler::File;      end
+class Regexp;              include Gibbler::String;    end
 
-class Hash
-  include Gibbler::Hash
-end
 
-class Array
-  include Gibbler::Array
-end
 
-class String
-  include Gibbler::String
-end
 
-class Symbol
-  include Gibbler::String
-end
 
-class Class
-  include Gibbler::Object
-end
-
-class Module
-  include Gibbler::Object
-end
-
-class Fixnum
-  include Gibbler::String
-end
-
-class Bignum
-  include Gibbler::String
-end
-
-class TrueClass
-  include Gibbler::String
-end
-
-class FalseClass
-  include Gibbler::String
-end
-
-class Float
-  include Gibbler::String
-end
-
-class Time
-  include Gibbler::Time
-end
-
-class Date
-  include Gibbler::String
-end
-
-class DateTime < Date
-  include Gibbler::DateTime
-end
-
-class Range
-  include Gibbler::Range
-end
-
-class NilClass
-  include Gibbler::Nil
-end
-
-module URI
-  class Generic
-    include Gibbler::String
-  end
-end
-
-class File
-  include Gibbler::File
-end
-
-class TempFile
-  include Gibbler::File
-end

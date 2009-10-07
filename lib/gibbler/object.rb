@@ -62,6 +62,7 @@ module Gibbler
     def __gibbler(h=self)
       klass = h.class
       nom = h.name || ''
+      
       a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom]
       gibbler_debug klass, a, [klass, nom.size, nom]
       a

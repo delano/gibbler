@@ -10,7 +10,7 @@ GIBBLER, CHANGES
 * CHANGE: Gibbler::Object#gibbler returns the value of gibbler_cache when
   the object is frozen, without calculation. 
 * ADDED: Gibbler::Object#freeze to create digest before freezing.
-
+* ADDED: Out of the box support for Regexp (Gibbler::String)
 
 #### 0.6.3 (2009-09-30) #################################
 
