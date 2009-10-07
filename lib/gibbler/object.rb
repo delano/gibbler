@@ -51,7 +51,7 @@ module Gibbler
     
     # Creates a digest for the current state of self based on:
     # * Object#class
-    # * Length of Object#name || ''
+    # * Length of Object#name || 0
     # * Object#name || ''
     # 
     # e.g. Digest::SHA1.hexdigest "Class:6:Object" #=> 
@@ -61,8 +61,8 @@ module Gibbler
     #
     def __gibbler(h=self)
       klass = h.class
-      nom = h.name || ''
-      
+      nom = h.name if h.respond_to?(:name)
+      nom ||= ''
       a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom]
       gibbler_debug klass, a, [klass, nom.size, nom]
       a
