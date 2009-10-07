@@ -13,15 +13,18 @@ tryouts "File object tryouts" do
     File.unlink tempfile if File.exists? tempfile
   end
   
-  dream :gibbler, '41c2db79df5679011b73e33400f7632caf525812' 
-  drill "File can gibbler", File.new(__FILE__)
+  dream :gibbler, '33027386bd95e91efc4711648d488519062d828f' 
+  drill "File can gibbler" do
+    path = File.join(File.dirname(__FILE__), '..', 'CHANGES.txt')
+    File.new(File.expand_path(path))
+  end
   
   dream :gibbler, '4c131b7e5f9e7b841b4501d2d002785d3730ae19' 
   drill "Gibbler is different for each path" do
     path = File.join(File.dirname(__FILE__), '..', 'README.rdoc')
     File.new(File.expand_path(path))
   end
-  
+  def freeze() super; @path.freeze; self end
   ## JRuby doesn't like to use File.new with directories
   ##dream :gibbler, '92cbcb7de73d7748b28d9e911f461013de34410f' 
   ##drill "File gibbler cares about trailing slash (/tmp/)", File.new(__FILE__)
