@@ -1,22 +1,17 @@
 
-local_libs = %w{attic}
-local_libs.each { |dir| $:.unshift File.join(File.dirname(__FILE__), '..', '..', dir, 'lib') }
-
-require 'digest/sha1'
 require 'attic'
+require 'digest/sha1'
 
 # = Gibbler
 # 
 # "Hola, Tanneritos"
 #
 module Gibbler
-  #include Attic
-  extend Attic
   
   VERSION = "0.6.3"
   
-  require 'gibbler/object'
   require 'gibbler/digest'
+  require 'gibbler/object'
   require 'gibbler/mixins'
   
   class Error < RuntimeError
@@ -495,7 +490,7 @@ class Date
   include Gibbler::String
 end
 
-class DateTime
+class DateTime < Date
   include Gibbler::DateTime
 end
 
