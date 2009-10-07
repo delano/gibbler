@@ -1,4 +1,5 @@
 
+require 'thread'
 require 'attic'
 require 'digest/sha1'
 
@@ -220,40 +221,6 @@ module Gibbler
     end
   end
   
-  # Return the digest for <tt>class:arity:binding</tt>, where:
-  # * class is the current class name (e.g. Proc)
-  # * arity is the value returned by <tt>Proc#arity</tt>
-  # * value of lambda? if available (Ruby 1.9) or false otherwise
-  #
-  # This method can be used by any subclass of Proc.
-  #
-  # NOTE: This is named "Block" because for some reason if this is 
-  # named "Proc" (as in Gibbler::Proc) and the Rye library is also
-  # required, a runtime error is raised (Ruby 1.9.1 only):
-  #
-  #     undefined method `new' for Gibbler::Proc:Module
-  #     /usr/local/lib/ruby/1.9.1/tempfile.rb:169:in `callback'
-  #     /usr/local/lib/ruby/1.9.1/tempfile.rb:61:in `initialize'
-  #     /Users/delano/Projects/opensource/rye/lib/rye.rb:210:in `new'
-  #
-  module Block
-    include Gibbler::Object
-    
-    def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
-    end
-    
-    # Creates a digest for the current state of self.
-    def __gibbler(h=self)
-      klass = h.class
-      is_lambda = h.respond_to?(:lambda?) ? h.lambda? : false
-      a = Gibbler.digest '%s:%s:%s' % [klass, h.arity, is_lambda]
-      gibbler_debug klass, a, [klass, h.arity, is_lambda]
-      a
-    end
-  end
-  
   # Creates a digest based on: <tt>CLASS:LENGTH:TIME</tt>. 
   # Times are calculated based on the equivalent time in UTC. 
   # e.g.
@@ -437,6 +404,7 @@ end
 class NilClass;            include Gibbler::Nil;       end
 class Class;               include Gibbler::Object;    end
 class Module;              include Gibbler::Object;    end
+class Proc;                include Gibbler::Object;    end
 class String;              include Gibbler::String;    end
 class Regexp;              include Gibbler::String;    end
 class Fixnum;              include Gibbler::String;    end
@@ -446,7 +414,6 @@ class FalseClass;          include Gibbler::String;    end
 class Float;               include Gibbler::String;    end
 class Symbol;              include Gibbler::String;    end
 class Date;                include Gibbler::String;    end
-class Proc;                include Gibbler::Block;     end
 class Hash;                include Gibbler::Hash;      end
 class Array;               include Gibbler::Array;     end
 class Time;                include Gibbler::Time;      end
