@@ -11,6 +11,11 @@ tryouts "Gibbler::Object Aliases" do
     :kimmy.gibbler == :kimmy.digest
   end
   
+  drill "has digest_cache", true do
+    a = :kimmy.gibbler
+    a.gibbler_cache == a.digest_cache
+  end
+  
   drill "has changed?", true do
     a = "kimmy"
     a.digest
