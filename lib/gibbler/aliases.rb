@@ -1,8 +1,8 @@
 
+require 'gibbler'
 
 module Gibbler
   
-
   module Object
     alias :digest       :gibbler
     alias :changed?     :gibbled?
