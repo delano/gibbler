@@ -39,7 +39,7 @@ tryouts "Basic syntax with SHA1" do
     1
   end
   
-  dream :gibbler, '259afadb4ef8abaeb367db97d0c3015c8a4a504a'
+  dream :gibbler, '608256db120251843843bba57e9b2c7adb7342aa'
   drill "Bignum instance" do
     100000000000
   end
@@ -103,6 +103,15 @@ tryouts "Basic syntax with SHA1" do
     Hash.attic_vars
   end
   
+  drill "Freezing an object will update the digest", true do
+    a = { :a => 1 }
+    pre  = a.gibbler; 
+    a[:a] = 2 
+    post = a.freeze.gibbler
+    stash :pre, pre
+    stash :post, post
+    pre != post && post == a.gibbler_cache
+  end
   
   dream :gibbler, "6ea546919dc4caa2bab69799b71d48810a1b48fa"
   drill "works on arbitrary objects" do

@@ -1,6 +1,17 @@
 GIBBLER, CHANGES
 
 
+#### 0.6.4 (2009-10-??) #################################
+
+* FIXED: Now using correct superclass for DateTime (Date)
+* CHANGE: aliases.rb will now require gibbler so you don't need to specify both. 
+  i.e. require 'gibbler'
+       require 'gibbler/aliases'
+* CHANGE: Gibbler::Object#gibbler returns the value of gibbler_cache when
+  the object is frozen, without calculation. 
+* ADDED: Gibbler::Object#freeze to create digest before freezing.
+
+
 #### 0.6.3 (2009-09-30) #################################
 
 * FIXED: Won't save digest to cache if the object is frozen

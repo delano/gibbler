@@ -14,12 +14,21 @@ module Gibbler
     # Calculates a digest for the current object instance. 
     # Objects that are a kind of Hash or Array are processed
     # recursively. The length of the returned String depends 
-    # on the digest type. 
+    # on the digest type. Also stores the value in the attic.
+    # 
+    #     obj.gibbler          # => a5b1191a
+    #     obj.gibbler_cache    # => a5b1191a
+    # 
+    # Calling gibbler_cache returns the most recent digest
+    # without calculation.
+    #
+    # If the object is frozen, this will return the value of
+    # <tt>gibbler_cache</tt>.
+    #
     def gibbler
       gibbler_debug :GIBBLER, self.class, self
-      digest = Gibbler::Digest.new self.__gibbler
-      self.gibbler_cache = digest unless self.frozen?
-      digest
+      return self.gibbler_cache if self.frozen?
+      self.gibbler_cache = Gibbler::Digest.new self.__gibbler
     end
 
     # Has this object been modified?
@@ -57,6 +66,13 @@ module Gibbler
       gibbler_debug klass, a, [klass, nom.size, nom]
       a
     end
+    
+    # A simple override on Object#freeze to create a digest
+    # before the object is frozen. Once the object is frozen
+    # <tt>obj.gibbler</tt> will return the cached value with
+    # out calculation.
+    def freeze() self.gibbler; super; self end
+    
   end
   
 end

@@ -24,7 +24,7 @@ tryouts "File object tryouts" do
     path = File.join(File.dirname(__FILE__), '..', 'README.rdoc')
     File.new(File.expand_path(path))
   end
-  def freeze() super; @path.freeze; self end
+  
   ## JRuby doesn't like to use File.new with directories
   ##dream :gibbler, '92cbcb7de73d7748b28d9e911f461013de34410f' 
   ##drill "File gibbler cares about trailing slash (/tmp/)", File.new(__FILE__)
