@@ -47,37 +47,39 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000013">included</a></li>
+              <li><a href="#M000014">included</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000019">__gibbler</a></li>
-              <li><a href="#M000017">changed?</a></li>
-              <li><a href="#M000015">digest</a></li>
-              <li><a href="#M000016">gibbled?</a></li>
-              <li><a href="#M000014">gibbler</a></li>
-              <li><a href="#M000018">gibbler_debug</a></li>
+              <li><a href="#M000020">__gibbler</a></li>
+              <li><a href="#M000018">changed?</a></li>
+              <li><a href="#M000016">digest</a></li>
+              <li><a href="#M000013">digest_cache</a></li>
+              <li><a href="#M000021">freeze</a></li>
+              <li><a href="#M000017">gibbled?</a></li>
+              <li><a href="#M000015">gibbler</a></li>
+              <li><a href="#M000019">gibbler_debug</a></li>
             </ol>
           </div>
           <div id='section'>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='public-class method' id='method-M000013'>
-                <a name='M000013'>      </a>
+              <div class='public-class method' id='method-M000014'>
+                <a name='M000014'>      </a>
                 <div class='synopsis'>
                   <span class='name'>included</span>
                   <span class='arguments'>(obj)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000013-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 7</span>&#x000A; 7:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A; 8:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>&#x000A; 9:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-identifier">:gibbler_cache</span>&#x000A;10:       <span class="ruby-comment cmt"># Backwards compatibility for &lt;= 0.6.2 </span>&#x000A;11:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:__gibbler_cache</span>, <span class="ruby-identifier">:gibbler_cache</span>&#x000A;12:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000014-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 7</span>&#x000A; 7:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A; 8:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>&#x000A; 9:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-identifier">:gibbler_cache</span>&#x000A;10:       <span class="ruby-comment cmt"># Backwards compatibility for &lt;= 0.6.2 </span>&#x000A;11:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:__gibbler_cache</span>, <span class="ruby-identifier">:gibbler_cache</span>&#x000A;12:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='public-instance method' id='method-M000019'>
-                <a name='M000019'>      </a>
+              <div class='public-instance method' id='method-M000020'>
+                <a name='M000020'>      </a>
                 <div class='synopsis'>
                   <span class='name'>__gibbler</span>
                   <span class='arguments'>(h=self)</span>
@@ -107,38 +109,76 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000019-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000020-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000019-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 53</span>&#x000A;53:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">h</span>=<span class="ruby-keyword kw">self</span>)&#x000A;54:       <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">class</span>&#x000A;55:       <span class="ruby-identifier">nom</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>&#x000A;56:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">nom</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">nom</span>]&#x000A;57:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">nom</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">nom</span>]&#x000A;58:       <span class="ruby-identifier">a</span>&#x000A;59:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000020-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 62</span>&#x000A;62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">h</span>=<span class="ruby-keyword kw">self</span>)&#x000A;63:       <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">class</span>&#x000A;64:       <span class="ruby-identifier">nom</span> = <span class="ruby-identifier">h</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>&#x000A;65:       &#x000A;66:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">nom</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">nom</span>]&#x000A;67:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">nom</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">nom</span>]&#x000A;68:       <span class="ruby-identifier">a</span>&#x000A;69:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000017'>
-                <a name='M000017'>      </a>
+              <div class='public-instance method' id='method-M000018'>
+                <a name='M000018'>      </a>
                 <div class='synopsis'>
                   <span class='name'>changed?</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="Object.html#M000016">gibbled?</a>
+                  Alias for <a href="Object.html#M000017">gibbled?</a>
                   </p>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000015'>
-                <a name='M000015'>      </a>
+              <div class='public-instance method' id='method-M000016'>
+                <a name='M000016'>      </a>
                 <div class='synopsis'>
                   <span class='name'>digest</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="Object.html#M000014">gibbler</a>
+                  Alias for <a href="Object.html#M000015">gibbler</a>
                   </p>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000016'>
-                <a name='M000016'>      </a>
+              <div class='public-instance method' id='method-M000013'>
+                <a name='M000013'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>digest_cache</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  The cache is in the Attic.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000013-source'>    <span class="ruby-comment cmt"># File lib/gibbler/aliases.rb, line 10</span>&#x000A;10:     <span class="ruby-keyword kw">def</span>    <span class="ruby-identifier">digest_cache</span>;     <span class="ruby-identifier">gibbler_cache</span>;  <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000021'>
+                <a name='M000021'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>freeze</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  A simple override on <a href="Object.html#M000021">Object#freeze</a> to
+                  create a digest before the object is frozen. Once the object is frozen
+                  <tt>obj.gibbler</tt> will return the cached value with out calculation.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000021-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000021-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 75</span>&#x000A;75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">freeze</span>() <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span>; <span class="ruby-keyword kw">super</span>; <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='public-instance method' id='method-M000017'>
+                <a name='M000017'>      </a>
                 <div class='synopsis'>
                   <span class='name'>gibbled?</span>
                   <span class='arguments'>()</span>
@@ -155,14 +195,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000017-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000016-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 31</span>&#x000A;31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbled?</span>&#x000A;32:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span>&#x000A;33:       <span class="ruby-identifier">was</span>, <span class="ruby-identifier">now</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span>.<span class="ruby-identifier">clone</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span>&#x000A;34:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">:gibbled?</span>, <span class="ruby-identifier">was</span>, <span class="ruby-identifier">now</span>&#x000A;35:       <span class="ruby-identifier">was</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">now</span>&#x000A;36:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000017-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 40</span>&#x000A;40:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbled?</span>&#x000A;41:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span>&#x000A;42:       <span class="ruby-identifier">was</span>, <span class="ruby-identifier">now</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span>.<span class="ruby-identifier">clone</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span>&#x000A;43:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">:gibbled?</span>, <span class="ruby-identifier">was</span>, <span class="ruby-identifier">now</span>&#x000A;44:       <span class="ruby-identifier">was</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">now</span>&#x000A;45:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000014'>
-                <a name='M000014'>      </a>
+              <div class='public-instance method' id='method-M000015'>
+                <a name='M000015'>      </a>
                 <div class='synopsis'>
                   <span class='name'>gibbler</span>
                   <span class='arguments'>()</span>
@@ -172,27 +212,36 @@
                   Calculates a digest for the current object instance. Objects that are a
                   kind of <a href="Hash.html">Hash</a> or <a href="Array.html">Array</a> are
                   processed recursively. The length of the returned <a
-                  href="String.html">String</a> depends on the digest type.
+                  href="String.html">String</a> depends on the digest type. Also stores the
+                  value in the attic.
+                  </p>
+                  <pre>obj.gibbler          # =&gt; a5b1191a&#x000A;obj.gibbler_cache    # =&gt; a5b1191a</pre>
+                  <p>
+                  Calling gibbler_cache returns the most recent digest without calculation.
+                  </p>
+                  <p>
+                  If the object is frozen, this will return the value of
+                  <tt>gibbler_cache</tt>.
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000015-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000014-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 18</span>&#x000A;18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbler</span>&#x000A;19:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">:GIBBLER</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-keyword kw">self</span>&#x000A;20:       <span class="ruby-identifier">digest</span> = <span class="ruby-constant">Gibbler</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">__gibbler</span>&#x000A;21:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span> = <span class="ruby-identifier">digest</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">frozen?</span>&#x000A;22:       <span class="ruby-identifier">digest</span>&#x000A;23:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000015-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 28</span>&#x000A;28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbler</span>&#x000A;29:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">:GIBBLER</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>, <span class="ruby-keyword kw">self</span>&#x000A;30:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">frozen?</span>&#x000A;31:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span> = <span class="ruby-constant">Gibbler</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">__gibbler</span>&#x000A;32:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='public-instance method' id='method-M000018'>
-                <a name='M000018'>      </a>
+              <div class='public-instance method' id='method-M000019'>
+                <a name='M000019'>      </a>
                 <div class='synopsis'>
                   <span class='name'>gibbler_debug</span>
                   <span class='arguments'>(*args)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000018-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000019-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000018-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 38</span>&#x000A;38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbler_debug</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;39:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>&#x000A;40:       <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>&#x000A;41:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000019-source'>    <span class="ruby-comment cmt"># File lib/gibbler/object.rb, line 47</span>&#x000A;47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbler_debug</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;48:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>&#x000A;49:       <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>&#x000A;50:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

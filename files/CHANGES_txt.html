@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-09-30 16:52:01 -0400</span>
+          <span class='datetime'>2009-10-07 21:38:05 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -40,6 +40,42 @@
             <p>
             GIBBLER, CHANGES
             </p>
+            <p>
+            #### 0.6.4 (2009-10-07) #################################
+            </p>
+            <ul>
+            <li>FIXED: Now using correct superclass for <a
+            href="../classes/DateTime.html">DateTime</a> (<a
+            href="../classes/Date.html">Date</a>)
+            
+            </li>
+            <li>CHANGE: aliases.rb will now require gibbler so you don&#8217;t need to
+            specify both. i.e. require &#8216;gibbler&#8217;
+            
+            <pre>require 'gibbler/aliases'</pre>
+            </li>
+            <li>CHANGE: <a
+            href="../classes/Gibbler/Object.html#M000015">Gibbler::Object#gibbler</a>
+            returns the value of gibbler_cache when the object is frozen, without
+            calculation.
+            
+            </li>
+            <li>ADDED: <a
+            href="../classes/Gibbler/Object.html#M000021">Gibbler::Object#freeze</a> to
+            create digest before freezing.
+            
+            </li>
+            <li>ADDED: Out of the box support for <a
+            href="../classes/Regexp.html">Regexp</a> (<a
+            href="../classes/Gibbler/String.html">Gibbler::String</a>)
+            
+            </li>
+            <li>ADDED: <a
+            href="../classes/Gibbler/Object.html#M000013">Gibbler::Object#digest_cache</a>
+            alias for gibbler_cache
+            
+            </li>
+            </ul>
             <p>
             #### 0.6.3 (2009-09-30) #################################
             </p>
@@ -55,8 +91,8 @@
             
             </li>
             <li>ADDED: <a
-            href="../classes/Gibbler/Digest.html#M000060">Gibbler::Digest#shorter</a>,
-            <a href="../classes/Gibbler/Digest.html#M000061">Gibbler::Digest#tiny</a>,
+            href="../classes/Gibbler/Digest.html#M000061">Gibbler::Digest#shorter</a>,
+            <a href="../classes/Gibbler/Digest.html#M000062">Gibbler::Digest#tiny</a>,
             Gibbler::Digest#===
             
             </li>
