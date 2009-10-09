@@ -9,7 +9,7 @@ require 'digest/sha1'
 #
 module Gibbler
   
-  VERSION = "0.7.0"
+  VERSION = "0.7.1"
   
   require 'gibbler/digest'
   require 'gibbler/object'
