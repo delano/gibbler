@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-10-07 21:38:05 -0400</span>
+          <span class='datetime'>2009-10-09 10:31:39 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -40,6 +40,30 @@
             <p>
             GIBBLER, CHANGES
             </p>
+            <p>
+            #### 0.7.1 (2009-10-09) #################################
+            </p>
+            <ul>
+            <li>FIXED: <a href="../classes/Gibbler/Complex.html">Gibbler::Complex</a> now
+            sorts instance variables before processing. This resolves the issue of
+            digest compatibility between 1.8, 1.9, and JRuby.
+            
+            </li>
+            </ul>
+            <p>
+            #### 0.7.0 (2009-10-07) #################################
+            </p>
+            <p>
+            NOTE: Digest calculation for <a href="../classes/Proc.html">Proc</a>
+            objects has changed. Procs or objects containing Procs will have different
+            digests than those created in previous releases.
+            </p>
+            <ul>
+            <li>CHANGE: <a href="../classes/Proc.html">Proc</a> digests are now based on
+            the values of obj.class and obj.name (if available).
+            
+            </li>
+            </ul>
             <p>
             #### 0.6.4 (2009-10-07) #################################
             </p>
@@ -91,8 +115,8 @@
             
             </li>
             <li>ADDED: <a
-            href="../classes/Gibbler/Digest.html#M000061">Gibbler::Digest#shorter</a>,
-            <a href="../classes/Gibbler/Digest.html#M000062">Gibbler::Digest#tiny</a>,
+            href="../classes/Gibbler/Digest.html#M000059">Gibbler::Digest#shorter</a>,
+            <a href="../classes/Gibbler/Digest.html#M000060">Gibbler::Digest#tiny</a>,
             Gibbler::Digest#===
             
             </li>

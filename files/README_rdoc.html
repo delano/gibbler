@@ -31,27 +31,26 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-10-07 21:38:05 -0400</span>
+          <span class='datetime'>2009-10-07 21:40:36 -0400</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.6 ALPHA</h1>
+            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.7 ALPHA</h1>
             <p>
             Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby.
-            </p>
-            <p>
-            <b>NOTE: Digests changed in the 0.6 release for <a
-            href="../classes/Class.html">Class</a>, <a
-            href="../classes/Module.html">Module</a>, and <a
-            href="../classes/Proc.html">Proc</a> objects. See &#8220;News&#8221; below
-            for more info.</b>
             </p>
             <p>
             Check out the <a
             href="http://www.rubypulse.com/episode-0.3-gibbler.html">screencast</a>
             created by Alex Peuchert.
+            </p>
+            <h3>Important Information Regarding Your Digests</h3>
+            <p>
+            <em>Digest calculation changed in the 0.7 release for <a
+            href="../classes/Proc.html">Proc</a> objects. See &#8220;News&#8221; below
+            for more info.</em>
             </p>
             <h2>Example 1 &#8212; Basic Usage</h2>
             <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56</pre>
@@ -78,12 +77,12 @@
             &#8220;changed?&#8221;, respectively. (The reason they&#8217;re not enabled
             by default is to avoid conflicts.)
             </p>
-            <pre>require 'gibbler'&#x000A;require 'gibbler/aliases'&#x000A;&#x000A;&quot;kimmy&quot;.digest               # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.digest                # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;a = [:a, :b, :c]&#x000A;a.digest                     # =&gt; e554061823b8f06367555d1ee4c25b4ffee61944&#x000A;a &lt;&lt; :d&#x000A;a.changed?                   # =&gt; true</pre>
+            <pre>require 'gibbler/aliases'&#x000A;&#x000A;&quot;kimmy&quot;.digest               # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.digest                # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;a = [:a, :b, :c]&#x000A;a.digest                     # =&gt; e554061823b8f06367555d1ee4c25b4ffee61944&#x000A;a &lt;&lt; :d&#x000A;a.changed?                   # =&gt; true</pre>
             <p>
             The history methods also have aliases which remove the
             &#8220;gibbler_&#8221;.
             </p>
-            <pre>require 'gibbler'&#x000A;require 'gibbler/history'&#x000A;require 'gibbler/aliases'&#x000A;&#x000A;a = { :magic =&gt; :original }&#x000A;a.commit&#x000A;a.history&#x000A;a.revert!&#x000A;# etc...</pre>
+            <pre>require 'gibbler/aliases'&#x000A;require 'gibbler/history'&#x000A;&#x000A;a = { :magic =&gt; :original }&#x000A;a.commit&#x000A;a.history&#x000A;a.revert!&#x000A;# etc...</pre>
             <h2>Supported Classes</h2>
             <p>
             <a href="../classes/Gibbler.html">Gibbler</a> methods are available only to
@@ -112,11 +111,14 @@
             &#8220;Object:0x0x4ac9f0...&#8220;) will produce unreliable digests
             (because the address can change).
             </p>
+            <p>
+            As of 0.7 all <a href="../classes/Proc.html">Proc</a> objects have the same
+            digest: <tt>12075835e94be34438376cd7a54c8db7e746f15d</tt>.
+            </p>
             <h2>ALPHA Notice</h2>
             <p>
-            This code is hella fresh (est 2009-06-25). It&#8217;s barely tested and the
-            interface may change, but it&#8217;s fun to play with. I&#8217;ll happily
-            accept patches. Some things to keep in mind:
+            This code is fresh so the interface may change. Some things to keep in
+            mind:
             </p>
             <ul>
             <li><a href="../classes/Gibbler.html">Gibbler</a> history is not suitable for
@@ -125,11 +127,37 @@
             it for production code.
             
             </li>
-            <li>Digest calculation may change between minor releases (e.g. 0.5 to 0.6, etc)
+            <li>Digest calculation may change between minor releases (e.g. 0.6 to 0.7, etc)
+            
+            </li>
+            <li>Don&#8217;t forget to enjoy what you do!
             
             </li>
             </ul>
             <h2>News</h2>
+            <h3>2009-10-07: Digest calculation for <a href="../classes/Proc.html">Proc</a> objects has changed.</h3>
+            <p>
+            <a href="../classes/Proc.html">Proc</a> digests are now based on the name
+            of the class and the value of Proc#name (if available). Procs or objects
+            containing Procs will have different digests than those created in previous
+            releases.
+            </p>
+            <p>
+            After much deliberation, I realized that <a
+            href="../classes/Gibbler.html">Gibbler</a> cares about the data and not the
+            code. Procs are code, but a reference to a <a
+            href="../classes/Proc.html">Proc</a> in an instance variable is data. With
+            this change all <a href="../classes/Proc.html">Proc</a> objects have the
+            same digest. This decision has the side benefit of increasing compatibility
+            between Ruby 1.8, 1.9 &amp; JRuby.
+            </p>
+            <p>
+            This is the only change between 0.6.4 and 0.7.0 so if you prefer the
+            previous calculation for Procs you can find it in that version.
+            </p>
+            <p>
+            Happy Digesting!
+            </p>
             <h3>2009-10-07: Support for freezing and <a href="../classes/Regexp.html">Regexp</a></h3>
             <p>
             In 0.6.4, all <a href="../classes/Gibbler.html">Gibbler</a> objects will
