@@ -1,6 +1,11 @@
 GIBBLER, CHANGES
 
 
+#### 0.7.1 (2009-10-09) #################################
+
+* FIXED: Gibbler::Complex now sorts instance variables before processing. 
+  This resolves the issue of digest compatibility between 1.8, 1.9, and JRuby. 
+
 #### 0.7.0 (2009-10-07) #################################
 
 NOTE: Digest calculation for Proc objects has changed. Procs

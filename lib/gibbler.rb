@@ -88,7 +88,8 @@ module Gibbler
     def __gibbler(h=self)
       klass = h.class
       d = []
-      instance_variables.each do |n|
+      gibbler_debug :ivars, instance_variables
+      instance_variables.sort.each do |n|
         value = instance_variable_get(n)
         d << '%s:%s:%s' % [value.class, n, value.__gibbler]
       end
