@@ -8,16 +8,166 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  
   VERSION = "0.7.1"
   
-  require 'gibbler/digest'
   require 'gibbler/mixins'
   
   class Error < RuntimeError
     def initialize(obj); @obj = obj; end
   end
   
+end
+
+
+# = Gibbler::Digest
+#
+# A tiny subclass of String which adds a
+# few digest related convenience methods.
+#
+class Gibbler::Digest < String
+  
+  # Returns the first 8 characters of itself (the digest).
+  #
+  # e.g. 
+  #
+  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+  #     "kimmy".gibbler.short   # => c8027100
+  #
+  def short
+    self[0..7]
+  end
+  
+  # Returns the first 6 characters of itself (the digest).
+  #
+  # e.g. 
+  #
+  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+  #     "kimmy".gibbler.tiny    # => c80271
+  #
+  def shorter
+    self[0..5]
+  end
+  
+  # Returns the first 4 characters of itself (the digest).
+  #
+  # e.g. 
+  #
+  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+  #     "kimmy".gibbler.tiny    # => c802
+  #
+  def tiny
+    self[0..3]
+  end
+  
+  # Returns true when +ali+ matches +self+
+  #
+  #    "kimmy".gibbler == "c8027100ecc54945ab15ddac529230e38b1ba6a1"  # => true
+  #    "kimmy".gibbler == "c8027100"                                  # => false
+  #
+  def ==(ali)
+    return true if self.to_s == ali.to_s
+    false
+  end
+  
+  # Returns true when +g+ matches one of: +self+, +short+, +shorter+, +tiny+
+  #
+  #    "kimmy".gibbler === "c8027100ecc54945ab15ddac529230e38b1ba6a1" # => true
+  #    "kimmy".gibbler === "c8027100"                                 # => true
+  #    "kimmy".gibbler === "c80271"                                   # => true
+  #    "kimmy".gibbler === "c802"                                     # => true
+  #
+  def ===(g)
+    return true if [to_s, short, shorter, tiny].member?(g.to_s)
+    false
+  end
+end
+
+module Gibbler
+  module Object
+    
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :gibbler_cache
+      # Backwards compatibility for <= 0.6.2 
+      obj.send :alias_method, :__gibbler_cache, :gibbler_cache
+    end
+    
+    # Calculates a digest for the current object instance. 
+    # Objects that are a kind of Hash or Array are processed
+    # recursively. The length of the returned String depends 
+    # on the digest type. Also stores the value in the attic.
+    # 
+    #     obj.gibbler          # => a5b1191a
+    #     obj.gibbler_cache    # => a5b1191a
+    # 
+    # Calling gibbler_cache returns the most recent digest
+    # without calculation.
+    #
+    # If the object is frozen, this will return the value of
+    # <tt>gibbler_cache</tt>.
+    #
+    def gibbler
+      #gibbler_debug caller[0]
+      gibbler_debug :GIBBLER, self.class, self
+      return self.gibbler_cache if self.frozen?
+      self.gibbler_cache = Gibbler::Digest.new self.__gibbler
+    end
+
+    # Has this object been modified?
+    #
+    # This method compares the return value from digest with the 
+    # previous value returned by gibbler (the value is stored in
+    # the attic as <tt>gibbler_cache</tt>).
+    # See Attic[http://github.com/delano/attic]
+    def gibbled?
+      self.gibbler_cache ||= self.gibbler
+      was, now = self.gibbler_cache.clone, self.gibbler
+      gibbler_debug :gibbled?, was, now
+      was != now
+    end
+
+    def gibbler_debug(*args)
+      return unless Gibbler.debug?
+      p args
+    end
+    
+    # Creates a digest for the current state of self based on:
+    # * Object#class
+    # * Length of Object#name || 0
+    # * Object#name || ''
+    # 
+    # e.g. Digest::SHA1.hexdigest "Class:6:Object" #=> 
+    #
+    # <b>This is a default method appropriate for only the most 
+    # basic objects like Class and Module.</b>
+    #
+    def __gibbler(h=self)
+      klass = h.class
+      nom = h.name if h.respond_to?(:name)
+      nom ||= ''
+      a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom]
+      gibbler_debug klass, a, [klass, nom.size, nom]
+      a
+    end
+    
+    # A simple override on Object#freeze to create a digest
+    # before the object is frozen. Once the object is frozen
+    # <tt>obj.gibbler</tt> will return the cached value with
+    # out calculation.
+    def freeze() 
+      #gibbler_debug :freeze, caller[0]
+      self.gibbler
+      super
+      self
+    end
+    
+  end
+  
+end
+
+
+module Gibbler
+
   @@gibbler_debug = false
   @@gibbler_digest_type = ::Digest::SHA1
   
@@ -401,91 +551,6 @@ module Gibbler
     
 end
 
-
-
-module Gibbler
-  
-  module Object
-    
-    def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
-      # Backwards compatibility for <= 0.6.2 
-      obj.send :alias_method, :__gibbler_cache, :gibbler_cache
-    end
-    
-    # Calculates a digest for the current object instance. 
-    # Objects that are a kind of Hash or Array are processed
-    # recursively. The length of the returned String depends 
-    # on the digest type. Also stores the value in the attic.
-    # 
-    #     obj.gibbler          # => a5b1191a
-    #     obj.gibbler_cache    # => a5b1191a
-    # 
-    # Calling gibbler_cache returns the most recent digest
-    # without calculation.
-    #
-    # If the object is frozen, this will return the value of
-    # <tt>gibbler_cache</tt>.
-    #
-    def gibbler
-      #gibbler_debug caller[0]
-      gibbler_debug :GIBBLER, self.class, self
-      return self.gibbler_cache if self.frozen?
-      self.gibbler_cache = Gibbler::Digest.new self.__gibbler
-    end
-
-    # Has this object been modified?
-    #
-    # This method compares the return value from digest with the 
-    # previous value returned by gibbler (the value is stored in
-    # the attic as <tt>gibbler_cache</tt>).
-    # See Attic[http://github.com/delano/attic]
-    def gibbled?
-      self.gibbler_cache ||= self.gibbler
-      was, now = self.gibbler_cache.clone, self.gibbler
-      gibbler_debug :gibbled?, was, now
-      was != now
-    end
-
-    def gibbler_debug(*args)
-      return unless Gibbler.debug?
-      p args
-    end
-    
-    # Creates a digest for the current state of self based on:
-    # * Object#class
-    # * Length of Object#name || 0
-    # * Object#name || ''
-    # 
-    # e.g. Digest::SHA1.hexdigest "Class:6:Object" #=> 
-    #
-    # <b>This is a default method appropriate for only the most 
-    # basic objects like Class and Module.</b>
-    #
-    def __gibbler(h=self)
-      klass = h.class
-      nom = h.name if h.respond_to?(:name)
-      nom ||= ''
-      a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom]
-      gibbler_debug klass, a, [klass, nom.size, nom]
-      a
-    end
-    
-    # A simple override on Object#freeze to create a digest
-    # before the object is frozen. Once the object is frozen
-    # <tt>obj.gibbler</tt> will return the cached value with
-    # out calculation.
-    def freeze() 
-      #gibbler_debug :freeze, caller[0]
-      self.gibbler
-      super
-      self
-    end
-    
-  end
-  
-end
 
 class NilClass;            include Gibbler::Nil;       end
 class Class;               include Gibbler::Object;    end
