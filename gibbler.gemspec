@@ -38,24 +38,6 @@
   lib/gibbler/digest.rb
   lib/gibbler/history.rb
   lib/gibbler/mixins.rb
-  tryouts/01_mixins_tryouts.rb
-  tryouts/02_compat_tryouts.rb
-  tryouts/05_gibbler_digest_tryouts.rb
-  tryouts/10_basic_tryouts.rb
-  tryouts/11_basic_sha256_tryouts.rb
-  tryouts/14_extended_tryouts.rb
-  tryouts/15_file_tryouts.rb
-  tryouts/16_uri_tryouts.rb
-  tryouts/20_time_tryouts.rb
-  tryouts/50_history_tryouts.rb
-  tryouts/51_hash_history_tryouts.rb
-  tryouts/52_array_history_tryouts.rb
-  tryouts/53_string_history_tryouts.rb
-  tryouts/57_arbitrary_history_tryouts.rb
-  tryouts/59_history_exceptions_tryouts.rb
-  tryouts/80_performance_tryouts.rb
-  tryouts/90_alias_tryouts.rb
-  tryouts/object_hash_demo.rb
   )
   
   s.has_rdoc = true
