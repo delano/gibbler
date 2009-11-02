@@ -38,8 +38,6 @@
   lib/gibbler/digest.rb
   lib/gibbler/history.rb
   lib/gibbler/mixins.rb
-  lib/gibbler/mixins/string.rb
-  lib/gibbler/object.rb
   tryouts/01_mixins_tryouts.rb
   tryouts/02_compat_tryouts.rb
   tryouts/05_gibbler_digest_tryouts.rb
