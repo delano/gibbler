@@ -29,3 +29,17 @@ Benchmark.bm(5) do |x|
   x.report("array of arrays  (#{bigarr.size}): ")   { bigarr.gibbler }
 end
     
+__END__
+
+$ ruby tryouts/parse_large.rb rubygems
+Testing local dev version
+           user     system      total        real
+array of strings (119540):   2.960000   0.090000   3.050000 (  3.065106)
+array of arrays  (119540):   8.360000   0.110000   8.470000 (  8.504949)
+
+$ ruby tryouts/parse_large.rb 
+Testing Rubygems version
+           user     system      total        real
+array of strings (119540):   1.640000   0.070000   1.710000 (  1.722648)
+array of arrays  (119540):   5.260000   0.110000   5.370000 (  5.387211)
+
