@@ -359,12 +359,17 @@ module Gibbler
     # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
-      d, index = [], 0
-      h.each do |value| 
-        d << '%s:%s:%s' % [value.class, index, value.__gibbler]
-        index += 1
+      d, idx = [], 0
+      shorts = ['String', 'Fixnum', 'Symbol']
+      h.each do |v| # Some Array-like classes don't have each_with_index
+        if shorts.member?(v.class.to_s) 
+          d << '%s:%s:%s:%s' % [v.class, idx, v.to_s.size, v.to_s]
+        else
+          d << '%s:%s:%s' % [v.class, idx, v.__gibbler]
+        end
+        idx += 1
       end
-      d = d.join(':').__gibbler
+      d = d.join(':')
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d]
       gibbler_debug klass, a, [klass, d.size, d]
       a
