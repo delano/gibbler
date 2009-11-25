@@ -35,7 +35,6 @@
   gibbler.gemspec
   lib/gibbler.rb
   lib/gibbler/aliases.rb
-  lib/gibbler/digest.rb
   lib/gibbler/history.rb
   lib/gibbler/mixins.rb
   )
