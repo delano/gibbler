@@ -1,3 +1,10 @@
+unless defined?(GIBBLER_LIB_HOME)
+  GIBBLER_LIB_HOME = File.expand_path File.dirname(__FILE__) 
+end
+
+%w{attic}.each do |dir|
+  $:.unshift File.join(GIBBLER_LIB_HOME, '..', '..', dir, 'lib')
+end
 
 require 'thread'
 require 'attic'
@@ -231,15 +238,41 @@ module Gibbler
     def self.included(obj)
       obj.extend Attic
       obj.attic :gibbler_cache
+      obj.class_eval do
+        @__gibbler_fields = []
+        def self.gibbler_fields
+          @__gibbler_fields
+        end
+        def self.gibbler *fields
+          @__gibbler_fields = *fields
+        end
+        def self.inherited(obj)
+          obj.extend Attic
+          obj.attic :gibbler_cache
+          fields = @__gibbler_fields.clone
+          obj.class_eval do
+            @__gibbler_fields = fields
+          end
+        end
+      end
+    end
+  
+    
+    def gibbler_fields
+      f = self.class.gibbler_fields
+      f ||= instance_variables.sort.collect { |n|
+        n.to_s[1..-1].to_sym # remove the '@'
+      }
+      f
     end
     
     # Creates a digest for the current state of self. 
     def __gibbler(h=self)
       klass = h.class
       d = []
-      gibbler_debug :ivars, instance_variables.sort
-      instance_variables.sort.each do |n|
-        value = instance_variable_get(n)
+      gibbler_debug :gibbler_fields, gibbler_fields
+      gibbler_fields.each do |n|
+        value = instance_variable_get("@#{n}")
         d << '%s:%s:%s' % [value.class, n, value.__gibbler]
       end
       d = d.join(':').__gibbler

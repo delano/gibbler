@@ -6,6 +6,8 @@ module Gibbler
   module Object
     alias :digest           :gibbler
     alias :changed?         :gibbled?
+    alias :digest_fields    :gibbler_fields
+    
     # The cache is in the Attic.
     def    digest_cache;     gibbler_cache;  end
   end

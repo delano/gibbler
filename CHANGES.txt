@@ -1,6 +1,14 @@
 GIBBLER, CHANGES
 
 
+#### 0.7.2 (2009-11-29) #################################
+
+* FIXED: Gibbler::Complex no longer includes the '@' for instance
+  variable names used in digest calculation. 
+* ADDED: Gibbler::Complex support for specifying which fields
+  to use in digest calculation. 
+
+
 #### 0.7.1 (2009-10-09) #################################
 
 * FIXED: Gibbler::Complex now sorts instance variables before processing. 
