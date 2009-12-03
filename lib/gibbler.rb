@@ -264,9 +264,11 @@ module Gibbler
     
     def gibbler_fields
       f = self.class.gibbler_fields
-      f ||= instance_variables.sort.collect { |n|
-        n.to_s[1..-1].to_sym # remove the '@'
-      }
+      if f.empty?
+        f = instance_variables.sort.collect { |n|
+          n.to_s[1..-1].to_sym # remove the '@'
+        }
+      end
       f
     end
     
