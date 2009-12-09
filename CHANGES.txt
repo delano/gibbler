@@ -1,7 +1,7 @@
 GIBBLER, CHANGES
 
 
-#### 0.7.2 (2009-11-29) #################################
+#### 0.7.2 (2009-12-08) #################################
 
 * FIXED: Gibbler::Complex no longer includes the '@' for instance
   variable names used in digest calculation. 
