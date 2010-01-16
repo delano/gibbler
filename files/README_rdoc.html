@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2009-10-09 17:52:18 -0400</span>
+          <span class='datetime'>2010-01-15 23:40:33 -0500</span>
         </div>
       </div>
       <div id='content'>
@@ -53,7 +53,7 @@
             for more info.</em>
             </p>
             <h2>Example 1 &#8212; Basic Usage</h2>
-            <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56</pre>
+            <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56&#x000A;&#x000A;config.gibbler.base36        # =&gt; 8x00l83jov4j80i9vfzpaxr9jag23wf&#x000A;&#x000A;config.gibbler.base36.short  # =&gt; 8x00l83j</pre>
             <h2>Example 2 &#8212; Object History</h2>
             <p>
             <a href="../classes/Gibbler.html">Gibbler</a> can also keep track of the
