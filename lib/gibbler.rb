@@ -33,6 +33,10 @@ end
 #
 class Gibbler::Digest < String
   
+  def base36
+    self.class.new self.to_i(16).to_s(36)
+  end
+  
   # Returns the first 8 characters of itself (the digest).
   #
   # e.g. 

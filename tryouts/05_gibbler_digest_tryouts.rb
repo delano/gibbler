@@ -26,6 +26,19 @@ tryouts "All methods" do
     Gibbler::Digest.new("1234567890") === "12345678"
   end
 
+  dream 'zx2tc40'
+  drill "supports base36 output" do
+    Gibbler::Digest.new("1234567890").base36
+  end
   
+  dream 'nd2w8270caslmly0ix3s8ruh0y8yjdt'
+  drill "base36 works on digests too" do
+    "kimmy".gibbler.base36
+  end
+  
+  dream 'nd2w8270'
+  drill "base36 digests can be short too" do
+    "kimmy".gibbler.base36.short
+  end
 end
 

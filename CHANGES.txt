@@ -1,6 +1,10 @@
 GIBBLER, CHANGES
 
 
+#### 0.7.3 (2010-01-15) #################################
+
+* ADDED: Support for base36 representations of digests
+
 #### 0.7.2 (2009-12-08) #################################
 
 * FIXED: Gibbler::Complex no longer includes the '@' for instance
