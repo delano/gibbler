@@ -35,7 +35,7 @@ Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] crea
 
     config.gibbler.base36        # => 8x00l83jov4j80i9vfzpaxr9jag23wf
     
-    config.gibbler.base36.short        # => 8x00l83j
+    config.gibbler.base36.short  # => 8x00l83j
     
     
 == Example 2 -- Object History 
