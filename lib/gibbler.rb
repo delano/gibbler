@@ -15,7 +15,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.7.3"
+  VERSION = "0.7.4"
   
   require 'gibbler/mixins'
   
