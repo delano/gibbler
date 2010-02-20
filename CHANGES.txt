@@ -2,7 +2,7 @@ GIBBLER, CHANGES
 
 #### 0.7.4 (2010-02-12) ###############################
 
-* CHANGE: Remove hanna dependency
+* CHANGE: Remove hanna dependency [Diego Elio 'Flameeyes' Pettenò]
 
 #### 0.7.3 (2010-01-15) #################################
 
