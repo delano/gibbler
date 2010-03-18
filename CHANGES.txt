@@ -1,9 +1,12 @@
 GIBBLER, CHANGES
 
+#### 0.7.6 (2010-03-18) ###############################
+
+* FIXED: The previous fix missed the case where gibbler_fields was null
+
 #### 0.7.5 (2010-03-18) ###############################
 
-* FIXED: :undefined method `each' for :fieldname:Symbol when only one gibbler_field defined
-
+* FIXED: :undefined method `each' for :fieldname:Symbol when only one element in gibbler_fields 
 
 #### 0.7.4 (2010-02-12) ###############################
 

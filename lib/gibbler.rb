@@ -15,7 +15,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.7.5"
+  VERSION = "0.7.6"
   
   require 'gibbler/mixins'
   
@@ -267,7 +267,7 @@ module Gibbler
     end
     
     def gibbler_fields
-      f = [self.class.gibbler_fields].flatten
+      f = [self.class.gibbler_fields].compact.flatten
       if f.empty?
         f = instance_variables.sort.collect { |n|
           n.to_s[1..-1].to_sym # remove the '@'
