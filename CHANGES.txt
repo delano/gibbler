@@ -1,5 +1,10 @@
 GIBBLER, CHANGES
 
+#### 0.7.5 (2010-03-18) ###############################
+
+* FIXED: :undefined method `each' for :fieldname:Symbol when only one gibbler_field defined
+
+
 #### 0.7.4 (2010-02-12) ###############################
 
 * CHANGE: Remove hanna dependency [Diego Elio 'Flameeyes' Pettenò]
