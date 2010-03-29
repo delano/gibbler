@@ -1,5 +1,9 @@
 GIBBLER, CHANGES
 
+#### 0.7.7 (2010-03-29) ###############################
+
+* ADDED: Gibbler::Digest#shorten
+
 #### 0.7.6 (2010-03-18) ###############################
 
 * FIXED: The previous fix missed the case where gibbler_fields was null

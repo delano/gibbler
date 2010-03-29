@@ -15,7 +15,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.7.6"
+  VERSION = "0.7.7"
   
   require 'gibbler/mixins'
   
@@ -37,6 +37,11 @@ class Gibbler::Digest < String
     self.class.new self.to_i(16).to_s(36)
   end
   
+  # Shorten the digest to the given (optional) length. 
+  def shorten(len=20)
+    self[0..len-1]
+  end
+  
   # Returns the first 8 characters of itself (the digest).
   #
   # e.g. 
@@ -45,7 +50,7 @@ class Gibbler::Digest < String
   #     "kimmy".gibbler.short   # => c8027100
   #
   def short
-    self[0..7]
+    shorten(8)
   end
   
   # Returns the first 6 characters of itself (the digest).
@@ -56,7 +61,7 @@ class Gibbler::Digest < String
   #     "kimmy".gibbler.tiny    # => c80271
   #
   def shorter
-    self[0..5]
+    shorten(6)
   end
   
   # Returns the first 4 characters of itself (the digest).
@@ -67,7 +72,7 @@ class Gibbler::Digest < String
   #     "kimmy".gibbler.tiny    # => c802
   #
   def tiny
-    self[0..3]
+    shorten(4)
   end
   
   # Returns true when +ali+ matches +self+
