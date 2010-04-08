@@ -1,12 +1,14 @@
-= Gibbler - v0.7 ALPHA
+= Gibbler - v0.8 
 
 Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby. 
 
 Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] created by Alex Peuchert.
 
-=== Important Information Regarding Your Digests
+== Some things to keep in mind
 
-<i>Digest calculation changed in the 0.7 release for Proc objects. See "News" below for more info.</i>
+* Digest calculation may change between minor releases (as it did between 0.6 and 0.7)
+* Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
+* Don't forget to enjoy what you do!
 
 
 == Example 1 -- Basic Usage
@@ -88,7 +90,7 @@ If you have control over the namespaces of your objects, you can use the method 
     a.changed?                   # => true
 
 
-The history methods also have aliases which remove the "gibbler_".
+The history methods also have aliases which remove the "gibbler_" prefix.
     
     require 'gibbler/aliases'
     require 'gibbler/history'
@@ -99,6 +101,40 @@ The history methods also have aliases which remove the "gibbler_".
     a.revert!                    
     # etc...
     
+== Example 4 -- Different Digest types
+
+By default Gibbler creates SHA1 hashes. You can change this globally or per instance. 
+
+    require 'gibbler'
+    
+    Gibbler.digest_type = Digest::MD5
+    
+    :kimmy.gibbler               # => 0c61ff17f46223f355759934154d5dcb
+    
+    :kimmy.gibbler(Digest::SHA1) # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
+    
+
+In Jruby, you can grab the digest types from the openssl library. 
+
+    require 'openssl'
+    
+    Gibbler.digest_type = OpenSSL::Digest::SHA256
+    
+    :kimmy.gibbler               # => 1069428e6273cf329436c3dce9b680d4d4e229d7b7...
+    
+    
+== Example 5 -- All your base
+
+    require 'gibbler'
+    
+    :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
+    :kimmy.gibbler.base(16)      # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
+    :kimmy.gibbler.base(36)      # => 9nydr6mpv6w4k8ngo3jtx0jz1n97h7j
+
+    :kimmy.gibbler.base(10)      # => 472384540402900668368761869477227308873774630879
+    :kimmy.gibbler.to_i          # => 472384540402900668368761869477227308873774630879
+
+
 == Supported Classes
 
 Gibbler methods are available only to the classes which explicitly include them (see RDocs[http://delano.github.com/gibbler] for details on which classes are supported by default). You can also extend custom objects:
@@ -126,42 +162,6 @@ Gibbler::String creates a digest based on the name of the class and the output o
 
 As of 0.7 all Proc objects have the same digest: <tt>12075835e94be34438376cd7a54c8db7e746f15d</tt>. 
 
-
-== ALPHA Notice
-
-This code is fresh so the interface may change. Some things to keep in mind:
-
-* Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
-* Digest calculation may change between minor releases (e.g. 0.6 to 0.7, etc)
-* Don't forget to enjoy what you do!
-
-
-== News
-
-=== 2009-10-07: Digest calculation for Proc objects has changed.
-
-Proc digests are now based on the name of the class and the value of Proc#name (if available). Procs or objects containing Procs will have different digests than those created in previous releases.
-
-After much deliberation, I realized that Gibbler cares about the data and not the code. Procs are code, but a reference to a Proc in an instance variable is data. With this change all Proc objects have the same digest. This decision has the side benefit of increasing compatibility between Ruby 1.8, 1.9 & JRuby. 
-
-This is the only change between 0.6.4 and 0.7.0 so if you prefer the previous calculation for Procs you can find it in that version. 
-
-Happy Digesting!
-
-=== 2009-10-07: Support for freezing and Regexp
-
-In 0.6.4, all Gibbler objects will create a new digest when <tt>obj.freeze</tt> is called. All subsequent calls to <tt>obj.gibbler</tt> will return the most recent digest without having to run the calculation again. 
-
-I've also added support for Regexp out of the box. 
-
-=== 2009-07-20: Digest change for instances of Class, Module, and Proc
-
-Digest calculation has changed for Class, Module, and Proc objects. Digests created with Gibbler 0.5.x and earlier will not match the ones created by 0.6. 
-
-* Class and Module objects were calculating digests based on the output of <tt>self.to_s</tt>. This was a problem because that string contains a memory address which can change arbitrarily. The new calculation is based on the object class, the length of name, and the name itself. e.g. <tt>"Class:6:Object" # => '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2'</tt>
-* Proc objects were including the return value of <tt>self.binding</tt> in the digest calculation. This is not reliable because the binding includes an arbitrary address. The new calculation is based on the class name, the arity, and whether it was created with a lambda. 
-
-Also note that this change affects the digests for Hashes and Arrays that contain instances of Class, Module, or Proc. 
 
 
 == Known Issues
