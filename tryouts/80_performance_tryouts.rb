@@ -5,8 +5,8 @@ group "Performance"
 tryouts "Speed", :benchmark do
   # NOTE: gibbler is slower when history is enabled. 
   drill "Setup variables" do
-    @@array = (1..10000).map { rand }
-    values = (1..10000).map { rand }
+    @@array = (1..1000).map { rand }
+    values = (1..1000).map { rand }
     zipped = @@array.zip(values)
     @@hash = Hash[*zipped]
   end
@@ -32,7 +32,7 @@ tryouts "Speed", :benchmark do
   
 end
 
-repetitions = 100         # at 100_000 hash shows errors
+repetitions = 10         # at 100_000 hash shows errors
 sample_size = 1..100
 
 tryouts "Uniqueness", :api do
