@@ -31,13 +31,13 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-03-18 18:14:07 -0400</span>
+          <span class='datetime'>2010-04-08 19:50:55 -0400</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.7 ALPHA</h1>
+            <h1><a href="../classes/Gibbler.html">Gibbler</a> - v0.8</h1>
             <p>
             Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby.
             </p>
@@ -46,12 +46,22 @@
             href="http://www.rubypulse.com/episode-0.3-gibbler.html">screencast</a>
             created by Alex Peuchert.
             </p>
-            <h3>Important Information Regarding Your Digests</h3>
-            <p>
-            <em>Digest calculation changed in the 0.7 release for <a
-            href="../classes/Proc.html">Proc</a> objects. See &#8220;News&#8221; below
-            for more info.</em>
-            </p>
+            <h2>Some things to keep in mind</h2>
+            <ul>
+            <li>Digest calculation may change between minor releases (as it did between 0.6
+            and 0.7)
+            
+            </li>
+            <li><a href="../classes/Gibbler.html">Gibbler</a> history is not suitable for
+            very large objects since it keeps complete copies of the object in memory.
+            This is a very early implementation of this feature so don&#8217;t rely on
+            it for production code.
+            
+            </li>
+            <li>Don&#8217;t forget to enjoy what you do!
+            
+            </li>
+            </ul>
             <h2>Example 1 &#8212; Basic Usage</h2>
             <pre>require 'gibbler'&#x000A;&#x000A;&quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;config = {}&#x000A;config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf&#x000A;config.gibbled?              # =&gt; false&#x000A;&#x000A;config[:server] = {&#x000A;  :users =&gt; [:dave, :ali],&#x000A;  :ports =&gt; [22, 80, 443]&#x000A;}&#x000A;config.gibbled?              # =&gt; true&#x000A;config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8&#x000A;&#x000A;config[:server][:users] &lt;&lt; :yanni&#x000A;&#x000A;config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f&#x000A;&#x000A;config.gibbler.short         # =&gt; 4c558a56&#x000A;&#x000A;config.gibbler.base36        # =&gt; 8x00l83jov4j80i9vfzpaxr9jag23wf&#x000A;&#x000A;config.gibbler.base36.short  # =&gt; 8x00l83j</pre>
             <h2>Example 2 &#8212; Object History</h2>
@@ -80,9 +90,21 @@
             <pre>require 'gibbler/aliases'&#x000A;&#x000A;&quot;kimmy&quot;.digest               # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;:kimmy.digest                # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;a = [:a, :b, :c]&#x000A;a.digest                     # =&gt; e554061823b8f06367555d1ee4c25b4ffee61944&#x000A;a &lt;&lt; :d&#x000A;a.changed?                   # =&gt; true</pre>
             <p>
             The history methods also have aliases which remove the
-            &#8220;gibbler_&#8221;.
+            &#8220;gibbler_&#8221; prefix.
             </p>
             <pre>require 'gibbler/aliases'&#x000A;require 'gibbler/history'&#x000A;&#x000A;a = { :magic =&gt; :original }&#x000A;a.commit&#x000A;a.history&#x000A;a.revert!&#x000A;# etc...</pre>
+            <h2>Example 4 &#8212; Different Digest types</h2>
+            <p>
+            By default <a href="../classes/Gibbler.html">Gibbler</a> creates SHA1
+            hashes. You can change this globally or per instance.
+            </p>
+            <pre>require 'gibbler'&#x000A;&#x000A;Gibbler.digest_type = Digest::MD5&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 0c61ff17f46223f355759934154d5dcb&#x000A;&#x000A;:kimmy.gibbler(Digest::SHA1) # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</pre>
+            <p>
+            In Jruby, you can grab the digest types from the openssl library.
+            </p>
+            <pre>require 'openssl'&#x000A;&#x000A;Gibbler.digest_type = OpenSSL::Digest::SHA256&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 1069428e6273cf329436c3dce9b680d4d4e229d7b7...</pre>
+            <h2>Example 5 &#8212; All your base</h2>
+            <pre>require 'gibbler'&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;:kimmy.gibbler.base(16)      # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;:kimmy.gibbler.base(36)      # =&gt; 9nydr6mpv6w4k8ngo3jtx0jz1n97h7j&#x000A;&#x000A;:kimmy.gibbler.base(10)      # =&gt; 472384540402900668368761869477227308873774630879&#x000A;:kimmy.gibbler.to_i          # =&gt; 472384540402900668368761869477227308873774630879</pre>
             <h2>Supported Classes</h2>
             <p>
             <a href="../classes/Gibbler.html">Gibbler</a> methods are available only to
@@ -114,93 +136,6 @@
             <p>
             As of 0.7 all <a href="../classes/Proc.html">Proc</a> objects have the same
             digest: <tt>12075835e94be34438376cd7a54c8db7e746f15d</tt>.
-            </p>
-            <h2>ALPHA Notice</h2>
-            <p>
-            This code is fresh so the interface may change. Some things to keep in
-            mind:
-            </p>
-            <ul>
-            <li><a href="../classes/Gibbler.html">Gibbler</a> history is not suitable for
-            very large objects since it keeps complete copies of the object in memory.
-            This is a very early implementation of this feature so don&#8217;t rely on
-            it for production code.
-            
-            </li>
-            <li>Digest calculation may change between minor releases (e.g. 0.6 to 0.7, etc)
-            
-            </li>
-            <li>Don&#8217;t forget to enjoy what you do!
-            
-            </li>
-            </ul>
-            <h2>News</h2>
-            <h3>2009-10-07: Digest calculation for <a href="../classes/Proc.html">Proc</a> objects has changed.</h3>
-            <p>
-            <a href="../classes/Proc.html">Proc</a> digests are now based on the name
-            of the class and the value of Proc#name (if available). Procs or objects
-            containing Procs will have different digests than those created in previous
-            releases.
-            </p>
-            <p>
-            After much deliberation, I realized that <a
-            href="../classes/Gibbler.html">Gibbler</a> cares about the data and not the
-            code. Procs are code, but a reference to a <a
-            href="../classes/Proc.html">Proc</a> in an instance variable is data. With
-            this change all <a href="../classes/Proc.html">Proc</a> objects have the
-            same digest. This decision has the side benefit of increasing compatibility
-            between Ruby 1.8, 1.9 &amp; JRuby.
-            </p>
-            <p>
-            This is the only change between 0.6.4 and 0.7.0 so if you prefer the
-            previous calculation for Procs you can find it in that version.
-            </p>
-            <p>
-            Happy Digesting!
-            </p>
-            <h3>2009-10-07: Support for freezing and <a href="../classes/Regexp.html">Regexp</a></h3>
-            <p>
-            In 0.6.4, all <a href="../classes/Gibbler.html">Gibbler</a> objects will
-            create a new digest when <tt>obj.freeze</tt> is called. All subsequent
-            calls to <tt>obj.gibbler</tt> will return the most recent digest without
-            having to run the calculation again.
-            </p>
-            <p>
-            I&#8217;ve also added support for <a
-            href="../classes/Regexp.html">Regexp</a> out of the box.
-            </p>
-            <h3>2009-07-20: Digest change for instances of <a href="../classes/Class.html">Class</a>, <a href="../classes/Module.html">Module</a>, and <a href="../classes/Proc.html">Proc</a></h3>
-            <p>
-            Digest calculation has changed for <a
-            href="../classes/Class.html">Class</a>, <a
-            href="../classes/Module.html">Module</a>, and <a
-            href="../classes/Proc.html">Proc</a> objects. Digests created with <a
-            href="../classes/Gibbler.html">Gibbler</a> 0.5.x and earlier will not match
-            the ones created by 0.6.
-            </p>
-            <ul>
-            <li><a href="../classes/Class.html">Class</a> and <a
-            href="../classes/Module.html">Module</a> objects were calculating digests
-            based on the output of <tt>self.to_s</tt>. This was a problem because that
-            string contains a memory address which can change arbitrarily. The new
-            calculation is based on the object class, the length of name, and the name
-            itself. e.g. <tt>&quot;Class:6:Object&quot; # =&gt;
-            '5620e4a8b10ec6830fece61d33f5d3e9a349b4c2'</tt>
-            
-            </li>
-            <li><a href="../classes/Proc.html">Proc</a> objects were including the return
-            value of <tt>self.binding</tt> in the digest calculation. This is not
-            reliable because the binding includes an arbitrary address. The new
-            calculation is based on the class name, the arity, and whether it was
-            created with a lambda.
-            
-            </li>
-            </ul>
-            <p>
-            Also note that this change affects the digests for Hashes and Arrays that
-            contain instances of <a href="../classes/Class.html">Class</a>, <a
-            href="../classes/Module.html">Module</a>, or <a
-            href="../classes/Proc.html">Proc</a>.
             </p>
             <h2>Known Issues</h2>
             <ul>
