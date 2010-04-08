@@ -140,7 +140,7 @@ module Gibbler
       #gibbler_debug caller[0]
       gibbler_debug :GIBBLER, self.class, self
       return self.gibbler_cache if self.frozen?
-      self.gibbler_cache = Gibbler::Digest.new self.__gibbler(self, digest_type)
+      self.gibbler_cache = Gibbler::Digest.new self.__gibbler(digest_type)
     end
 
     # Has this object been modified?
@@ -171,9 +171,9 @@ module Gibbler
     # <b>This is a default method appropriate for only the most 
     # basic objects like Class and Module.</b>
     #
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      nom = h.name if h.respond_to?(:name)
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      nom = self.name if self.respond_to?(:name)
       nom ||= ''
       a = Gibbler.digest '%s:%s:%s' % [klass, nom.size, nom], digest_type
       gibbler_debug klass, a, [klass, nom.size, nom]
@@ -292,15 +292,15 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
+    def __gibbler(digest_type=nil)
+      klass = self.class
       d = []
       gibbler_debug :gibbler_fields, gibbler_fields
       gibbler_fields.each do |n|
         value = instance_variable_get("@#{n}")
-        d << '%s:%s:%s' % [value.class, n, value.__gibbler]
+        d << '%s:%s:%s' % [value.class, n, value.__gibbler(digest_type)]
       end
-      d = d.join(':').__gibbler
+      d = d.join(':').__gibbler(digest_type)
       a = Gibbler.digest "%s:%d:%s" % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a
@@ -340,9 +340,9 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      value = h.nil? ? "\0" : h.to_s
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      value = self.nil? ? "\0" : self.to_s
       a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value], digest_type
       gibbler_debug klass, a, [klass, value.size, value]
       a
@@ -375,14 +375,14 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      d = h.keys.sort { |a,b| a.inspect <=> b.inspect }
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      d = self.keys.sort { |a,b| a.inspect <=> b.inspect }
       d.collect! do |name| 
-        value = h[name]
+        value = self[name]
         '%s:%s:%s' % [value.class, name, value.__gibbler]
       end 
-      d = d.join(':').__gibbler
+      d = d.join(':').__gibbler(digest_type)
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a  
@@ -415,14 +415,14 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
+    def __gibbler(digest_type=nil)
+      klass = self.class
       d, index = [], 0
-      h.each do |value| 
+      self.each do |value| 
         d << '%s:%s:%s' % [value.class, index, value.__gibbler]
         index += 1
       end
-      d = d.join(':').__gibbler
+      d = d.join(':').__gibbler(digest_type)
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a
@@ -451,9 +451,9 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      value = h.nil? ? "\0" : h.utc.strftime('%Y-%m-%d %H:%M:%S UTC')
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      value = self.nil? ? "\0" : self.utc.strftime('%Y-%m-%d %H:%M:%S UTC')
       a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value], digest_type
       gibbler_debug klass, a, [klass, value.size, value]
       a
@@ -482,9 +482,9 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      value = h.nil? ? "\0" : h.new_offset(0).to_s
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      value = self.nil? ? "\0" : self.new_offset(0).to_s
       a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value], digest_type
       gibbler_debug klass, a, [klass, value.size, value]
       a
@@ -515,10 +515,10 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      value = h.nil? ? "\0" : h.to_s
-      size = h.nil? ? 0 : h.to_a.size
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      value = self.nil? ? "\0" : self.to_s
+      size = self.nil? ? 0 : self.to_a.size
       a = Gibbler.digest "%s:%d:%s" % [klass, size, value], digest_type
       gibbler_debug klass, a, [klass, size, value]
       a
@@ -541,8 +541,8 @@ module Gibbler
     end
 
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
+    def __gibbler(digest_type=nil)
+      klass = self.class
       a = Gibbler.digest "%s:%s" % [klass, "\0"], digest_type
       gibbler_debug klass, a, [klass, "\0"]
       a
@@ -576,9 +576,9 @@ module Gibbler
     end
     
     # Creates a digest for the current state of self. 
-    def __gibbler(h=self, digest_type=nil)
-      klass = h.class
-      value = h.nil? ? "\0" : h.path
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      value = self.nil? ? "\0" : self.path
       a = Gibbler.digest "%s:%d:%s" % [klass, value.size, value], digest_type
       gibbler_debug klass, a, [klass, value.size, value]
       a

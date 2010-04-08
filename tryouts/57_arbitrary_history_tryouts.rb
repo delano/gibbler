@@ -23,7 +23,7 @@ tryouts "Arbitrary Object History" do
     a.gibbler_commit
   end
   
-  dream ['4192d4cb59975813f117a51dcd4454ac16df6703', '2c6957aa1e734d2a3a71caf569a7461a3bf26f11']
+  dream ['4192d4cb59975813f117a51dcd4454ac16df6703', '05219bdee8ec6300b579f2ba8ce55d851d10928b']
   drill "return a FullHouse history" do
     a = FullHouse.new
     a.gibbler_commit

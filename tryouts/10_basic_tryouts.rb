@@ -113,7 +113,7 @@ tryouts "Basic syntax with SHA1" do
     pre != post && post == a.gibbler_cache
   end
   
-  dream :gibbler, "6ea546919dc4caa2bab69799b71d48810a1b48fa"
+  dream :gibbler, "fa5f741275b6b27932537e1946042b0286286e1d"
   drill "works on arbitrary objects" do
     class ::FullHouse
       include Gibbler::Complex
