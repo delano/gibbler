@@ -33,7 +33,13 @@ end
 #
 class Gibbler::Digest < String
   
-  # Returns a string
+  # Return an integer assuming base 16. 
+  def to_i(base=nil)
+    base ||= 16
+    super(base)
+  end
+  
+  # Returns a string. Takes an optional base. 
   def to_s(base=nil)
     base.nil? ? super() : super().to_i(16).to_s(base)
   end
@@ -380,7 +386,7 @@ module Gibbler
       d = self.keys.sort { |a,b| a.inspect <=> b.inspect }
       d.collect! do |name| 
         value = self[name]
-        '%s:%s:%s' % [value.class, name, value.__gibbler]
+        '%s:%s:%s' % [value.class, name, value.__gibbler(digest_type)]
       end 
       d = d.join(':').__gibbler(digest_type)
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d], digest_type
@@ -419,7 +425,7 @@ module Gibbler
       klass = self.class
       d, index = [], 0
       self.each do |value| 
-        d << '%s:%s:%s' % [value.class, index, value.__gibbler]
+        d << '%s:%s:%s' % [value.class, index, value.__gibbler(digest_type)]
         index += 1
       end
       d = d.join(':').__gibbler(digest_type)

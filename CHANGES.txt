@@ -3,6 +3,7 @@ GIBBLER, CHANGES
 #### 0.8.0 (2010-04-??) ###############################
 
 * CHANGE: Gibber::Object#__gibbler now accepts only 1 optional argument: digest_type
+* ADDED: Gibbler::Digest#to_i which assumes base 16
 * ADDED: Gibbler::Object#gibbler now accepts a digest type
 * ADDED: Gibbler::Digest#to_s and #base can take a base argument
 
