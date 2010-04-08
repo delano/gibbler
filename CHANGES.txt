@@ -3,7 +3,7 @@ GIBBLER, CHANGES
 #### 0.7.8 (2010-04-??) ###############################
 
 * ADDED: Gibbler::Object#gibbler now accepts a digest type
-
+* ADDED: Gibbler::Digest#to_s and #base can take a base argument
 
 #### 0.7.7 (2010-03-29) ###############################
 

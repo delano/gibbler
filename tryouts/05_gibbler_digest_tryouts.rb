@@ -40,5 +40,18 @@ tryouts "All methods" do
   drill "base36 digests can be short too" do
     "kimmy".gibbler.base36.short
   end
+  
+  drill "to_s returns a string and can accept a base" do
+    "kimmy".gibbler.to_s(16) == "kimmy".gibbler.base(16).to_s
+  end
+  
+  dream '12gaabd69eg5b32gf69a7a021c22g977d4gf46d6'
+  drill "base takes a base" do
+    "kimmy".gibbler.base(17)
+  end
+  
+  drill "to_s can take a base" do
+    "kimmy".gibbler.to_s(36) == "kimmy".gibbler.base36
+  end
 end
 

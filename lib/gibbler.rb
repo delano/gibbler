@@ -33,8 +33,17 @@ end
 #
 class Gibbler::Digest < String
   
+  # Returns a string
+  def to_s(base=nil)
+    base.nil? ? super() : super().to_i(16).to_s(base)
+  end
+  
+  def base(base=16)
+    self.class.new(self.to_i(16).to_s(base))
+  end
+  
   def base36
-    self.class.new self.to_i(16).to_s(36)
+    base(36)
   end
   
   # Shorten the digest to the given (optional) length. 
