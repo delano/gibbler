@@ -13,15 +13,15 @@ tryouts "File object tryouts" do
     File.unlink tempfile if File.exists? tempfile
   end
   
-  dream :gibbler, '3e77ed40452cc0257f7abbe59bda93b858afcd4c' 
+  dream :gibbler, 'c052e87bd0acb7e08c98dad7f8b09b4382a08ef6' 
   drill "File can gibbler" do
-    path = File.join(File.dirname(__FILE__), '..', 'CHANGES.txt')
+    path = File.join('.', 'CHANGES.txt')
     File.new(path)
   end
   
-  dream :gibbler, '62d357bb064b28f80addef1d188d0014699fbc2f' 
+  dream :gibbler, '802511d30dde19213070bacdbf55df779537c67c' 
   drill "Gibbler is different for each path" do
-    path = File.join(File.dirname(__FILE__), '..', 'README.rdoc')
+    path = File.join('.', 'README.rdoc')
     File.new(path)
   end
   
