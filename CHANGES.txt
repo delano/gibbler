@@ -1,11 +1,22 @@
 GIBBLER, CHANGES
 
-#### 0.8.0 (2010-04-??) ###############################
+#### 0.8.1 (2010-04-10) ###############################
+
+NOTE: Digest calculation for Range objects has changed. 
+Ranges or objects containing Ranges will have different 
+digests than those created in previous releases.
+
+* FIXED: "can't iterate from Float" error for Ranges containing a Float
+* CHANGE: Range digests are now based on the format "CLASS:FIRST:LAST:VALUE"
+
+
+#### 0.8.0 (2010-04-08) ###############################
 
 * CHANGE: Gibber::Object#__gibbler now accepts only 1 optional argument: digest_type
 * ADDED: Gibbler::Digest#to_i which assumes base 16
 * ADDED: Gibbler::Object#gibbler now accepts a digest type
 * ADDED: Gibbler::Digest#to_s and #base can take a base argument
+
 
 #### 0.7.7 (2010-03-29) ###############################
 

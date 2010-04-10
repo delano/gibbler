@@ -498,13 +498,14 @@ module Gibbler
     
   end
   
-  # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>
-  # where LENGTH is the number of elements in the range
-  # and VALUE is the string representation of the range. 
+  # Creates a digest based on: <tt>CLASS:EXCLUDE?:FIRST:LAST</tt>
+  # where EXCLUDE? is a boolean value whether the Range excludes
+  # the last value (i.e. 1...100) and FIRST and LAST are the values
+  # returned by Range#first and Range#last.
   # e.g.
   #     
-  #     (1..100)   =>  Range:100:1..100  =>  d73ae2a7
-  #     (1...100)  =>  Range:99:1...100  =>  46c8a7d0
+  #     (1..100)   =>  Range:false:1:100  =>  54506352
+  #     (1...100)  =>  Range:true:1:100   =>  f0cad8cc
   #
   # To use use method in other classes simply:
   #
@@ -523,10 +524,13 @@ module Gibbler
     # Creates a digest for the current state of self. 
     def __gibbler(digest_type=nil)
       klass = self.class
-      value = self.nil? ? "\0" : self.to_s
-      size = self.nil? ? 0 : self.to_a.size
-      a = Gibbler.digest "%s:%d:%s" % [klass, size, value], digest_type
-      gibbler_debug klass, a, [klass, size, value]
+      if self.nil? 
+        first, last, exclude = "\0", "\0", "\0"
+      else
+        first, last, exclude = self.first, self.last, self.exclude_end?
+      end
+      a = Gibbler.digest "%s:%s:%s:%s" % [klass, exclude, first, last], digest_type
+      gibbler_debug klass, a, [klass, exclude, first, last]
       a
     end
     
