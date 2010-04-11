@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-04-08 19:48:41 -0400</span>
+          <span class='datetime'>2010-04-11 15:53:11 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -41,7 +41,25 @@
             GIBBLER, CHANGES
             </p>
             <p>
-            #### 0.8.0 (2010-04-??) ###############################
+            #### 0.8.1 (2010-04-11) ###############################
+            </p>
+            <p>
+            NOTE: Digest calculation for <a href="../classes/Range.html">Range</a>
+            objects has changed. Ranges or objects containing Ranges will have
+            different digests than those created in previous releases.
+            </p>
+            <ul>
+            <li>FIXED: &#8220;can&#8217;t iterate from Float&#8221; error for Ranges
+            containing a <a href="../classes/Float.html">Float</a>
+            
+            </li>
+            <li>CHANGE: <a href="../classes/Range.html">Range</a> digests are now based on
+            the format &#8220;CLASS:FIRST:LAST:VALUE&#8220;
+            
+            </li>
+            </ul>
+            <p>
+            #### 0.8.0 (2010-04-08) ###############################
             </p>
             <ul>
             <li>CHANGE: Gibber::Object#__gibbler now accepts only 1 optional argument:
