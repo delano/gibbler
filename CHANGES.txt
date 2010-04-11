@@ -1,6 +1,6 @@
 GIBBLER, CHANGES
 
-#### 0.8.1 (2010-04-10) ###############################
+#### 0.8.1 (2010-04-11) ###############################
 
 NOTE: Digest calculation for Range objects has changed. 
 Ranges or objects containing Ranges will have different 

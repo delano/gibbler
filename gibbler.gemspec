@@ -1,7 +1,7 @@
 @spec = Gem::Specification.new do |s|
 	s.name = "gibbler"
   s.rubyforge_project = "gibbler"
-	s.version = "0.8.0"
+	s.version = "0.8.1"
 	s.summary = "Gibbler: Git-like hashes for Ruby objects"
 	s.description = s.summary
 	s.author = "Delano Mandelbaum"
