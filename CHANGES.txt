@@ -1,5 +1,11 @@
 GIBBLER, CHANGES
 
+#### 0.8.2 (2010-04-29) ###############################
+
+* FIXED: test exception for "String has list of attic vars" tryouts when bundled with my other libraries. 
+* CHANGE: Gibbler::Complex.gibbler will now append fields when called multiple times. 
+
+
 #### 0.8.1 (2010-04-11) ###############################
 
 NOTE: Digest calculation for Range objects has changed. 

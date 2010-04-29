@@ -274,7 +274,7 @@ module Gibbler
           @__gibbler_fields
         end
         def self.gibbler *fields
-          @__gibbler_fields = *fields
+          @__gibbler_fields.push *fields
         end
         def self.inherited(obj)
           obj.extend Attic
