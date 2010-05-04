@@ -17,12 +17,16 @@ require 'digest/sha1'
 module Gibbler
   VERSION = "0.8.2"
   
+  @secret = nil
+  class << self
+    attr_accessor :secret
+  end
+  
   require 'gibbler/mixins'
   
   class Error < RuntimeError
     def initialize(obj); @obj = obj; end
   end
-  
 end
 
 
@@ -224,9 +228,13 @@ module Gibbler
   
   # Sends +str+ to Digest::SHA1.hexdigest. If another digest class
   # has been specified, that class will be used instead. 
+  # If Gibbler.secret is set, +str+ will be prepended with the
+  # value. 
+  #
   # See: digest_type
   def self.digest(str, digest_type=nil)
     digest_type ||= @@gibbler_digest_type
+    str = [Gibbler.secret, str].join(':') unless Gibbler.secret.nil?
     digest_type.hexdigest str
   end
   

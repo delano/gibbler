@@ -1,5 +1,11 @@
 GIBBLER, CHANGES
 
+* TODO: Global salt
+
+#### 0.8.2 (2010-05-04) ###############################
+
+* ADDED: Support for global secret (Gibbler.secret) which is prepended to all digests.
+
 #### 0.8.2 (2010-04-29) ###############################
 
 * FIXED: test exception for "String has list of attic vars" tryouts when bundled with my other libraries. 
