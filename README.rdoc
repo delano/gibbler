@@ -135,6 +135,19 @@ In Jruby, you can grab the digest types from the openssl library.
     :kimmy.gibbler.to_i          # => 472384540402900668368761869477227308873774630879
 
 
+== Example 6 -- Global secret
+
+Gibbler can prepend all digest inputs with a global secret. You can set this once per project to ensure your project's digests are unique. 
+
+    require 'gibbler'
+    
+    :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
+    
+    Gibbler.secret = "sUp0r5ekRu7"
+    
+    :kimmy.gibbler               # => 6c5f5aff4d809cec7e7da091214a35a2698489f8
+    
+
 == Supported Classes
 
 Gibbler methods are available only to the classes which explicitly include them (see RDocs[http://delano.github.com/gibbler] for details on which classes are supported by default). You can also extend custom objects:

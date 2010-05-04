@@ -2,7 +2,7 @@ GIBBLER, CHANGES
 
 * TODO: Global salt
 
-#### 0.8.2 (2010-05-04) ###############################
+#### 0.8.3 (2010-05-04) ###############################
 
 * ADDED: Support for global secret (Gibbler.secret) which is prepended to all digests.
 

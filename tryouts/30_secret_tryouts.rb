@@ -25,4 +25,10 @@ tryouts "Global secrets" do
     'kimmy'.gibbler
   end
   
+  dream "c8027100ecc54945ab15ddac529230e38b1ba6a1"
+  drill "Reset the secret back to nil" do
+    Gibbler.secret = nil
+    'kimmy'.gibbler
+  end
+  
 end
