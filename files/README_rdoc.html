@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-04-11 15:55:39 -0400</span>
+          <span class='datetime'>2010-05-04 12:58:11 -0400</span>
         </div>
       </div>
       <div id='content'>
@@ -105,6 +105,13 @@
             <pre>require 'openssl'&#x000A;&#x000A;Gibbler.digest_type = OpenSSL::Digest::SHA256&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 1069428e6273cf329436c3dce9b680d4d4e229d7b7...</pre>
             <h2>Example 5 &#8212; All your base</h2>
             <pre>require 'gibbler'&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;:kimmy.gibbler.base(16)      # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;:kimmy.gibbler.base(36)      # =&gt; 9nydr6mpv6w4k8ngo3jtx0jz1n97h7j&#x000A;&#x000A;:kimmy.gibbler.base(10)      # =&gt; 472384540402900668368761869477227308873774630879&#x000A;:kimmy.gibbler.to_i          # =&gt; 472384540402900668368761869477227308873774630879</pre>
+            <h2>Example 6 &#8212; Global secret</h2>
+            <p>
+            <a href="../classes/Gibbler.html">Gibbler</a> can prepend all digest inputs
+            with a global secret. You can set this once per project to ensure your
+            project&#8217;s digests are unique.
+            </p>
+            <pre>require 'gibbler'&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df&#x000A;&#x000A;Gibbler.secret = &quot;sUp0r5ekRu7&quot;&#x000A;&#x000A;:kimmy.gibbler               # =&gt; 6c5f5aff4d809cec7e7da091214a35a2698489f8</pre>
             <h2>Supported Classes</h2>
             <p>
             <a href="../classes/Gibbler.html">Gibbler</a> methods are available only to
