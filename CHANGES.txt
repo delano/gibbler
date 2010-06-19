@@ -1,6 +1,9 @@
 GIBBLER, CHANGES
 
-* TODO: Global salt
+
+#### 0.8.4 (2010-06-19) ###############################
+
+ADDED: Support for Gibbler.default_base which affects all generated digests. 
 
 #### 0.8.3 (2010-05-04) ###############################
 
