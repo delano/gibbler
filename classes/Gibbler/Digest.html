@@ -110,13 +110,13 @@
                 <a name='M000071'>      </a>
                 <div class='synopsis'>
                   <span class='name'>base</span>
-                  <span class='arguments'>(base=16)</span>
+                  <span class='arguments'>(base=Gibbler.default_base)</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000071-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000071-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 51</span>&#x000A;51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">base</span>(<span class="ruby-identifier">base</span>=<span class="ruby-value">16</span>)&#x000A;52:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>))&#x000A;53:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000071-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 51</span>&#x000A;51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">base</span>(<span class="ruby-identifier">base</span>=<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>)&#x000A;52:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>))&#x000A;53:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000072'>
@@ -185,7 +185,7 @@
                   <p>
                   e.g.
                   </p>
-                  <pre>&quot;kimmy&quot;.gibbler         # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;&quot;kimmy&quot;.gibbler.tiny    # =&gt; c80271</pre>
+                  <pre>&quot;kimmy&quot;.gibbler         # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1&#x000A;&quot;kimmy&quot;.gibbler.shorter # =&gt; c80271</pre>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000075-source'); return false">
@@ -224,14 +224,14 @@
                 </div>
                 <div class='description'>
                   <p>
-                  Return an integer assuming base 16.
+                  Return an integer assuming base is Gibbler.default_base.
                   </p>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000069-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000069-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 41</span>&#x000A;41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_i</span>(<span class="ruby-identifier">base</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;42:     <span class="ruby-identifier">base</span> <span class="ruby-operator">||=</span> <span class="ruby-value">16</span>&#x000A;43:     <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">base</span>)&#x000A;44:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000069-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 41</span>&#x000A;41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_i</span>(<span class="ruby-identifier">base</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;42:     <span class="ruby-identifier">base</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>&#x000A;43:     <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">base</span>)&#x000A;44:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000070'>
@@ -249,7 +249,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000070-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000070-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 47</span>&#x000A;47:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;48:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">super</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword kw">super</span>().<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>)&#x000A;49:   <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000070-source'>    <span class="ruby-comment cmt"># File lib/gibbler.rb, line 47</span>&#x000A;47:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;48:     <span class="ruby-identifier">base</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">super</span>() <span class="ruby-operator">:</span> <span class="ruby-keyword kw">super</span>().<span class="ruby-identifier">to_i</span>(<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">base</span>)&#x000A;49:   <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
