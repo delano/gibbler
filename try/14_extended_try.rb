@@ -1,7 +1,5 @@
 require 'gibbler'
 
-Gibbler.digest_type = Digest::SHA1
-
 ## true can gibbler
 true.gibbler
 #=> 'f2b0150c84c5c834406ec9cdec989a0fa938b4ad' 
