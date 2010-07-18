@@ -1,30 +1,31 @@
-
-library :gibbler, File.dirname(__FILE__), '..', 'lib'
-library 'gibbler/history', File.dirname(__FILE__), '..', 'lib'
-
-group "History"
-
-Gibbler.enable_debug if Tryouts.verbose > 3
+require 'gibbler'
+require 'gibbler/history'
 
 
-tryouts "Exceptions" do
-  
-  dream :exception, Gibbler::BadDigest
-  drill "raises exception when reverting to unknown gibble" do
-    a = {}
-    a.gibbler_commit
-    a.gibbler_revert! '2222222222222222222222222222222222222222'
-  end
-  
-  dream :exception, Gibbler::NoHistory
-  drill "raises exception when reverting and there's no history" do
-    a = []
-    a.gibbler_revert!
-  end
-  
-  dream :exception, NoMethodError
-  drill "raises exception when reverting an unsupported object" do
-    :kimmy.gibbler_revert!
-  end
-  
+# "raises exception when reverting to unknown gibble" do
+begin
+  a = {}
+  a.gibbler_commit
+  a.gibbler_revert! '2222222222222222222222222222222222222222'
+rescue Gibbler::BadDigest
+  :success
 end
+#=> :success
+
+# "raises exception when reverting and there's no history" do
+begin
+  a = []
+  a.gibbler_revert!
+rescue Gibbler::NoHistory
+  :success
+end
+#=> :success
+
+# "raises exception when reverting an unsupported object" do
+begin
+  :kimmy.gibbler_revert!
+rescue NoMethodError
+  :success
+end
+#=> :success
+

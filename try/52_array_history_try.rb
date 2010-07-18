@@ -1,44 +1,36 @@
+require 'gibbler'
+require 'gibbler/history'
 
-library :gibbler, File.dirname(__FILE__), '..', 'lib'
-library 'gibbler/history', File.dirname(__FILE__), '..', 'lib'
-
-group "History"
-
-Gibbler.enable_debug if Tryouts.verbose > 3
-
-
-tryouts "Array History" do
-  
-  drill "Setup Array class", Array do
-    class ::Array
-      include Gibbler::History
-    end
-  end
-  
-  drill "can take a Array snapshot", 'd95fcabb498ae282f356eba63da541e4f72c6efa' do
-    a = [:jesse]
-    a.gibbler_commit
-  end
-  
-  dream :class, Array
-  dream :size, 2
-  dream ['d95fcabb498ae282f356eba63da541e4f72c6efa', 'eebcb2e84e828b1a7207af4d588cf41fd4c6393a']
-  drill "return an Array history" do
-    a = [:jesse]
-    a.gibbler_commit
-    a << :joey
-    a.gibbler_commit
-    a.gibbler_history
-  end
-  
-  dream 'd95fcabb498ae282f356eba63da541e4f72c6efa'
-  drill "can revert Array" do
-    a = [:jesse]
-    stash :original, a.gibbler_commit
-    a << :joey
-    stash :updated, a.gibbler
-    a.gibbler_revert!
-  end
-  
-  
+class Array
+  include Gibbler::History
 end
+
+
+# "can take a Array snapshot"
+a = [:jesse]
+a.gibbler_commit
+#=> 'd95fcabb498ae282f356eba63da541e4f72c6efa'
+
+# "return an Array history" do
+a = [:jesse]
+a.gibbler_commit
+a << :joey
+a.gibbler_commit
+a.gibbler_history
+#=> ['d95fcabb498ae282f356eba63da541e4f72c6efa', 'eebcb2e84e828b1a7207af4d588cf41fd4c6393a']
+
+# "can revert Array" do
+a = [:jesse]
+a.gibbler_commit
+a << :joey
+a.gibbler_revert!
+#=> 'd95fcabb498ae282f356eba63da541e4f72c6efa'
+
+# Raises exception when no history
+begin
+a = [:jesse]
+a.gibbler_revert!
+rescue Gibbler::NoHistory
+  :success
+end
+#=> :success
