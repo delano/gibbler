@@ -3,7 +3,7 @@ require 'gibbler'
 
 @tempfile = "tryouts-9000-awesome.txt"
   
-# File can gibbler
+## File can gibbler
 file = File.new(File.join('.', 'CHANGES.txt'))
 file.gibbler
 #=>  'c052e87bd0acb7e08c98dad7f8b09b4382a08ef6' 
@@ -22,8 +22,8 @@ Tempfile.new('gibbler').respond_to? :gibbler
 
 
 # TempFile digests change
-Tempfile.new('gibbler').gibbler == Tempfile.new('gibbler').gibbler
-#=> false
+Tempfile.new('gibbler').gibbler != Tempfile.new('gibbler').gibbler
+#=> true
 
 
 # File doesn't care about file contents

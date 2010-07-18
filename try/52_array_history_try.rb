@@ -11,7 +11,7 @@ a = [:jesse]
 a.gibbler_commit
 #=> 'd95fcabb498ae282f356eba63da541e4f72c6efa'
 
-# "return an Array history" do
+# "return an Array history"
 a = [:jesse]
 a.gibbler_commit
 a << :joey
@@ -19,7 +19,7 @@ a.gibbler_commit
 a.gibbler_history
 #=> ['d95fcabb498ae282f356eba63da541e4f72c6efa', 'eebcb2e84e828b1a7207af4d588cf41fd4c6393a']
 
-# "can revert Array" do
+# "can revert Array"
 a = [:jesse]
 a.gibbler_commit
 a << :joey
