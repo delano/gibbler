@@ -1,13 +1,6 @@
+require 'gibbler'
 
-library :gibbler, 'lib'
-
-group "Mixins"
-
-tryouts "String" do
-  
-  drill "has String#clear" do
-    "".respond_to? :clear
-  end
-  
-end
-
+# TEST 1: has String#clear
+"".respond_to? :clear
+#=> true
+ 

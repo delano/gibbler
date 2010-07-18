@@ -1,29 +1,29 @@
+require 'gibbler'
 
-library :gibbler, 'lib'
+## has short method
+POOP.gibbler.short
+#=> Gibbler::Digest.new("c8027100")
 
-group "Gibbler::Digest"
+# can Gibbler::Digest#short
+Gibbler::Digest.new("1234567890").short
+#=> Gibbler::Digest.new("12345678")
 
-tryouts "All methods" do
-  
-  
-  dream :class, Gibbler::Digest
-  dream 'c8027100'  
-  drill "has short method" do
-    "kimmy".gibbler.short
-  end
-  
-  dream :class, Gibbler::Digest
-  dream "12345678"
-  drill "can Gibbler::Digest#short" do
-    Gibbler::Digest.new("1234567890").short
-  end
-  
-  drill "==  is strict  (only exact matches)", false do
-    Gibbler::Digest.new("1234567890") == "12345678"
-  end
 
-  drill "=== is relaxed (allows partial matches)", true do
-    Gibbler::Digest.new("1234567890") === "12345678"
+
+
+
+# == is strict (only exact matches)
+Gibbler::Digest.new("1234567890") == "12345678"
+#=> true
+
+# === is relaxed (allows partial matches)
+Gibbler::Digest.new("1234567890") === "12345678"
+#=> false
+
+__END__
+
+  drill "", true do
+    
   end
 
   dream 'zx2tc40'
