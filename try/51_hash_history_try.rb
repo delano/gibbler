@@ -1,34 +1,29 @@
 require 'gibbler'
 require 'gibbler/history'
 
-# "Setup Hash class", Hash do
 class ::Hash
   include Gibbler::History
 end
-end
 
-# "doesn't reveal self.__gibbler_history instance variable", false do
+## "doesn't reveal self.__gibbler_history instance variable",
 a = {}
 a.gibbler  # We need to gibbler first so it sets a value to the instance var
-val = Tryouts.sysinfo.ruby[1] == 9 ? :'self.__gibbler_history' : 'self.__gibbler_history'
+val = RUBY_VERSION >= '1.9' ? :'self.__gibbler_history' : 'self.__gibbler_history'
 a.instance_variables.member? val
-end
+#=> false
 
-# "can take a Hash snapshot", 'd7049916ddb25e6cc438b1028fb957e5139f9910' do
+# can take a Hash snapshot
 a = { :magic => :original }
 a.gibbler_commit
-end
+#=> 'd7049916ddb25e6cc438b1028fb957e5139f9910'
 
-#=> :class, Array
-#=> :size, 2
-#=> ['d7049916ddb25e6cc438b1028fb957e5139f9910', 'b668098e16d08898532bf3aa33ce2253a3a4150e']
 # "return a Hash history" do
 a = { :magic => :original }
 a.gibbler_commit
 a[:magic] = :updated
 a.gibbler_commit
 a.gibbler_history
-end
+#=> ['d7049916ddb25e6cc438b1028fb957e5139f9910', 'b668098e16d08898532bf3aa33ce2253a3a4150e']
 
 # "can revert Hash" do
 a = { :magic => :original }
@@ -60,16 +55,15 @@ a.gibbler_revert! 'd7049916ddb25e6cc438b1028fb957e5139f9910'
 a
 #=> Hash[:magic => :original]
 
-#=> Hash[:magic => :original]
-#=> :gibbler, 'd7049916ddb25e6cc438b1028fb957e5139f9910'
+
 # "revert does nothing if digest is the same as current one" do
 a = { :magic => :original }
 a.gibbler_commit
 a.gibbler_revert!
 a
-end
+#=> Hash[:magic => :original]
 
-# "can revert using short gibble
+# "can revert using short gibbler_commit
 a = { :magic => :original }
 a.gibbler_commit
 a[:magic] = :updated
