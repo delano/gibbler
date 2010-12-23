@@ -223,6 +223,7 @@ module Gibbler
   def self.debug?;      @@gibbler_debug; end
   def self.enable_debug;  @@gibbler_debug = true; end
   def self.disable_debug;  @@gibbler_debug = false; end
+  def self.debug=(v);  @@gibbler_debug = v; end
   # Returns the current digest class. 
   def self.digest_type; @@gibbler_digest_type; end
   
@@ -314,6 +315,10 @@ module Gibbler
       gibbler_debug :gibbler_fields, gibbler_fields
       gibbler_fields.each do |n|
         value = instance_variable_get("@#{n}")
+        unless value.respond_to? :__gibbler
+          gibbler_debug klass, :skipping, n
+          next
+        end
         d << '%s:%s:%s' % [value.class, n, value.__gibbler(digest_type)]
       end
       d = d.join(':').__gibbler(digest_type)

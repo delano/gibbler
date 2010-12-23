@@ -1,5 +1,10 @@
 GIBBLER, CHANGES
 
+#### 0.8.5 (2010-12-23) ###############################
+
+* CHANGE: Gibbler::Complex will skip fields with no __gibbler method
+* ADDED: Gibbler.debug=
+
 
 #### 0.8.4 (2010-06-19) ###############################
 
