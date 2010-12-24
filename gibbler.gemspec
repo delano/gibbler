@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
      "LICENSE.txt",
      "README.rdoc",
      "Rakefile",
+     "VERSION.yml",
      "gibbler.gemspec",
      "lib/gibbler.rb",
      "lib/gibbler/aliases.rb",
