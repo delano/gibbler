@@ -15,7 +15,7 @@ require 'digest/sha1'
 # "Hola, Tanneritos"
 #
 module Gibbler
-  VERSION = "0.8.4"
+  VERSION = "0.8.5"
   
   @default_base = 16
   @secret = nil
