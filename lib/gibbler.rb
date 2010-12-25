@@ -23,7 +23,7 @@ module Gibbler
     alias_method :inspect, :to_s
     def self.load_config
       require 'yaml'
-      @version ||= YAML.load_file(File.join(GIBBLER_LIB_HOME, '..', 'VERSION.yml'))
+      @version ||= YAML.load_file(::File.join(GIBBLER_LIB_HOME, '..', 'VERSION.yml'))
     end
   end
   
