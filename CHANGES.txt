@@ -1,6 +1,10 @@
 GIBBLER, CHANGES
 
-#### 0.8.6 (2010-12-29) ###############################
+#### 0.8.7 (2011-02-07) ###############################
+
+* CHANGE: Only call gibbler_debug when in debug mode
+
+#### 0.8.6 (2010-12-24) ###############################
 
 * FIXED: Gibber::VERSION (File error)
 

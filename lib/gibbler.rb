@@ -204,8 +204,8 @@ module Gibbler
     # before the object is frozen. Once the object is frozen
     # <tt>obj.gibbler</tt> will return the cached value with
     # out calculation.
-    def freeze() 
-      #gibbler_debug :freeze, caller[0]
+    def freeze()
+      gibbler_debug :FREEZE, self.class, caller[0] if Gibbler.debug?
       self.gibbler
       super
       self
