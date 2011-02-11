@@ -1,3 +1,4 @@
+p 1000000000000
 unless defined?(GIBBLER_LIB_HOME)
   GIBBLER_LIB_HOME = File.expand_path File.dirname(__FILE__) 
 end
@@ -670,7 +671,8 @@ class TempFile;            include Gibbler::File;      end
 # end b/c it runs Object#freeze statically.
 module URI; class Generic; include Gibbler::String;    end; end
 
-
+# Bundler calls freeze on an instance of Gem::Platform
+module Gem; class Platform; include Gibbler::Complex;  end; end
 
 
 
