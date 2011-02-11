@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Gibbler [gibbler 0.8.7]</title>
+    <title>: Gibbler [gibbler 0.8.8]</title>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
     <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -117,7 +117,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 236</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">debug=</span>(<span class="ruby-identifier">v</span>);  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-identifier">v</span>; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 237</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">debug=</span>(<span class="ruby-identifier">v</span>);  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-identifier">v</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000006'>
@@ -135,7 +135,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 233</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">debug?</span>;      <span class="ruby-ivar">@@gibbler_debug</span>; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 234</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">debug?</span>;      <span class="ruby-ivar">@@gibbler_debug</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000011'>
@@ -158,7 +158,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 246</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">digest_type</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;    <span class="ruby-identifier">digest_type</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@@gibbler_digest_type</span>&#x000A;    <span class="ruby-identifier">str</span> = [<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>, <span class="ruby-identifier">str</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>.<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">digest_type</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">str</span>)&#x000A;    <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">dig</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-value">16</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>&#x000A;    <span class="ruby-identifier">dig</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 247</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">digest_type</span>=<span class="ruby-keyword kw">nil</span>)&#x000A;    <span class="ruby-identifier">digest_type</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@@gibbler_digest_type</span>&#x000A;    <span class="ruby-identifier">str</span> = [<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>, <span class="ruby-identifier">str</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>.<span class="ruby-identifier">nil?</span>&#x000A;    <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">digest_type</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">str</span>)&#x000A;    <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">dig</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-value">16</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>&#x000A;    <span class="ruby-identifier">dig</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000010'>
@@ -176,7 +176,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 238</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest_type</span>; <span class="ruby-ivar">@@gibbler_digest_type</span>; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 239</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest_type</span>; <span class="ruby-ivar">@@gibbler_digest_type</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000005'>
@@ -196,7 +196,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 229</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest_type=</span>(<span class="ruby-identifier">v</span>)&#x000A;    <span class="ruby-ivar">@@gibbler_digest_type</span> = <span class="ruby-identifier">v</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 230</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">digest_type=</span>(<span class="ruby-identifier">v</span>)&#x000A;    <span class="ruby-ivar">@@gibbler_digest_type</span> = <span class="ruby-identifier">v</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000008'>
@@ -209,7 +209,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 235</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">disable_debug</span>;  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-keyword kw">false</span>; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 236</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">disable_debug</span>;  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-keyword kw">false</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000007'>
@@ -222,7 +222,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 234</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">enable_debug</span>;  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-keyword kw">true</span>; <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 235</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">enable_debug</span>;  <span class="ruby-ivar">@@gibbler_debug</span> = <span class="ruby-keyword kw">true</span>; <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000012'>
@@ -235,7 +235,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 254</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_debug</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>&#x000A;    <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 255</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_debug</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>&#x000A;    <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000013'>
@@ -267,7 +267,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000013-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000013-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 264</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A;    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You probably want to include Gibbler::Complex or Gibbler::Object&quot;</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000013-source'><span class="ruby-comment cmt"># File lib/gibbler.rb, line 265</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)&#x000A;    <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You probably want to include Gibbler::Complex or Gibbler::Object&quot;</span>&#x000A;  <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
