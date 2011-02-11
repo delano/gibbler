@@ -1,4 +1,3 @@
-p 1000000000000
 unless defined?(GIBBLER_LIB_HOME)
   GIBBLER_LIB_HOME = File.expand_path File.dirname(__FILE__) 
 end

@@ -1,6 +1,10 @@
 GIBBLER, CHANGES
 
-#### 0.8.8 (2011-02-11) ###############################
+#### 0.8.9 (2011-02-11) ###############################
+
+* FIXED: Remove debug output.
+
+#### 0.8.9 (2011-02-11) ###############################
 
 * FIXED: Bundler calls freeze on an instance of Gem::Platform
 
