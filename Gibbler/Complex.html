@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: Gibbler::Complex</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/gibbler_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/gibbler.rb">lib/gibbler.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-gibbler">::gibbler</a></li>
+					
+					<li><a href="#method-c-gibbler_fields">::gibbler_fields</a></li>
+					
+					<li><a href="#method-c-included">::included</a></li>
+					
+					<li><a href="#method-c-inherited">::inherited</a></li>
+					
+					<li><a href="#method-i-__gibbler">#__gibbler</a></li>
+					
+					<li><a href="#method-i-__gibbler_revert%21">#__gibbler_revert!</a></li>
+					
+					<li><a href="#method-i-gibbler_fields">#gibbler_fields</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><a class="include" href="Object.html">Gibbler::Object</a></li>
+				
+				
+				</ul>
+			</div>
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../LICENSE_txt.html">LICENSE.txt</a></li>
+				
+					<li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../Gibbler.html">Gibbler</a></li>
+				
+					<li><a href="../Gibbler/Array.html">Gibbler::Array</a></li>
+				
+					<li><a href="../Gibbler/BadDigest.html">Gibbler::BadDigest</a></li>
+				
+					<li><a href="../Gibbler/Complex.html">Gibbler::Complex</a></li>
+				
+					<li><a href="../Gibbler/DateTime.html">Gibbler::DateTime</a></li>
+				
+					<li><a href="../Gibbler/Digest.html">Gibbler::Digest</a></li>
+				
+					<li><a href="../Gibbler/Error.html">Gibbler::Error</a></li>
+				
+					<li><a href="../Gibbler/File.html">Gibbler::File</a></li>
+				
+					<li><a href="../Gibbler/Hash.html">Gibbler::Hash</a></li>
+				
+					<li><a href="../Gibbler/History.html">Gibbler::History</a></li>
+				
+					<li><a href="../Gibbler/Nil.html">Gibbler::Nil</a></li>
+				
+					<li><a href="../Gibbler/NoHistory.html">Gibbler::NoHistory</a></li>
+				
+					<li><a href="../Gibbler/NoRevert.html">Gibbler::NoRevert</a></li>
+				
+					<li><a href="../Gibbler/Object.html">Gibbler::Object</a></li>
+				
+					<li><a href="../Gibbler/Range.html">Gibbler::Range</a></li>
+				
+					<li><a href="../Gibbler/String.html">Gibbler::String</a></li>
+				
+					<li><a href="../Gibbler/Time.html">Gibbler::Time</a></li>
+				
+					<li><a href="../Gibbler/VERSION.html">Gibbler::VERSION</a></li>
+				
+					<li><a href="../Gem.html">Gem</a></li>
+				
+					<li><a href="../Gem/Platform.html">Gem::Platform</a></li>
+				
+					<li><a href="../URI.html">URI</a></li>
+				
+					<li><a href="../URI/Generic.html">URI::Generic</a></li>
+				
+					<li><a href="../Array.html">Array</a></li>
+				
+					<li><a href="../Bignum.html">Bignum</a></li>
+				
+					<li><a href="../Class.html">Class</a></li>
+				
+					<li><a href="../Date.html">Date</a></li>
+				
+					<li><a href="../DateTime.html">DateTime</a></li>
+				
+					<li><a href="../FalseClass.html">FalseClass</a></li>
+				
+					<li><a href="../File.html">File</a></li>
+				
+					<li><a href="../Fixnum.html">Fixnum</a></li>
+				
+					<li><a href="../Float.html">Float</a></li>
+				
+					<li><a href="../Hash.html">Hash</a></li>
+				
+					<li><a href="../Module.html">Module</a></li>
+				
+					<li><a href="../NilClass.html">NilClass</a></li>
+				
+					<li><a href="../Proc.html">Proc</a></li>
+				
+					<li><a href="../Range.html">Range</a></li>
+				
+					<li><a href="../Regexp.html">Regexp</a></li>
+				
+					<li><a href="../String.html">String</a></li>
+				
+					<li><a href="../Symbol.html">Symbol</a></li>
+				
+					<li><a href="../TempFile.html">TempFile</a></li>
+				
+					<li><a href="../Time.html">Time</a></li>
+				
+					<li><a href="../TrueClass.html">TrueClass</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">Gibbler::Complex</h1>
+
+		<div id="description">
+			<p>
+Creates a digest based on: 
+</p>
+<ul>
+<li><p>
+An <a href="Array.html">Array</a> of instance variable names and values in
+the format: <tt>CLASS:LENGTH:VALUE</tt>
+</p>
+<ul>
+<li><p>
+The gibbler method is called on each element so if it is a <a
+href="Hash.html">Hash</a> or <a href="Array.html">Array</a> etc it  will be
+parsed recursively according to the gibbler method for that class type.
+</p>
+</li>
+</ul>
+</li>
+<li><p>
+<a href="Digest.html">Digest</a> the <a href="Array.html">Array</a> of
+digests  
+</p>
+</li>
+<li><p>
+Return the digest for <tt>class:length:value</tt> where:
+</p>
+<ul>
+<li><p>
+&#8220;class&#8221; is equal to the current object class (e.g. FullHouse).
+</p>
+</li>
+</ul>
+<ul>
+<li><p>
+&#8220;length&#8221; is the size of the <a href="Array.html">Array</a> of
+digests (which should equal the number of instance variables in the
+object).
+</p>
+</li>
+</ul>
+<ul>
+<li><p>
+&#8220;value&#8221; is the <a href="Array.html">Array</a> of digests joined
+with a colon (&#8220;:&#8221;).
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+This method can be used by any class which stores values in instance
+variables. 
+</p>
+<pre>
+    class Episodes
+      include Gibbler::Complex
+      attr_accessor :season, :year, :cast
+    end</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="gibbler-method" class="method-detail ">
+				<a name="method-c-gibbler"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gibbler</span><span
+						class="method-args">(*fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gibbler-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 297</span>
+297:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span> *<span class="ruby-identifier">fields</span>
+298:           <span class="ruby-ivar">@__gibbler_fields</span>.<span class="ruby-identifier">push</span> *<span class="ruby-identifier">fields</span>
+299:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gibbler-fields-method" class="method-detail ">
+				<a name="method-c-gibbler_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gibbler_fields</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gibbler-fields-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 294</span>
+294:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_fields</span>
+295:           <span class="ruby-ivar">@__gibbler_fields</span>
+296:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="included-method" class="method-detail ">
+				<a name="method-c-included"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">included</span><span
+						class="method-args">(obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="included-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 289</span>
+289:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)
+290:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>
+291:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-value">:gibbler_cache</span>
+292:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+293:         <span class="ruby-ivar">@__gibbler_fields</span> = []
+294:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_fields</span>
+295:           <span class="ruby-ivar">@__gibbler_fields</span>
+296:         <span class="ruby-keyword kw">end</span>
+297:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler</span> *<span class="ruby-identifier">fields</span>
+298:           <span class="ruby-ivar">@__gibbler_fields</span>.<span class="ruby-identifier">push</span> *<span class="ruby-identifier">fields</span>
+299:         <span class="ruby-keyword kw">end</span>
+300:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">obj</span>)
+301:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>
+302:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-value">:gibbler_cache</span>
+303:           <span class="ruby-identifier">fields</span> = <span class="ruby-ivar">@__gibbler_fields</span>.<span class="ruby-identifier">clone</span>
+304:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+305:             <span class="ruby-ivar">@__gibbler_fields</span> = <span class="ruby-identifier">fields</span>
+306:           <span class="ruby-keyword kw">end</span>
+307:         <span class="ruby-keyword kw">end</span>
+308:       <span class="ruby-keyword kw">end</span>
+309:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="inherited-method" class="method-detail ">
+				<a name="method-c-inherited"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">inherited</span><span
+						class="method-args">(obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="inherited-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 300</span>
+300:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">obj</span>)
+301:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">extend</span> <span class="ruby-constant">Attic</span>
+302:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">attic</span> <span class="ruby-value">:gibbler_cache</span>
+303:           <span class="ruby-identifier">fields</span> = <span class="ruby-ivar">@__gibbler_fields</span>.<span class="ruby-identifier">clone</span>
+304:           <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+305:             <span class="ruby-ivar">@__gibbler_fields</span> = <span class="ruby-identifier">fields</span>
+306:           <span class="ruby-keyword kw">end</span>
+307:         <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="-gibbler-method" class="method-detail ">
+				<a name="method-i-__gibbler"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">__gibbler</span><span
+						class="method-args">(digest_type=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Creates a digest for the current state of self. 
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="-gibbler-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 322</span>
+322:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">digest_type</span>=<span class="ruby-keyword kw">nil</span>)
+323:       <span class="ruby-identifier">klass</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>
+324:       <span class="ruby-identifier">d</span> = []
+325:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-value">:gibbler_fields</span>, <span class="ruby-identifier">gibbler_fields</span>
+326:       <span class="ruby-identifier">gibbler_fields</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+327:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{n}&quot;</span>)
+328:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:__gibbler</span>
+329:           <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-value">:skipping</span>, <span class="ruby-identifier">n</span>
+330:           <span class="ruby-keyword kw">next</span>
+331:         <span class="ruby-keyword kw">end</span>
+332:         <span class="ruby-identifier">d</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'%s:%s:%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">value</span>.<span class="ruby-identifier">class</span>, <span class="ruby-identifier">n</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">digest_type</span>)]
+333:       <span class="ruby-keyword kw">end</span>
+334:       <span class="ruby-identifier">d</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">':'</span>).<span class="ruby-identifier">__gibbler</span>(<span class="ruby-identifier">digest_type</span>)
+335:       <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span> <span class="ruby-value str">&quot;%s:%d:%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>], <span class="ruby-identifier">digest_type</span>
+336:       <span class="ruby-identifier">gibbler_debug</span> <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">a</span>, [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">d</span>]
+337:       <span class="ruby-identifier">a</span>
+338:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="-gibbler-revert--method" class="method-detail ">
+				<a name="method-i-__gibbler_revert%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">__gibbler_revert!</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="-gibbler-revert--source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 340</span>
+340:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">__gibbler_revert!</span>
+341:       <span class="ruby-identifier">state</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">gibbler_cache</span>
+342:       <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variables</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+343:         <span class="ruby-identifier">v</span> = <span class="ruby-identifier">state</span>.<span class="ruby-identifier">instance_variable_get</span> <span class="ruby-identifier">n</span>
+344:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_set</span> <span class="ruby-identifier">v</span>
+345:       <span class="ruby-keyword kw">end</span>
+346:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gibbler-fields-method" class="method-detail ">
+				<a name="method-i-gibbler_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gibbler_fields</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gibbler-fields-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/gibbler.rb, line 311</span>
+311:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gibbler_fields</span>
+312:       <span class="ruby-identifier">f</span> = [<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">gibbler_fields</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">flatten</span>
+313:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">empty?</span>
+314:         <span class="ruby-identifier">f</span> = <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+315:           <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-comment cmt"># remove the '@'</span>
+316:         }
+317:       <span class="ruby-keyword kw">end</span>
+318:       <span class="ruby-identifier">f</span>
+319:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
