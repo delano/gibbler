@@ -411,6 +411,10 @@ module Gibbler
       d = self.keys.sort { |a,b| a.inspect <=> b.inspect }
       d.collect! do |name| 
         value = self[name]
+        unless value.respond_to? :__gibbler
+          gibbler_debug klass, :skipping, name
+          next
+        end
         '%s:%s:%s' % [value.class, name, value.__gibbler(digest_type)]
       end 
       d = d.join(':').__gibbler(digest_type)
@@ -449,7 +453,11 @@ module Gibbler
     def __gibbler(digest_type=nil)
       klass = self.class
       d, index = [], 0
-      self.each do |value| 
+      self.each_with_index do |value,idx| 
+        unless value.respond_to? :__gibbler
+          gibbler_debug klass, :skipping, idx
+          next
+        end
         d << '%s:%s:%s' % [value.class, index, value.__gibbler(digest_type)]
         index += 1
       end
