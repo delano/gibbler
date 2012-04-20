@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'gibbler'
+require 'gibbler/mixins'
 
 @tempfile = "tryouts-9000-awesome.txt"
   

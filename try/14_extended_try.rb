@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 ## true can gibbler
   true.gibbler

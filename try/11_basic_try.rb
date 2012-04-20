@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 #Gibbler.enable_debug
 
@@ -6,7 +6,7 @@ require 'gibbler'
   begin
     a = Class.new
     a.send :include, Gibbler
-  rescue RuntimeError
+  rescue TypeError
     :success
   end
 #=> :success

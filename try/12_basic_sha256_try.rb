@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 # NOTE: JRuby requires that we use OpenSSL::Digest::SHA256
 if Tryouts.sysinfo.vm == :java 

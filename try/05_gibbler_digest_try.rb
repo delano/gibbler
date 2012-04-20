@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 ## has short method
   "kimmy".gibbler.short

@@ -1,17 +1,17 @@
 require 'gibbler'
 
 class NilClass;            include Gibbler::Nil;       end
-class Class;               include Gibbler::Object;    end
-class Module;              include Gibbler::Object;    end
-class Proc;                include Gibbler::Object;    end
 class String;              include Gibbler::String;    end
-class Regexp;              include Gibbler::String;    end
+class Symbol;              include Gibbler::String;    end
 class Fixnum;              include Gibbler::String;    end
 class Bignum;              include Gibbler::String;    end
 class TrueClass;           include Gibbler::String;    end
 class FalseClass;          include Gibbler::String;    end
+class Class;               include Gibbler::Object;    end
+class Module;              include Gibbler::Object;    end
+class Proc;                include Gibbler::Object;    end
+class Regexp;              include Gibbler::String;    end
 class Float;               include Gibbler::String;    end
-class Symbol;              include Gibbler::String;    end
 class Date;                include Gibbler::String;    end
 class Hash;                include Gibbler::Hash;      end
 class Array;               include Gibbler::Array;     end

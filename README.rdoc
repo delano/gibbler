@@ -1,4 +1,4 @@
-= Gibbler - v0.8 
+= Gibbler - v0.9
 
 Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby. 
 
@@ -8,12 +8,22 @@ Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] crea
 
 * Digest calculation may change between minor releases (as it did between 0.6 and 0.7)
 * Gibbler history is not suitable for very large objects since it keeps complete copies of the object in memory. This is a very early implementation of this feature so don't rely on it for production code. 
-* Don't forget to enjoy what you do!
+* Don't forget to enjoy your life!
 
 
-== Example 1 -- Basic Usage
+== Example 1 -- Standalone Usage
     
     require 'gibbler'
+    
+    g = Gibbler.new 'id', 1001   # => f4fb3796ababa3788d1bded8fdc589ab1ccb1c3d
+    g.base(36)                   # => sm71s7eam4hm5jlsuzlqkbuktwpe5h9
+    
+    g == 'f4fb3796ababa3788d1bded8fdc589ab1ccb1c3d'   # => true
+    g === 'f4fb379'              # => true
+    
+== Example 2 -- Mixins Usage
+    
+    require 'gibbler/mixins'
     
     "kimmy".gibbler              # => c8027100ecc54945ab15ddac529230e38b1ba6a1
     :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
@@ -40,11 +50,11 @@ Check out the screencast[http://www.rubypulse.com/episode-0.3-gibbler.html] crea
     config.gibbler.base36.short  # => 8x00l83j
     
     
-== Example 2 -- Object History 
+== Example 3 -- Object History 
     
 Gibbler can also keep track of the history of changes to an object. By default Gibbler supports history for Hash, Array, and String objects. The <tt>gibbler_commit</tt> method creates a clone of the current object and stores in an instance variable using the current hash digest as the key. 
 
-    require 'gibbler'
+    require 'gibbler/mixins'
     require 'gibbler/history'
     
     a = { :magic => :original }     
@@ -75,7 +85,7 @@ Gibbler can also keep track of the history of changes to an object. By default G
 http://delano.github.com/gibbler/img/whoababy.gif
 
 
-== Example 3 -- Method Aliases
+== Example 4 -- Method Aliases
 
 If you have control over the namespaces of your objects, you can use the method aliases to tighten up your code a bit. The "gibbler" and "gibbled?" methods can be accessed via "digest" and "changed?", respectively. (The reason they're not enabled by default is to avoid conflicts.)
   
@@ -101,11 +111,11 @@ The history methods also have aliases which remove the "gibbler_" prefix.
     a.revert!                    
     # etc...
     
-== Example 4 -- Different Digest types
+== Example 5 -- Different Digest types
 
 By default Gibbler creates SHA1 hashes. You can change this globally or per instance. 
 
-    require 'gibbler'
+    require 'gibbler/mixins'
     
     Gibbler.digest_type = Digest::MD5
     
@@ -123,9 +133,9 @@ In Jruby, you can grab the digest types from the openssl library.
     :kimmy.gibbler               # => 1069428e6273cf329436c3dce9b680d4d4e229d7b7...
     
     
-== Example 5 -- All your base
+== Example 6 -- All your base
 
-    require 'gibbler'
+    require 'gibbler/mixins'
     
     :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
     :kimmy.gibbler.base(16)      # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
@@ -135,11 +145,11 @@ In Jruby, you can grab the digest types from the openssl library.
     :kimmy.gibbler.to_i          # => 472384540402900668368761869477227308873774630879
 
 
-== Example 6 -- Global secret
+== Example 7 -- Global secret
 
 Gibbler can prepend all digest inputs with a global secret. You can set this once per project to ensure your project's digests are unique. 
 
-    require 'gibbler'
+    require 'gibbler/mixins'
     
     :kimmy.gibbler               # => 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
     
@@ -180,17 +190,15 @@ As of 0.7 all Proc objects have the same digest: <tt>12075835e94be34438376cd7a54
 == Known Issues
 
 * gibbler or gibbled? must be called at least once before gibbled? will be able to return a useful value (otherwise there is no previous digest value to compare to)
-* Digests for Bignum objects are different between Ruby and JRuby. Does anyone know why?
+* Digests for Bignum objects are different between Ruby and JRuby. Why?
 * Digests for Proc objects are different between Ruby 1.8 and 1.9 because Proc.arity returns different values and 1.8 has no lambda? method.
 
 
 == Installation
 
-Via Rubygems, one of:
+Via Rubygems:
 
     $ gem install gibbler
-    $ gem install delano-gibbler
-
 
 or via download:
 * gibbler-latest.tar.gz[http://github.com/delano/gibbler/tarball/latest]
@@ -220,7 +228,7 @@ or via download:
 
 == Credits
 
-* Delano (@solutious.com)
+* [Delano Mandelbaum](http://delanotes.com/) (@solutious.com)
 
 
 == License

@@ -14,7 +14,7 @@ require 'digest/sha1'
 # 
 # "Hola, Tanneritos"
 #
-module Gibbler
+class Gibbler < String
   module VERSION
     def self.to_s
       load_config
@@ -45,87 +45,92 @@ end
 #
 class Gibbler::Digest < String
   
-  # Return an integer assuming base is Gibbler.default_base. 
-  def to_i(base=nil)
-    base ||= Gibbler.default_base
-    super(base)
-  end
+  module InstanceMethods
+    # Return an integer assuming base is Gibbler.default_base. 
+    def to_i(base=nil)
+      base ||= Gibbler.default_base
+      super(base)
+    end
   
-  # Returns a string. Takes an optional base. 
-  def to_s(base=nil)
-    base.nil? ? super() : super().to_i(Gibbler.default_base).to_s(base)
-  end
+    # Returns a string. Takes an optional base. 
+    def to_s(base=nil)
+      base.nil? ? super() : super().to_i(Gibbler.default_base).to_s(base)
+    end
   
-  def base(base=Gibbler.default_base)
-    self.class.new(self.to_i(Gibbler.default_base).to_s(base))
-  end
+    def base(base=Gibbler.default_base)
+      v = self.to_i(Gibbler.default_base).to_s(base)
+      v.extend Gibbler::Digest::InstanceMethods
+      self.class.new v
+    end
   
-  def base36
-    base(36)
-  end
+    def base36
+      base(36)
+    end
   
-  # Shorten the digest to the given (optional) length. 
-  def shorten(len=20)
-    self[0..len-1]
-  end
+    # Shorten the digest to the given (optional) length. 
+    def shorten(len=20)
+      self[0..len-1]
+    end
   
-  # Returns the first 8 characters of itself (the digest).
-  #
-  # e.g. 
-  #
-  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
-  #     "kimmy".gibbler.short   # => c8027100
-  #
-  def short
-    shorten(8)
-  end
+    # Returns the first 8 characters of itself (the digest).
+    #
+    # e.g. 
+    #
+    #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+    #     "kimmy".gibbler.short   # => c8027100
+    #
+    def short
+      shorten(8)
+    end
   
-  # Returns the first 6 characters of itself (the digest).
-  #
-  # e.g. 
-  #
-  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
-  #     "kimmy".gibbler.shorter # => c80271
-  #
-  def shorter
-    shorten(6)
-  end
+    # Returns the first 6 characters of itself (the digest).
+    #
+    # e.g. 
+    #
+    #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+    #     "kimmy".gibbler.shorter # => c80271
+    #
+    def shorter
+      shorten(6)
+    end
   
-  # Returns the first 4 characters of itself (the digest).
-  #
-  # e.g. 
-  #
-  #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
-  #     "kimmy".gibbler.tiny    # => c802
-  #
-  def tiny
-    shorten(4)
-  end
+    # Returns the first 4 characters of itself (the digest).
+    #
+    # e.g. 
+    #
+    #     "kimmy".gibbler         # => c8027100ecc54945ab15ddac529230e38b1ba6a1
+    #     "kimmy".gibbler.tiny    # => c802
+    #
+    def tiny
+      shorten(4)
+    end
   
-  # Returns true when +ali+ matches +self+
-  #
-  #    "kimmy".gibbler == "c8027100ecc54945ab15ddac529230e38b1ba6a1"  # => true
-  #    "kimmy".gibbler == "c8027100"                                  # => false
-  #
-  def ==(ali)
-    return true if self.to_s == ali.to_s
-    false
-  end
+    # Returns true when +ali+ matches +self+
+    #
+    #    "kimmy".gibbler == "c8027100ecc54945ab15ddac529230e38b1ba6a1"  # => true
+    #    "kimmy".gibbler == "c8027100"                                  # => false
+    #
+    def ==(ali)
+      return true if self.to_s == ali.to_s
+      false
+    end
   
-  # Returns true when +g+ matches one of: +self+, +short+, +shorter+, +tiny+
-  #
-  #    "kimmy".gibbler === "c8027100ecc54945ab15ddac529230e38b1ba6a1" # => true
-  #    "kimmy".gibbler === "c8027100"                                 # => true
-  #    "kimmy".gibbler === "c80271"                                   # => true
-  #    "kimmy".gibbler === "c802"                                     # => true
-  #
-  def ===(g)
-    return true if [to_s, short, shorter, tiny].member?(g.to_s)
-    false
+    # Returns true when +g+ matches one of: +self+, +short+, +shorter+, +tiny+
+    #
+    #    "kimmy".gibbler === "c8027100ecc54945ab15ddac529230e38b1ba6a1" # => true
+    #    "kimmy".gibbler === "c8027100"                                 # => true
+    #    "kimmy".gibbler === "c80271"                                   # => true
+    #    "kimmy".gibbler === "c802"                                     # => true
+    #
+    def ===(g)
+      return true if [to_s, short, shorter, tiny].member?(g.to_s)
+      false
+    end
   end
+  include InstanceMethods
 end
 
-module Gibbler
+class Gibbler < String
   module Object
     
     def self.included(obj)
@@ -213,10 +218,27 @@ module Gibbler
   
 end
 
+class Gibbler < String
+  include Gibbler::Digest::InstanceMethods
+  attr_reader :digest
+  # Creates a digest from the given +input+. See Gibbler.digest.
+  #
+  # If only one argument is given and it's a digest, this will
+  # simply create an instance of that digest. In other words, 
+  # it won't calculate a new digest based on that input.
+  def initialize *input
+    if input.size == 1 && Gibbler::Digest::InstanceMethods === input.first
+      super input.first
+    else
+      input.collect!(&:to_s)
+      super Gibbler.digest(input)
+    end
+  end
+end
 
-module Gibbler
+class Gibbler < String
 
-  @@gibbler_debug = true
+  @@gibbler_debug = false
   @@gibbler_digest_type = ::Digest::SHA1
   
   # Specify a different digest class. The default is +Digest::SHA1+. You 
@@ -233,16 +255,19 @@ module Gibbler
   # Returns the current digest class. 
   def self.digest_type; @@gibbler_digest_type; end
   
-  # Sends +str+ to Digest::SHA1.hexdigest. If another digest class
+  # Sends +input+ to Digest::SHA1.hexdigest. If another digest class
   # has been specified, that class will be used instead. 
   # If Gibbler.secret is set, +str+ will be prepended with the
   # value. 
   #
+  # If +input+ is an Array, it will be flattened and joined.
+  #
   # See: digest_type
-  def self.digest(str, digest_type=nil)
+  def self.digest(input, digest_type=nil)
+    input = input.flatten.collect(&:to_s).join(':') if ::Array === input
     digest_type ||= @@gibbler_digest_type
-    str = [Gibbler.secret, str].join(':') unless Gibbler.secret.nil?
-    dig = digest_type.hexdigest(str)
+    input = [Gibbler.secret, input].join(':') unless Gibbler.secret.nil?
+    dig = digest_type.hexdigest(input)
     dig = dig.to_i(16).to_s(Gibbler.default_base) if 16 != Gibbler.default_base
     dig
   end

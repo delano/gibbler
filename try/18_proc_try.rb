@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 class ::MyProc < Proc; end
 

@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 
 # arbitrary objects can specify instance variables to gibbler
   class ::FullHouse

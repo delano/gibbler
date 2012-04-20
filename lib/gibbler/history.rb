@@ -1,7 +1,7 @@
 
 
 
-module Gibbler
+class Gibbler < String
   class NoRevert < Gibbler::Error
     def message; "Revert not implemented for #{@obj}" end
   end

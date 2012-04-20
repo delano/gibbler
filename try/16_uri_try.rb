@@ -1,5 +1,5 @@
 require 'uri'
-require 'gibbler'
+require 'gibbler/mixins'
 
 # "URI::HTTP can gibbler"
   uri = URI.parse "http://localhost:3114/spaceship"

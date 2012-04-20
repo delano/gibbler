@@ -1,4 +1,4 @@
-require 'gibbler'
+require 'gibbler/mixins'
 require 'gibbler/history'
 
 # can convert short digest into long

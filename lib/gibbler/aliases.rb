@@ -1,7 +1,7 @@
 
 require 'gibbler/mixins'
 
-module Gibbler
+class Gibbler < String
   
   module Object
     alias :digest           :gibbler

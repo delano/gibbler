@@ -1,5 +1,5 @@
 require 'date'
-require 'gibbler'
+require 'gibbler/mixins'
 
 # "Date instance can gibbler
   Date.parse('2009-08-25').gibbler

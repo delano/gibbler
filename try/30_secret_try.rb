@@ -1,5 +1,5 @@
 require 'uri'
-require 'gibbler'
+require 'gibbler/mixins'
 
 # "Can set a sexy global secret
   Gibbler.secret = 'kimmy'.gibbler

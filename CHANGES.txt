@@ -2,8 +2,10 @@ GIBBLER, CHANGES
 
 #### 0.9.0 (2012-04-20) ###############################
 
+* CHANGE: Gibbler is now a class which supplies the default standalone usage
 * CHANGE: Ruby object mixins must now be explicitly loaded via "require 'gibbler/mixins'"
 * CHANGE: Removed Gibbler.enable_debug/disable_debug
+
 
 #### 0.8.9 (2011-02-11) ###############################
 
