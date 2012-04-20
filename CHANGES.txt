@@ -3,12 +3,13 @@ GIBBLER, CHANGES
 
 #### 0.9.0 (2012-04-20) ###############################
 
+* FIXED: Gibbler::Complex now checks has_method? and will use that before instance variables.
 * CHANGE: Gibbler is now a class which supplies the default standalone usage
 * CHANGE: Ruby object mixins must now be explicitly loaded via "require 'gibbler/mixins'"
 * CHANGE: Removed Gibbler.enable_debug/disable_debug
 * CHANGE: Gibbler.digest now returns nil for an empty Array
 * ADDED: Gibbler.delimiter
-* ADDED: Gibbler::Simple
+
 
 #### 0.8.10 (2011-10-23) ###############################
 

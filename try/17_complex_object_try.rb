@@ -19,10 +19,12 @@ require 'time'
 # arbitrary objects can append more instance variables later on
   class ::FullHouse
     gibbler :stamp, :ready
+    def stamp
+      Time.parse('2009-08-25 16:43:53 UTC')
+    end
   end
   a = FullHouse.new
   a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]
-  a.stamp = Time.parse('2009-08-25 16:43:53 UTC')
   a.ready = true
   a.gibbler
 #=> "fbdce0d97a856e7106bec418d585c914914b8aa5"
