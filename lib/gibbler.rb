@@ -240,6 +240,7 @@ class Gibbler < String
 
   @debug = false
   @digest_type = ::Digest::SHA1
+  @delimiter = ':'
   
   class << self
     # Specify a different digest class. The default is +Digest::SHA1+. You 
@@ -248,6 +249,10 @@ class Gibbler < String
     #     Object.digest_type = Digest::SHA256
     #
     attr_accessor :digest_type
+    # The delimiter to use when joining Array values before creating a
+    # new digest hash. The default is ":".
+    attr_accessor :delimiter
+    # Set to true for debug output (including all digest inputs)
     attr_accessor :debug
     # Returns the current debug status (true or false)
     def debug?;  @debug != false; end
@@ -262,9 +267,9 @@ class Gibbler < String
   #
   # See: digest_type
   def self.digest(input, digest_type=nil)
-    input = input.flatten.collect(&:to_s).join(':') if ::Array === input
+    input = input.flatten.collect(&:to_s).join(delimiter) if ::Array === input
     digest_type ||= @digest_type
-    input = [Gibbler.secret, input].join(':') unless Gibbler.secret.nil?
+    input = [Gibbler.secret, input].join(delimiter) unless Gibbler.secret.nil?
     dig = digest_type.hexdigest(input)
     dig = dig.to_i(16).to_s(Gibbler.default_base) if 16 != Gibbler.default_base
     dig
@@ -350,7 +355,7 @@ class Gibbler < String
         end
         d << '%s:%s:%s' % [value.class, n, value.__gibbler(digest_type)]
       end
-      d = d.join(':').__gibbler(digest_type)
+      d = d.join(Gibbler.delimiter).__gibbler(digest_type)
       a = Gibbler.digest "%s:%d:%s" % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a
@@ -436,7 +441,7 @@ class Gibbler < String
         end
         '%s:%s:%s' % [value.class, name, value.__gibbler(digest_type)]
       end 
-      d = d.join(':').__gibbler(digest_type)
+      d = d.join(Gibbler.delimiter).__gibbler(digest_type)
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a  
@@ -480,7 +485,7 @@ class Gibbler < String
         d << '%s:%s:%s' % [value.class, index, value.__gibbler(digest_type)]
         index += 1
       end
-      d = d.join(':').__gibbler(digest_type)
+      d = d.join(Gibbler.delimiter).__gibbler(digest_type)
       a = Gibbler.digest '%s:%s:%s' % [klass, d.size, d], digest_type
       gibbler_debug klass, a, [klass, d.size, d]
       a

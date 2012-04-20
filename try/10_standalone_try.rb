@@ -1,5 +1,10 @@
 require 'gibbler'
 
+
+## Default delimiter
+Gibbler.delimiter
+#=> ':'
+
 ## Create a digest from flattened Array
 Gibbler.digest [1, :sym, ['string', 2,3]].flatten.join(':')
 #=> 'd84d6ad2bd5c9589842fb02cf3c384e4924b1d3f'
