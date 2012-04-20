@@ -1,5 +1,5 @@
 
-require 'gibbler'
+require 'gibbler/mixins'
 
 module Gibbler
   

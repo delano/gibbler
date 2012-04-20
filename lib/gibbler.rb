@@ -33,8 +33,6 @@ module Gibbler
     attr_accessor :secret, :default_base
   end
   
-  require 'gibbler/mixins'
-  
   class Error < RuntimeError
     def initialize(obj); @obj = obj; end
   end
@@ -218,7 +216,7 @@ end
 
 module Gibbler
 
-  @@gibbler_debug = false
+  @@gibbler_debug = true
   @@gibbler_digest_type = ::Digest::SHA1
   
   # Specify a different digest class. The default is +Digest::SHA1+. You 
@@ -230,9 +228,7 @@ module Gibbler
     @@gibbler_digest_type = v
   end
   # Returns the current debug status (true or false)
-  def self.debug?;      @@gibbler_debug; end
-  def self.enable_debug;  @@gibbler_debug = true; end
-  def self.disable_debug;  @@gibbler_debug = false; end
+  def self.debug?;     @@gibbler_debug; end
   def self.debug=(v);  @@gibbler_debug = v; end
   # Returns the current digest class. 
   def self.digest_type; @@gibbler_digest_type; end
@@ -644,34 +640,15 @@ module Gibbler
     
 end
 
+class String
+  unless method_defined? :clear
+    def clear
+      replace ""
+    end
+  end
+end
 
-class NilClass;            include Gibbler::Nil;       end
-class Class;               include Gibbler::Object;    end
-class Module;              include Gibbler::Object;    end
-class Proc;                include Gibbler::Object;    end
-class String;              include Gibbler::String;    end
-class Regexp;              include Gibbler::String;    end
-class Fixnum;              include Gibbler::String;    end
-class Bignum;              include Gibbler::String;    end
-class TrueClass;           include Gibbler::String;    end
-class FalseClass;          include Gibbler::String;    end
-class Float;               include Gibbler::String;    end
-class Symbol;              include Gibbler::String;    end
-class Date;                include Gibbler::String;    end
-class Hash;                include Gibbler::Hash;      end
-class Array;               include Gibbler::Array;     end
-class Time;                include Gibbler::Time;      end
-class DateTime < Date;     include Gibbler::DateTime;  end
-class Range;               include Gibbler::Range;     end
-class File;                include Gibbler::File;      end
-class TempFile;            include Gibbler::File;      end
 
-# URI::Generic must be included towards the 
-# end b/c it runs Object#freeze statically.
-module URI; class Generic; include Gibbler::String;    end; end
-
-# Bundler calls freeze on an instance of Gem::Platform
-module Gem; class Platform; include Gibbler::Complex;  end; end
 
 
 
