@@ -238,22 +238,20 @@ end
 
 class Gibbler < String
 
-  @@gibbler_debug = false
-  @@gibbler_digest_type = ::Digest::SHA1
+  @debug = false
+  @digest_type = ::Digest::SHA1
   
-  # Specify a different digest class. The default is +Digest::SHA1+. You 
-  # could try +Digest::SHA256+ by doing this: 
-  # 
-  #     Object.gibbler_digest_type = Digest::SHA256
-  #
-  def self.digest_type=(v)
-    @@gibbler_digest_type = v
+  class << self
+    # Specify a different digest class. The default is +Digest::SHA1+. You 
+    # could try +Digest::SHA256+ by doing this: 
+    # 
+    #     Object.digest_type = Digest::SHA256
+    #
+    attr_accessor :digest_type
+    attr_accessor :debug
+    # Returns the current debug status (true or false)
+    def debug?;  @debug != false; end
   end
-  # Returns the current debug status (true or false)
-  def self.debug?;     @@gibbler_debug; end
-  def self.debug=(v);  @@gibbler_debug = v; end
-  # Returns the current digest class. 
-  def self.digest_type; @@gibbler_digest_type; end
   
   # Sends +input+ to Digest::SHA1.hexdigest. If another digest class
   # has been specified, that class will be used instead. 
@@ -265,7 +263,7 @@ class Gibbler < String
   # See: digest_type
   def self.digest(input, digest_type=nil)
     input = input.flatten.collect(&:to_s).join(':') if ::Array === input
-    digest_type ||= @@gibbler_digest_type
+    digest_type ||= @digest_type
     input = [Gibbler.secret, input].join(':') unless Gibbler.secret.nil?
     dig = digest_type.hexdigest(input)
     dig = dig.to_i(16).to_s(Gibbler.default_base) if 16 != Gibbler.default_base

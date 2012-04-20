@@ -206,7 +206,7 @@ NOTE: Calculated digests have changed since 0.3. Most digests created with
 * CHANGE: Gibbler methods are no longer available to all Ruby classes
   by default. The default list is now: String, Hash, Array, Symbol, 
   Class, Fixnum, Bignum. 
-* CHANGE: Renamed Gibbler.gibbler_digest_type to Gibbler.digest_type
+* CHANGE: Renamed Gibbler.digest_type to Gibbler.digest_type
 * ADDED: Custom objects can now "include Gibbler::Complex"
 
 
