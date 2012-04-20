@@ -1,5 +1,11 @@
 require 'gibbler'
 
+@sha256_digest = if Tryouts.sysinfo.vm == :java 
+  require 'openssl'
+  OpenSSL::Digest::SHA256
+else
+  Digest::SHA256
+end
 
 ## Default delimiter
 Gibbler.delimiter
@@ -27,14 +33,17 @@ g = Gibbler.new 1, :sym, 'string', 2,3
 g.base(36).class
 #=> Gibbler
 
-## Can change digest type
-if Tryouts.sysinfo.vm == :java 
-  require 'openssl'
-  Gibbler.digest_type = OpenSSL::Digest::SHA256
-else
-  Gibbler.digest_type = Digest::SHA256
-end
+## Can change digest type by class
+Gibbler.digest_type = @sha256_digest
 g = Gibbler.new 1, :sym, 'string', 2,3
+#=> '204aacebb816bc2c8675f3490bf5a1a908988fb72f3dfd6774e963bbb9e26a26'
+
+## Can change digest type per instance
+Gibbler.digest_type = Digest::SHA1
+g = Gibbler.new 
+g.digest_type = @sha256_digest
+g.digest 1, :sym, 'string', 2,3
+g
 #=> '204aacebb816bc2c8675f3490bf5a1a908988fb72f3dfd6774e963bbb9e26a26'
 
 Gibbler.digest_type = Digest::SHA1

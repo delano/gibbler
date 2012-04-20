@@ -220,7 +220,9 @@ end
 
 class Gibbler < String
   include Gibbler::Digest::InstanceMethods
-  attr_reader :digest
+  # Modify the digest type for this instance. See Gibbler.digest_type
+  attr_writer :digest_type
+  attr_reader :input
   # Creates a digest from the given +input+. See Gibbler.digest.
   #
   # If only one argument is given and it's a digest, this will
@@ -233,7 +235,15 @@ class Gibbler < String
       input.collect!(&:to_s)
       super Gibbler.digest(input)
     end
+  end  
+  def digest_type
+    @digest_type || self.class.digest_type
   end
+  
+  def digest *input
+    replace Gibbler.digest(input, digest_type)
+  end
+  
 end
 
 class Gibbler < String
