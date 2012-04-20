@@ -233,7 +233,7 @@ class Gibbler < String
       super input.first
     else
       input.collect!(&:to_s)
-      super Gibbler.digest(input)
+      super Gibbler.digest(input) || ''
     end
   end  
   def digest_type
@@ -278,6 +278,7 @@ class Gibbler < String
   # See: digest_type
   def self.digest(input, digest_type=nil)
     input = input.flatten.collect(&:to_s).join(delimiter) if ::Array === input
+    return if input.empty?
     digest_type ||= @digest_type
     input = [Gibbler.secret, input].join(delimiter) unless Gibbler.secret.nil?
     dig = digest_type.hexdigest(input)
