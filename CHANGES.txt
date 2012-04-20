@@ -8,7 +8,7 @@ GIBBLER, CHANGES
 * CHANGE: Removed Gibbler.enable_debug/disable_debug
 * CHANGE: Gibbler.digest now returns nil for an empty Array
 * ADDED: Gibbler.delimiter
-
+* ADDED: Gibbler::Simple
 
 #### 0.8.10 (2011-10-23) ###############################
 

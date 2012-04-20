@@ -301,6 +301,64 @@ class Gibbler < String
   end
   
   # Creates a digest based on: 
+  module Simple
+    include Gibbler::Object
+    def self.included(obj)
+      obj.extend Attic
+      obj.attic :gibbler_cache
+      obj.class_eval do
+        @__gibbler_fields = []
+        def self.gibbler_fields
+          @__gibbler_fields
+        end
+        def self.gibbler *fields
+          @__gibbler_fields.push *fields
+        end
+        def self.inherited(obj)
+          obj.extend Attic
+          obj.attic :gibbler_cache
+          fields = @__gibbler_fields.clone
+          obj.class_eval do
+            @__gibbler_fields = fields
+          end
+        end
+      end
+    end
+    
+    def gibbler_fields
+      [self.class.gibbler_fields].compact.flatten
+    end
+    
+    # Creates a digest for the current state of self. 
+    def __gibbler(digest_type=nil)
+      klass = self.class
+      d = []
+      gibbler_debug :gibbler_fields, gibbler_fields
+      gibbler_fields.each do |n|
+        value = respond_to?(n) ? send(n) : instance_variable_get("@#{n}")
+        unless value.respond_to? :__gibbler
+          gibbler_debug klass, :skipping, n
+          next
+        end
+        d << '%s:%s:%s' % [value.class, n, value.__gibbler(digest_type)]
+      end
+      d = d.join(Gibbler.delimiter).__gibbler(digest_type)
+      a = Gibbler.digest "%s:%d:%s" % [klass, d.size, d], digest_type
+      gibbler_debug klass, a, [klass, d.size, d]
+      a
+    end
+    
+    
+    def __gibbler_revert!
+      state = self.gibbler_object self.gibbler_cache
+      state.instance_variables do |n|
+        v = state.instance_variable_get n
+        self.instance_variable_set v
+      end
+    end
+  end
+  
+  # Creates a digest based on: 
   # * An Array of instance variable names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
   #   * The gibbler method is called on each element so if it is a Hash or Array etc it 
   #     will be parsed recursively according to the gibbler method for that class type.
@@ -319,7 +377,7 @@ class Gibbler < String
   #     end
   #
   module Complex
-    include Gibbler::Object
+    include Gibbler::Simple
     
     def self.included(obj)
       obj.extend Attic
@@ -379,7 +437,6 @@ class Gibbler < String
         self.instance_variable_set v
       end
     end
-    
   end
   
   # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>. 
