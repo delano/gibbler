@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=US-ASCII" http-equiv="Content-Type">
+
+<title>class Gibbler - gibbler 0.9.0</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/gibbler/aliases.rb
+    <li>lib/gibbler/history.rb
+    <li>lib/gibbler.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="String.html">String</a>
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Gibbler/Digest/InstanceMethods.html">Gibbler::Digest::InstanceMethods</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-debug-3F">::debug?</a>
+    
+    <li><a href="#method-c-digest">::digest</a>
+    
+    <li><a href="#method-c-gibbler_debug">::gibbler_debug</a>
+    
+    <li><a href="#method-c-included">::included</a>
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-digest">#digest</a>
+    
+    <li><a href="#method-i-digest_type">#digest_type</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./LICENSE_txt.html">LICENSE</a>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Gibbler.html">Gibbler</a>
+  
+    <li><a href="./Gibbler/Array.html">Gibbler::Array</a>
+  
+    <li><a href="./Gibbler/BadDigest.html">Gibbler::BadDigest</a>
+  
+    <li><a href="./Gibbler/Complex.html">Gibbler::Complex</a>
+  
+    <li><a href="./Gibbler/DateTime.html">Gibbler::DateTime</a>
+  
+    <li><a href="./Gibbler/Digest.html">Gibbler::Digest</a>
+  
+    <li><a href="./Gibbler/Digest/InstanceMethods.html">Gibbler::Digest::InstanceMethods</a>
+  
+    <li><a href="./Gibbler/Error.html">Gibbler::Error</a>
+  
+    <li><a href="./Gibbler/File.html">Gibbler::File</a>
+  
+    <li><a href="./Gibbler/Hash.html">Gibbler::Hash</a>
+  
+    <li><a href="./Gibbler/History.html">Gibbler::History</a>
+  
+    <li><a href="./Gibbler/Nil.html">Gibbler::Nil</a>
+  
+    <li><a href="./Gibbler/NoHistory.html">Gibbler::NoHistory</a>
+  
+    <li><a href="./Gibbler/NoRevert.html">Gibbler::NoRevert</a>
+  
+    <li><a href="./Gibbler/Object.html">Gibbler::Object</a>
+  
+    <li><a href="./Gibbler/Range.html">Gibbler::Range</a>
+  
+    <li><a href="./Gibbler/String.html">Gibbler::String</a>
+  
+    <li><a href="./Gibbler/Time.html">Gibbler::Time</a>
+  
+    <li><a href="./Gibbler/VERSION.html">Gibbler::VERSION</a>
+  
+    <li><a href="./Addressable.html">Addressable</a>
+  
+    <li><a href="./Addressable/URI.html">Addressable::URI</a>
+  
+    <li><a href="./Gem.html">Gem</a>
+  
+    <li><a href="./Gem/Platform.html">Gem::Platform</a>
+  
+    <li><a href="./URI.html">URI</a>
+  
+    <li><a href="./URI/Generic.html">URI::Generic</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Bignum.html">Bignum</a>
+  
+    <li><a href="./Class.html">Class</a>
+  
+    <li><a href="./Date.html">Date</a>
+  
+    <li><a href="./DateTime.html">DateTime</a>
+  
+    <li><a href="./FalseClass.html">FalseClass</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./Fixnum.html">Fixnum</a>
+  
+    <li><a href="./Float.html">Float</a>
+  
+    <li><a href="./Hash.html">Hash</a>
+  
+    <li><a href="./MatchData.html">MatchData</a>
+  
+    <li><a href="./Module.html">Module</a>
+  
+    <li><a href="./NilClass.html">NilClass</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./OpenStruct.html">OpenStruct</a>
+  
+    <li><a href="./Proc.html">Proc</a>
+  
+    <li><a href="./Range.html">Range</a>
+  
+    <li><a href="./Regexp.html">Regexp</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./Symbol.html">Symbol</a>
+  
+    <li><a href="./TempFile.html">TempFile</a>
+  
+    <li><a href="./Time.html">Time</a>
+  
+    <li><a href="./TrueClass.html">TrueClass</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Gibbler</h1>
+
+  <div id="description" class="description">
+    
+<h1 id="label-Gibbler"><a href="Gibbler.html">Gibbler</a></h1>
+
+<p>"Hola, Tanneritos"</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-c-debug" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">debug</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Set to true for debug output (including all digest inputs)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-default_base" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">default_base</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-delimiter" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">delimiter</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The delimiter to use when joining <a href="Gibbler/Array.html">Array</a>
+values before creating a new digest hash. The default is ":".</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-digest_type" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">digest_type</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Specify a different digest class. The default is +Digest::SHA1+. You  could
+try +Digest::SHA256+ by doing this:</p>
+
+<pre>Object.digest_type = Digest::SHA256</pre>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-secret" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">secret</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-digest_type" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">digest_type</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Modify the digest type for this instance. See <a
+href="Gibbler.html#method-i-digest_type">#digest_type</a></p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-input" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">input</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-debug-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">debug?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the current debug status (true or false)</p>
+          
+
+          
+          <div class="method-source-code" id="debug-3F-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">debug?</span>;  <span class="ruby-ivar">@debug</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">false</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- debug-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- debug-3F-method -->
+
+    
+      <div id="method-c-digest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">digest</span><span
+            class="method-args">(input, digest_type=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends <code>input</code> to Digest::SHA1.hexdigest. If another digest class
+has been specified, that class will be used instead.  If <a
+href="Gibbler.html#attribute-c-secret">::secret</a> is set,
+<code>str</code> will be prepended with the value.</p>
+
+<p>If <code>input</code> is an <a href="Gibbler/Array.html">Array</a>, it will
+be flattened and joined.</p>
+
+<p>See: <a href="Gibbler.html#method-i-digest_type">#digest_type</a></p>
+          
+
+          
+          <div class="method-source-code" id="digest-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">digest_type</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">input</span> = <span class="ruby-identifier">input</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:to_s</span>).<span class="ruby-identifier">join</span>(<span class="ruby-identifier">delimiter</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">::</span><span class="ruby-constant">Array</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">input</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">digest_type</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@digest_type</span>
+  <span class="ruby-identifier">input</span> = [<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>, <span class="ruby-identifier">input</span>].<span class="ruby-identifier">join</span>(<span class="ruby-identifier">delimiter</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">digest_type</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">input</span>)
+  <span class="ruby-identifier">dig</span> = <span class="ruby-identifier">dig</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>).<span class="ruby-identifier">to_s</span>(<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>) <span class="ruby-keyword">if</span> <span class="ruby-value">16</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">default_base</span>
+  <span class="ruby-identifier">dig</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- digest-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- digest-method -->
+
+    
+      <div id="method-c-gibbler_debug" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gibbler_debug</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="gibbler_debug-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 289</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gibbler_debug</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">debug?</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-identifier">args</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- gibbler_debug-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- gibbler_debug-method -->
+
+    
+      <div id="method-c-included" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">included</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Raises an exception. The correct usage is to include a Gibbler::Object:</p>
+<ul><li>
+<p><a href="Gibbler/Complex.html">Gibbler::Complex</a></p>
+</li><li>
+<p><a href="Gibbler/String.html">Gibbler::String</a></p>
+</li><li>
+<p><a href="Gibbler/Object.html">Gibbler::Object</a></p>
+</li><li>
+<p>etc ...</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="included-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 299</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You probably want to include Gibbler::Complex or Gibbler::Object&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- included-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- included-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(*input)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a digest from the given <code>input</code>. See <a
+href="Gibbler.html#method-i-digest">#digest</a>.</p>
+
+<p>If only one argument is given and it's a digest, this will simply create an
+instance of that digest. In other words,  it won't calculate a new digest
+based on that input.</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> *<span class="ruby-identifier">input</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Gibbler</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">InstanceMethods</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">super</span> <span class="ruby-identifier">input</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">input</span>.<span class="ruby-identifier">collect!</span>(&amp;<span class="ruby-value">:to_s</span>)
+    <span class="ruby-keyword">super</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">input</span>) <span class="ruby-operator">||</span> <span class="ruby-string">''</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-digest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">digest</span><span
+            class="method-args">(*input)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="digest-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">digest</span> *<span class="ruby-identifier">input</span>
+  <span class="ruby-identifier">replace</span> <span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest</span>(<span class="ruby-identifier">input</span>, <span class="ruby-identifier">digest_type</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- digest-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- digest-method -->
+
+    
+      <div id="method-i-digest_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">digest_type</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="digest_type-source">
+            <pre><span class="ruby-comment"># File lib/gibbler.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">digest_type</span>
+  <span class="ruby-ivar">@digest_type</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">digest_type</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- digest_type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- digest_type-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
