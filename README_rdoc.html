@@ -1,519 +1,452 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=US-ASCII" http-equiv="Content-Type">
 
-	<title>File: README.rdoc [gibbler 0.8.10]</title>
+<title>README - gibbler 0.8.10</title>
 
-	<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-	<script src="./js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
-</head>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
 
 <body class="file">
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-		<div id="project-metadata">
-			
-			
-			<div id="fileindex-section" class="section project-section">
-				<h3 class="section-header">Files</h3>
-				<ul>
-				
-					<li class="file"><a href="./LICENSE_txt.html">LICENSE.txt</a></li>
-				
-					<li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
-				
-				</ul>
-			</div>
-			
 
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="./images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-				<ul class="link-list">
-				
-					<li><a href="./Gibbler.html">Gibbler</a></li>
-				
-					<li><a href="./Gibbler/Array.html">Gibbler::Array</a></li>
-				
-					<li><a href="./Gibbler/BadDigest.html">Gibbler::BadDigest</a></li>
-				
-					<li><a href="./Gibbler/Complex.html">Gibbler::Complex</a></li>
-				
-					<li><a href="./Gibbler/DateTime.html">Gibbler::DateTime</a></li>
-				
-					<li><a href="./Gibbler/Digest.html">Gibbler::Digest</a></li>
-				
-					<li><a href="./Gibbler/Error.html">Gibbler::Error</a></li>
-				
-					<li><a href="./Gibbler/File.html">Gibbler::File</a></li>
-				
-					<li><a href="./Gibbler/Hash.html">Gibbler::Hash</a></li>
-				
-					<li><a href="./Gibbler/History.html">Gibbler::History</a></li>
-				
-					<li><a href="./Gibbler/Nil.html">Gibbler::Nil</a></li>
-				
-					<li><a href="./Gibbler/NoHistory.html">Gibbler::NoHistory</a></li>
-				
-					<li><a href="./Gibbler/NoRevert.html">Gibbler::NoRevert</a></li>
-				
-					<li><a href="./Gibbler/Object.html">Gibbler::Object</a></li>
-				
-					<li><a href="./Gibbler/Range.html">Gibbler::Range</a></li>
-				
-					<li><a href="./Gibbler/String.html">Gibbler::String</a></li>
-				
-					<li><a href="./Gibbler/Time.html">Gibbler::Time</a></li>
-				
-					<li><a href="./Gibbler/VERSION.html">Gibbler::VERSION</a></li>
-				
-					<li><a href="./Gem.html">Gem</a></li>
-				
-					<li><a href="./Gem/Platform.html">Gem::Platform</a></li>
-				
-					<li><a href="./URI.html">URI</a></li>
-				
-					<li><a href="./URI/Generic.html">URI::Generic</a></li>
-				
-					<li><a href="./Array.html">Array</a></li>
-				
-					<li><a href="./Bignum.html">Bignum</a></li>
-				
-					<li><a href="./Class.html">Class</a></li>
-				
-					<li><a href="./Date.html">Date</a></li>
-				
-					<li><a href="./DateTime.html">DateTime</a></li>
-				
-					<li><a href="./FalseClass.html">FalseClass</a></li>
-				
-					<li><a href="./File.html">File</a></li>
-				
-					<li><a href="./Fixnum.html">Fixnum</a></li>
-				
-					<li><a href="./Float.html">Float</a></li>
-				
-					<li><a href="./Hash.html">Hash</a></li>
-				
-					<li><a href="./Module.html">Module</a></li>
-				
-					<li><a href="./NilClass.html">NilClass</a></li>
-				
-					<li><a href="./Proc.html">Proc</a></li>
-				
-					<li><a href="./Range.html">Range</a></li>
-				
-					<li><a href="./Regexp.html">Regexp</a></li>
-				
-					<li><a href="./String.html">String</a></li>
-				
-					<li><a href="./Symbol.html">Symbol</a></li>
-				
-					<li><a href="./TempFile.html">TempFile</a></li>
-				
-					<li><a href="./Time.html">Time</a></li>
-				
-					<li><a href="./TrueClass.html">TrueClass</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-			
-		</div>
-	</div>
 
-	<div id="documentation">
-		<h1><a href="Gibbler.html">Gibbler</a> - v0.8 </h1>
-<p>
-Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby. 
-</p>
-<p>
-Check out the <a
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./LICENSE_txt.html">LICENSE</a>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Gibbler.html">Gibbler</a>
+  
+    <li><a href="./Gibbler/Array.html">Gibbler::Array</a>
+  
+    <li><a href="./Gibbler/BadDigest.html">Gibbler::BadDigest</a>
+  
+    <li><a href="./Gibbler/Complex.html">Gibbler::Complex</a>
+  
+    <li><a href="./Gibbler/DateTime.html">Gibbler::DateTime</a>
+  
+    <li><a href="./Gibbler/Digest.html">Gibbler::Digest</a>
+  
+    <li><a href="./Gibbler/Error.html">Gibbler::Error</a>
+  
+    <li><a href="./Gibbler/File.html">Gibbler::File</a>
+  
+    <li><a href="./Gibbler/Hash.html">Gibbler::Hash</a>
+  
+    <li><a href="./Gibbler/History.html">Gibbler::History</a>
+  
+    <li><a href="./Gibbler/Nil.html">Gibbler::Nil</a>
+  
+    <li><a href="./Gibbler/NoHistory.html">Gibbler::NoHistory</a>
+  
+    <li><a href="./Gibbler/NoRevert.html">Gibbler::NoRevert</a>
+  
+    <li><a href="./Gibbler/Object.html">Gibbler::Object</a>
+  
+    <li><a href="./Gibbler/Range.html">Gibbler::Range</a>
+  
+    <li><a href="./Gibbler/String.html">Gibbler::String</a>
+  
+    <li><a href="./Gibbler/Time.html">Gibbler::Time</a>
+  
+    <li><a href="./Gibbler/VERSION.html">Gibbler::VERSION</a>
+  
+    <li><a href="./Gem.html">Gem</a>
+  
+    <li><a href="./Gem/Platform.html">Gem::Platform</a>
+  
+    <li><a href="./URI.html">URI</a>
+  
+    <li><a href="./URI/Generic.html">URI::Generic</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Bignum.html">Bignum</a>
+  
+    <li><a href="./Class.html">Class</a>
+  
+    <li><a href="./Date.html">Date</a>
+  
+    <li><a href="./DateTime.html">DateTime</a>
+  
+    <li><a href="./FalseClass.html">FalseClass</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./Fixnum.html">Fixnum</a>
+  
+    <li><a href="./Float.html">Float</a>
+  
+    <li><a href="./Hash.html">Hash</a>
+  
+    <li><a href="./Module.html">Module</a>
+  
+    <li><a href="./NilClass.html">NilClass</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Proc.html">Proc</a>
+  
+    <li><a href="./Range.html">Range</a>
+  
+    <li><a href="./Regexp.html">Regexp</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./Symbol.html">Symbol</a>
+  
+    <li><a href="./TempFile.html">TempFile</a>
+  
+    <li><a href="./Time.html">Time</a>
+  
+    <li><a href="./TrueClass.html">TrueClass</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<h1 id="label-Gibbler+-+v0.8+"><a href="Gibbler.html">Gibbler</a> - v0.8 </h1>
+
+<p>Git-like hashes and history for Ruby objects for Ruby 1.8, 1.9 and JRuby.</p>
+
+<p>Check out the <a
 href="http://www.rubypulse.com/episode-0.3-gibbler.html">screencast</a>
-created by Alex Peuchert.
-</p>
-<h2>Some things to keep in mind</h2>
-<ul>
-<li><p>
-Digest calculation may change between minor releases (as it did between 0.6
-and 0.7)
-</p>
-</li>
-<li><p>
-<a href="Gibbler.html">Gibbler</a> history is not suitable for very large
-objects since it keeps complete copies of the object in memory. This is a
-very early implementation of this feature so don&#8217;t rely on it for
-production code. 
-</p>
-</li>
-<li><p>
-Don&#8217;t forget to enjoy what you do!
-</p>
-</li>
-</ul>
-<h2>Example 1 &#8212; Basic Usage</h2>
-<pre>
-    
-    require 'gibbler'
-    
-    &quot;kimmy&quot;.gibbler              # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1
-    :kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    
-    config = {}
-    config.gibbler               # =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf
-    config.gibbled?              # =&gt; false
-    
-    config[:server] = {          
-      :users =&gt; [:dave, :ali],   
-      :ports =&gt; [22, 80, 443]    
-    }                            
-    config.gibbled?              # =&gt; true
-    config.gibbler               # =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8 
-    
-    config[:server][:users] &lt;&lt; :yanni
-    
-    config.gibbler               # =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f
-    
-    config.gibbler.short         # =&gt; 4c558a56
+created by Alex Peuchert.</p>
 
-    config.gibbler.base36        # =&gt; 8x00l83jov4j80i9vfzpaxr9jag23wf
-    
-    config.gibbler.base36.short  # =&gt; 8x00l83j
-    
-    
+<h2 id="label-Some+things+to+keep+in+mind">Some things to keep in mind</h2>
+<ul><li>
+<p>Digest calculation may change between minor releases (as it did between 0.6
+and 0.7)</p>
+</li><li>
+<p><a href="Gibbler.html">Gibbler</a> history is not suitable for very large
+objects since it keeps complete copies of the object in memory. This is a
+very early implementation of this feature so don't rely on it for
+production code.</p>
+</li><li>
+<p>Don't forget to enjoy what you do!</p>
+</li></ul>
+
+<h2 id="label-Example+1+--+Basic+Usage">Example 1 -- Basic Usage</h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler'</span>
+
+<span class="ruby-string">&quot;kimmy&quot;</span>.<span class="ruby-identifier">gibbler</span>              <span class="ruby-comment"># =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1</span>
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+
+<span class="ruby-identifier">config</span> = {}
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 4fdcadc66a38feb9c57faf3c5a18d5e76a6d29bf</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbled?</span>              <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-identifier">config</span>[:<span class="ruby-identifier">server</span>] = {          
+  :<span class="ruby-identifier">users</span> =<span class="ruby-operator">&gt;</span> [:<span class="ruby-identifier">dave</span>, :<span class="ruby-identifier">ali</span>],   
+  :<span class="ruby-identifier">ports</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">22</span>, <span class="ruby-value">80</span>, <span class="ruby-value">443</span>]    
+}                            
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbled?</span>              <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; ef23d605f8c4fc80a8e580f9a0e8dab8426454a8 </span>
+
+<span class="ruby-identifier">config</span>[:<span class="ruby-identifier">server</span>][:<span class="ruby-identifier">users</span>] <span class="ruby-operator">&lt;&lt;</span> :<span class="ruby-identifier">yanni</span>
+
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 4c558a56bc2abf5f8a845a69e47ceb5e0003683f</span>
+
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">short</span>         <span class="ruby-comment"># =&gt; 4c558a56</span>
+
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">base36</span>        <span class="ruby-comment"># =&gt; 8x00l83jov4j80i9vfzpaxr9jag23wf</span>
+
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">base36</span>.<span class="ruby-identifier">short</span>  <span class="ruby-comment"># =&gt; 8x00l83j</span>
 </pre>
-<h2>Example 2 &#8212; Object History </h2>
-<pre>
-    
-</pre>
-<p>
-<a href="Gibbler.html">Gibbler</a> can also keep track of the history of
+
+<h2 id="label-Example+2+--+Object+History+">Example 2 -- <a href="Object.html">Object</a> History </h2>
+
+<p><a href="Gibbler.html">Gibbler</a> can also keep track of the history of
 changes to an object. By default <a href="Gibbler.html">Gibbler</a>
 supports history for <a href="Hash.html">Hash</a>, <a
 href="Array.html">Array</a>, and <a href="String.html">String</a> objects.
-The <tt>gibbler_commit</tt> method creates a clone of the current object
-and stores in an instance variable using the current hash digest as the
-key. 
-</p>
-<pre>
-    require 'gibbler'
-    require 'gibbler/history'
-    
-    a = { :magic =&gt; :original }     
-    a.gibbler_commit             # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910
-    
-    a[:magic] = :updated           
-    a.gibbler_commit             # =&gt; b668098e16d08898532bf3aa33ce2253a3a4150e
-    
-    a[:magic] = :changed 
-    a.gibbler_commit             # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1
-    
-    a.gibbler_history            # =&gt; d7049916, b668098e, 0b11c377
-    
-    a.gibbler_revert! 'd7049916' # Return to a specific commit
-    a.gibbler                    # =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910
-    a                            # =&gt; { :magic =&gt; :original } 
-    
-    a.delete :magic
-    
-    a.gibbler_revert!            # Return to the previous commit  
-    a.gibbler                    # =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1
-    a                            # =&gt; { :magic =&gt; :changed }
-        
-    
-    a.gibbler_object 'b668098e'  # =&gt; { :magic =&gt; :updated }
-    a.gibbler_stamp              # =&gt; 2009-07-01 18:56:52 -0400
-    
-</pre>
-<p>
-<img src="http://delano.github.com/gibbler/img/whoababy.gif" />
-</p>
-<h2>Example 3 &#8212; Method Aliases</h2>
-<p>
-If you have control over the namespaces of your objects, you can use the
-method aliases to tighten up your code a bit. The &#8220;gibbler&#8221; and
-&#8220;gibbled?&#8221; methods can be accessed via &#8220;digest&#8221; and
-&#8220;changed?&#8221;, respectively. (The reason they&#8217;re not enabled
-by default is to avoid conflicts.)
-</p>
-<pre>
-  
-    require 'gibbler/aliases'
-    
-    &quot;kimmy&quot;.digest               # =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1
-    :kimmy.digest                # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    
-    a = [:a, :b, :c]
-    a.digest                     # =&gt; e554061823b8f06367555d1ee4c25b4ffee61944
-    a &lt;&lt; :d
-    a.changed?                   # =&gt; true
-</pre>
-<p>
-The history methods also have aliases which remove the
-&#8220;gibbler_&#8221; prefix.
-</p>
-<pre>
-    
-    require 'gibbler/aliases'
-    require 'gibbler/history'
-    
-    a = { :magic =&gt; :original }     
-    a.commit                     
-    a.history                    
-    a.revert!                    
-    # etc...
-    
-</pre>
-<h2>Example 4 &#8212; Different Digest types</h2>
-<p>
-By default <a href="Gibbler.html">Gibbler</a> creates SHA1 hashes. You can
-change this globally or per instance. 
-</p>
-<pre>
-    require 'gibbler'
-    
-    Gibbler.digest_type = Digest::MD5
-    
-    :kimmy.gibbler               # =&gt; 0c61ff17f46223f355759934154d5dcb
-    
-    :kimmy.gibbler(Digest::SHA1) # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    
-</pre>
-<p>
-In Jruby, you can grab the digest types from the openssl library. 
-</p>
-<pre>
-    require 'openssl'
-    
-    Gibbler.digest_type = OpenSSL::Digest::SHA256
-    
-    :kimmy.gibbler               # =&gt; 1069428e6273cf329436c3dce9b680d4d4e229d7b7...
-    
-    
-</pre>
-<h2>Example 5 &#8212; All your base</h2>
-<pre>
-    require 'gibbler'
-    
-    :kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    :kimmy.gibbler.base(16)      # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    :kimmy.gibbler.base(36)      # =&gt; 9nydr6mpv6w4k8ngo3jtx0jz1n97h7j
+The <code>gibbler_commit</code> method creates a clone of the current
+object and stores in an instance variable using the current hash digest as
+the key.</p>
 
-    :kimmy.gibbler.base(10)      # =&gt; 472384540402900668368761869477227308873774630879
-    :kimmy.gibbler.to_i          # =&gt; 472384540402900668368761869477227308873774630879
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler'</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler/history'</span>
+
+<span class="ruby-identifier">a</span> = { :<span class="ruby-identifier">magic</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">original</span> }     
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_commit</span>             <span class="ruby-comment"># =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910</span>
+
+<span class="ruby-identifier">a</span>[:<span class="ruby-identifier">magic</span>] = :<span class="ruby-identifier">updated</span>           
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_commit</span>             <span class="ruby-comment"># =&gt; b668098e16d08898532bf3aa33ce2253a3a4150e</span>
+
+<span class="ruby-identifier">a</span>[:<span class="ruby-identifier">magic</span>] = :<span class="ruby-identifier">changed</span> 
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_commit</span>             <span class="ruby-comment"># =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1</span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_history</span>            <span class="ruby-comment"># =&gt; d7049916, b668098e, 0b11c377</span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_revert!</span> <span class="ruby-string">'d7049916'</span> <span class="ruby-comment"># Return to a specific commit</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler</span>                    <span class="ruby-comment"># =&gt; d7049916ddb25e6cc438b1028fb957e5139f9910</span>
+<span class="ruby-identifier">a</span>                            <span class="ruby-comment"># =&gt; { :magic =&gt; :original } </span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">delete</span> :<span class="ruby-identifier">magic</span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_revert!</span>            <span class="ruby-comment"># Return to the previous commit  </span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler</span>                    <span class="ruby-comment"># =&gt; 0b11c377fccd44554a601e5d2b135c46dc1c4cb1</span>
+<span class="ruby-identifier">a</span>                            <span class="ruby-comment"># =&gt; { :magic =&gt; :changed }</span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_object</span> <span class="ruby-string">'b668098e'</span>  <span class="ruby-comment"># =&gt; { :magic =&gt; :updated }</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler_stamp</span>              <span class="ruby-comment"># =&gt; 2009-07-01 18:56:52 -0400</span>
 </pre>
-<h2>Example 6 &#8212; Global secret</h2>
-<p>
-<a href="Gibbler.html">Gibbler</a> can prepend all digest inputs with a
-global secret. You can set this once per project to ensure your
-project&#8217;s digests are unique. 
-</p>
-<pre>
-    require 'gibbler'
-    
-    :kimmy.gibbler               # =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df
-    
-    Gibbler.secret = &quot;sUp0r5ekRu7&quot;
-    
-    :kimmy.gibbler               # =&gt; 6c5f5aff4d809cec7e7da091214a35a2698489f8
-    
+
+<p><img src="http://delano.github.com/gibbler/img/whoababy.gif" /></p>
+
+<h2 id="label-Example+3+--+Method+Aliases">Example 3 -- Method Aliases</h2>
+
+<p>If you have control over the namespaces of your objects, you can use the
+method aliases to tighten up your code a bit. The "gibbler" and "gibbled?"
+methods can be accessed via "digest" and "changed?", respectively. (The
+reason they're not enabled by default is to avoid conflicts.)</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler/aliases'</span>
+
+<span class="ruby-string">&quot;kimmy&quot;</span>.<span class="ruby-identifier">digest</span>               <span class="ruby-comment"># =&gt; c8027100ecc54945ab15ddac529230e38b1ba6a1</span>
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">digest</span>                <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+
+<span class="ruby-identifier">a</span> = [:<span class="ruby-identifier">a</span>, :<span class="ruby-identifier">b</span>, :<span class="ruby-identifier">c</span>]
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">digest</span>                     <span class="ruby-comment"># =&gt; e554061823b8f06367555d1ee4c25b4ffee61944</span>
+<span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> :<span class="ruby-identifier">d</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">changed?</span>                   <span class="ruby-comment"># =&gt; true</span>
 </pre>
-<h2>Supported Classes</h2>
-<p>
-<a href="Gibbler.html">Gibbler</a> methods are available only to the
+
+<p>The history methods also have aliases which remove the "gibbler_" prefix.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler/aliases'</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler/history'</span>
+
+<span class="ruby-identifier">a</span> = { :<span class="ruby-identifier">magic</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">original</span> }     
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">commit</span>                     
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">history</span>                    
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">revert!</span>                    
+<span class="ruby-comment"># etc...</span>
+</pre>
+
+<h2 id="label-Example+4+--+Different+Digest+types">Example 4 -- Different Digest types</h2>
+
+<p>By default <a href="Gibbler.html">Gibbler</a> creates SHA1 hashes. You can
+change this globally or per instance.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler'</span>
+
+<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest_type</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 0c61ff17f46223f355759934154d5dcb</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>(<span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>) <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+</pre>
+
+<p>In Jruby, you can grab the digest types from the openssl library.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'openssl'</span>
+
+<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">digest_type</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA256</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 1069428e6273cf329436c3dce9b680d4d4e229d7b7...</span>
+</pre>
+
+<h2 id="label-Example+5+--+All+your+base">Example 5 -- All your base</h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler'</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">base</span>(<span class="ruby-value">16</span>)      <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">base</span>(<span class="ruby-value">36</span>)      <span class="ruby-comment"># =&gt; 9nydr6mpv6w4k8ngo3jtx0jz1n97h7j</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">base</span>(<span class="ruby-value">10</span>)      <span class="ruby-comment"># =&gt; 472384540402900668368761869477227308873774630879</span>
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>.<span class="ruby-identifier">to_i</span>          <span class="ruby-comment"># =&gt; 472384540402900668368761869477227308873774630879</span>
+</pre>
+
+<h2 id="label-Example+6+--+Global+secret">Example 6 -- Global secret</h2>
+
+<p><a href="Gibbler.html">Gibbler</a> can prepend all digest inputs with a
+global secret. You can set this once per project to ensure your project's
+digests are unique.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'gibbler'</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 52be7494a602d85ff5d8a8ab4ffe7f1b171587df</span>
+
+<span class="ruby-constant">Gibbler</span>.<span class="ruby-identifier">secret</span> = <span class="ruby-string">&quot;sUp0r5ekRu7&quot;</span>
+
+:<span class="ruby-identifier">kimmy</span>.<span class="ruby-identifier">gibbler</span>               <span class="ruby-comment"># =&gt; 6c5f5aff4d809cec7e7da091214a35a2698489f8</span>
+</pre>
+
+<h2 id="label-Supported+Classes">Supported Classes</h2>
+
+<p><a href="Gibbler.html">Gibbler</a> methods are available only to the
 classes which explicitly include them (see <a
 href="http://delano.github.com/gibbler">RDocs</a> for details on which
-classes are supported by default). You can also extend custom objects:
-</p>
-<pre>
-    class FullHouse
-      include Gibbler::Complex
-      attr_accessor :roles
-    end
-    
-    a = FullHouse.new
-    a.gibbler                    # =&gt; 4192d4cb59975813f117a51dcd4454ac16df6703
-    
-    a.roles = [:jesse, :joey, :danny, :kimmy, :michelle, :dj, :stephanie]
-    a.gibbler                    # =&gt; 6ea546919dc4caa2bab69799b71d48810a1b48fa
-    
+classes are supported by default). You can also extend custom objects:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">FullHouse</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">Gibbler</span><span class="ruby-operator">::</span><span class="ruby-constant">Complex</span>
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">roles</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">a</span> = <span class="ruby-constant">FullHouse</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler</span>                    <span class="ruby-comment"># =&gt; 4192d4cb59975813f117a51dcd4454ac16df6703</span>
+
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">roles</span> = [:<span class="ruby-identifier">jesse</span>, :<span class="ruby-identifier">joey</span>, :<span class="ruby-identifier">danny</span>, :<span class="ruby-identifier">kimmy</span>, :<span class="ruby-identifier">michelle</span>, :<span class="ruby-identifier">dj</span>, :<span class="ruby-identifier">stephanie</span>]
+<span class="ruby-identifier">a</span>.<span class="ruby-identifier">gibbler</span>                    <span class="ruby-comment"># =&gt; 6ea546919dc4caa2bab69799b71d48810a1b48fa</span>
 </pre>
-<p>
-<a href="Gibbler/Complex.html">Gibbler::Complex</a> creates a digest based
+
+<p><a href="Gibbler/Complex.html">Gibbler::Complex</a> creates a digest based
 on the name of the class and the names and values of the instance
 variables. See the <a href="http://delano.github.com/gibbler">RDocs</a> for
-other Gibbler::* types. 
-</p>
-<p>
-If you want to support all Ruby objects, add the following to your
-application:
-</p>
-<pre>
-    class Object
-      include Gibbler::String
-    end
+other Gibbler::* types.</p>
+
+<p>If you want to support all Ruby objects, add the following to your
+application:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Object</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">Gibbler</span><span class="ruby-operator">::</span><span class="ruby-constant">String</span>
+<span class="ruby-keyword">end</span>
 </pre>
-<p>
-<a href="Gibbler/String.html">Gibbler::String</a> creates a digest based on
+
+<p><a href="Gibbler/String.html">Gibbler::String</a> creates a digest based on
 the name of the class and the output of the to_s method. This is a
 reasonable default for most objects however any object that includes the
-object address in to_s (e.g. &#8220;Object:0x0x4ac9f0...&#8220;) will
-produce unreliable digests (because the address can change).
-</p>
-<p>
-As of 0.7 all <a href="Proc.html">Proc</a> objects have the same digest:
-<tt>12075835e94be34438376cd7a54c8db7e746f15d</tt>. 
-</p>
-<h2>Known Issues</h2>
-<ul>
-<li><p>
-gibbler or gibbled? must be called at least once before gibbled? will be
+object address in to_s (e.g. "Object:0x0x4ac9f0...") will produce
+unreliable digests (because the address can change).</p>
+
+<p>As of 0.7 all <a href="Proc.html">Proc</a> objects have the same digest:
+<code>12075835e94be34438376cd7a54c8db7e746f15d</code>.</p>
+
+<h2 id="label-Known+Issues">Known Issues</h2>
+<ul><li>
+<p>gibbler or gibbled? must be called at least once before gibbled? will be
 able to return a useful value (otherwise there is no previous digest value
-to compare to)
-</p>
-</li>
-<li><p>
-Digests for <a href="Bignum.html">Bignum</a> objects are different between
-Ruby and JRuby. Does anyone know why?
-</p>
-</li>
-<li><p>
-Digests for <a href="Proc.html">Proc</a> objects are different between Ruby
+to compare to)</p>
+</li><li>
+<p>Digests for <a href="Bignum.html">Bignum</a> objects are different between
+Ruby and JRuby. Does anyone know why?</p>
+</li><li>
+<p>Digests for <a href="Proc.html">Proc</a> objects are different between Ruby
 1.8 and 1.9 because Proc.arity returns different values and 1.8 has no
-lambda? method.
-</p>
-</li>
-</ul>
-<h2>Installation</h2>
-<p>
-Via Rubygems, one of:
-</p>
-<pre>
-    $ gem install gibbler
-    $ gem install delano-gibbler
-</pre>
-<p>
-or via download:
-</p>
-<ul>
-<li><p>
-<a
-href="http://github.com/delano/gibbler/tarball/latest">gibbler-latest.tar.gz</a>
-</p>
-</li>
-<li><p>
-<a
-href="http://github.com/delano/gibbler/zipball/latest">gibbler-latest.zip</a>
-</p>
-</li>
-</ul>
-<h2>What People Are Saying</h2>
-<ul>
-<li><p>
-&#8220;nice approach - everything is an object, every object is
-&#8216;gittish&#8217;&#8221; &#8212; @<a
-href="http://twitter.com/olgen_morten/statuses/2629909133">olgen_morten</a>
-</p>
-</li>
-<li><p>
-&#8220;gibbler is just awesome&#8221; &#8212; @<a
-href="http://twitter.com/TomK32/statuses/2618542872">TomK32</a>
-</p>
-</li>
-<li><p>
-&#8220;wie cool ist <a href="Gibbler.html">Gibbler</a> eigentlich?&#8221;
-&#8212; @<a href="http://twitter.com/we5/statuses/2615274279">we5</a>
-</p>
-</li>
-<li><p>
-&#8220;it&#8217;s nice idea and implementation!&#8221; &#8212; <a
-href="http://www.rubyinside.com/gibbler-git-like-hashes-and-history-for-ruby-objects-1980.html#comment-39092">HristoHristov</a>
-</p>
-</li>
-</ul>
-<h2>More Info</h2>
-<ul>
-<li><p>
-<a href="http://github.com/delano/gibbler">Codes</a>
-</p>
-</li>
-<li><p>
-<a href="http://delano.github.com/gibbler">RDocs</a>
-</p>
-</li>
-<li><p>
-<a href="http://solutious.com/">Sponsor</a>
-</p>
-</li>
-<li><p>
-<a href="http://www.youtube.com/watch?v=fipD4DdV48g">Inspiration</a>
-</p>
-</li>
-</ul>
-<h2>Thanks</h2>
-<ul>
-<li><p>
-Kalin Harvey (<a href="http://github.com/krrh">krrh</a>) for the early
-feedback and artistic direction. 
-</p>
-</li>
-<li><p>
-Alex Peuchert (<a href="http://github.com/aaalex">aaalex</a>) for creating
-the screencast.
-</p>
-</li>
-</ul>
-<h2>Credits</h2>
-<ul>
-<li><p>
-Delano (@solutious.com)
-</p>
-</li>
-</ul>
-<h2>License</h2>
-<p>
-See: <a href="LICENSE_txt.html">LICENSE.txt</a>
-</p>
+lambda? method.</p>
+</li></ul>
 
-	</div>
+<h2 id="label-Installation">Installation</h2>
 
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
-</body>
-</html>
+<p>Via Rubygems, one of:</p>
+
+<pre>$ gem install gibbler
+$ gem install delano-gibbler</pre>
+
+<p>or via download:</p>
+<ul><li>
+<p><a
+href="http://github.com/delano/gibbler/tarball/latest">gibbler-latest.tar.gz</a></p>
+</li><li>
+<p><a
+href="http://github.com/delano/gibbler/zipball/latest">gibbler-latest.zip</a></p>
+</li></ul>
+
+<h2 id="label-What+People+Are+Saying">What People Are Saying</h2>
+<ul><li>
+<p>"nice approach - everything is an object, every object is 'gittish'" -- @<a
+href="http://twitter.com/olgen_morten/statuses/2629909133">olgen_morten</a></p>
+</li><li>
+<p>"gibbler is just awesome" -- @<a
+href="http://twitter.com/TomK32/statuses/2618542872">TomK32</a></p>
+</li><li>
+<p>"wie cool ist <a href="Gibbler.html">Gibbler</a> eigentlich?" -- @<a
+href="http://twitter.com/we5/statuses/2615274279">we5</a></p>
+</li><li>
+<p>"it's nice idea and implementation!" -- <a
+href="http://www.rubyinside.com/gibbler-git-like-hashes-and-history-for-ruby-objects-1980.html#comment-39092">HristoHristov</a></p>
+</li></ul>
+
+<h2 id="label-More+Info">More Info</h2>
+<ul><li>
+<p><a href="http://github.com/delano/gibbler">Codes</a></p>
+</li><li>
+<p><a href="http://delano.github.com/gibbler">RDocs</a></p>
+</li><li>
+<p><a href="http://solutious.com/">Sponsor</a></p>
+</li><li>
+<p><a href="http://www.youtube.com/watch?v=fipD4DdV48g">Inspiration</a></p>
+</li></ul>
+
+<h2 id="label-Thanks">Thanks</h2>
+<ul><li>
+<p>Kalin Harvey (<a href="http://github.com/krrh">krrh</a>) for the early
+feedback and artistic direction.</p>
+</li><li>
+<p>Alex Peuchert (<a href="http://github.com/aaalex">aaalex</a>) for creating
+the screencast.</p>
+</li></ul>
+
+<h2 id="label-Credits">Credits</h2>
+<ul><li>
+<p>Delano (@solutious.com)</p>
+</li></ul>
+
+<h2 id="label-License">License</h2>
+
+<p>See: <a href="LICENSE_txt.html">LICENSE.txt</a></p>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 
