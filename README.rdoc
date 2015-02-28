@@ -228,7 +228,7 @@ or via download:
 
 == Credits
 
-* [Delano Mandelbaum](http://delanotes.com/) (@solutious.com)
+* [Delano Mandelbaum](http://delanotes.com/)
 
 
 == License
