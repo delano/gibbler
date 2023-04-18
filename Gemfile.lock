@@ -2,13 +2,13 @@ PATH
   remote: .
   specs:
     gibbler (0.10.0)
-      attic (~> 0.4.0)
+      attic (~> 0.5.3)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    attic (0.4.0)
+    attic (0.5.3)
     json (2.6.3)
     parallel (1.23.0)
     parser (3.2.2.0)
