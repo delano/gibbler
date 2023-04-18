@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/gibbler/version"
+require_relative "lib/gibbler"
 
 Gem::Specification.new do |spec|
   spec.name = "gibbler"
-  spec.version = Gibbler::VERSION
+  spec.version = '0.10.0'  # Gibbler::VERSION.to_s
   spec.authors = ["delano"]
   spec.email = ["delano@cpan.org"]
 
