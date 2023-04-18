@@ -65,7 +65,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ### Example 3 -- Object History
 
-Gibbler can also keep track of the history of changes to an object. By default Gibbler supports history for Hash, Array, and String objects. The <tt>gibbler_commit</tt> method creates a clone of the current object and stores in an instance variable using the current hash digest as the key.
+Gibbler can also keep track of the history of changes to an object. By default Gibbler supports history for Hash, Array, and String objects. The `gibbler_commit` method creates a clone of the current object and stores in an instance variable using the current hash digest as the key.
 
 ```ruby
     require 'gibbler/mixins'

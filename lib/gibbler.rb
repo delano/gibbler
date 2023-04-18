@@ -156,7 +156,7 @@ class Gibbler < String
     # without calculation.
     #
     # If the object is frozen, this will return the value of
-    # <tt>gibbler_cache</tt>.
+    # `gibbler_cache`.
     #
     def gibbler(digest_type=nil)
       #gibbler_debug caller[0]
@@ -169,7 +169,7 @@ class Gibbler < String
     #
     # This method compares the return value from digest with the
     # previous value returned by gibbler (the value is stored in
-    # the attic as <tt>gibbler_cache</tt>).
+    # the attic as `gibbler_cache`).
     # See Attic[http://github.com/delano/attic]
     def gibbled?
       self.gibbler_cache ||= self.gibbler
@@ -204,7 +204,7 @@ class Gibbler < String
 
     # A simple override on Object#freeze to create a digest
     # before the object is frozen. Once the object is frozen
-    # <tt>obj.gibbler</tt> will return the cached value with
+    # `obj.gibbler` will return the cached value with
     # out calculation.
     def freeze()
       gibbler_debug :FREEZE, self.class, caller[0] if Gibbler.debug?
@@ -301,11 +301,11 @@ class Gibbler < String
 
 
   # Creates a digest based on:
-  # * An Array of instance variable names or method names and values in the format: <tt>CLASS:LENGTH:VALUE</tt>
+  # * An Array of instance variable names or method names and values in the format: `CLASS:LENGTH:VALUE`
   #   * The gibbler method is called on each element so if it is a Hash or Array etc it
   #     will be parsed recursively according to the gibbler method for that class type.
   # * Digest the Array of digests
-  # * Return the digest for <tt>class:length:value</tt> where:
+  # * Return the digest for `class:length:value` where:
   #   * "class" is equal to the current object class (e.g. FullHouse).
   #   * "length" is the size of the Array of digests (which should equal
   #     the number of instance variables in the object).
@@ -381,10 +381,10 @@ class Gibbler < String
     end
   end
 
-  # Creates a digest based on: <tt>CLASS:LENGTH:VALUE</tt>.
-  # This method can be used for any class where the <tt>to_s</tt>
+  # Creates a digest based on: `CLASS:LENGTH:VALUE`.
+  # This method can be used for any class where the `to_s`
   # method returns an appropriate unique value for this instance.
-  # It's used by default for Symbol, Class, Fixnum, and Bignum.
+  # It's used by default for Symbol, Class, Integer.
   # e.g.
   #
   #     "str" => String:3:str => 509a839ca1744c72e37759e7684ff0daa3b61427
@@ -415,17 +415,17 @@ class Gibbler < String
   end
 
   # Creates a digest based on:
-  # * parse each key, value pair into an Array containing keys: <tt>CLASS:KEY:VALUE.__gibbler</tt>
+  # * parse each key, value pair into an Array containing keys: `CLASS:KEY:VALUE.__gibbler`
   #   * The gibbler method is called on each element so if it is a Hash or Array etc it
   #     will be parsed recursively according to the gibbler method for that class type.
   # * Digest the Array of digests
-  # * Return the digest for <tt>class:length:value</tt> where:
+  # * Return the digest for `class:length:value` where:
   #   * "class" is equal to the current object class (e.g. Hash).
   #   * "length" is the size of the Array of digests (which should equal
   #     the number of keys in the original Hash object).
   #   * "value" is the Array of digests joined with a colon (":").
   #
-  # This method can be used by any class with a <tt>keys</tt> method.
+  # This method can be used by any class with a `keys` method.
   #
   #     class MyOrderedHash
   #       include Gibbler::Hash
@@ -459,17 +459,17 @@ class Gibbler < String
   end
 
   # Creates a digest based on:
-  # * parse each element into an Array of digests like: <tt>CLASS:INDEX:VALUE.__gibbler</tt>
+  # * parse each element into an Array of digests like: `CLASS:INDEX:VALUE.__gibbler`
   #   * The gibbler method is called on each element so if it is a Hash or Array etc it
   #     will be parsed recursively according to the gibbler method for that class type.
   # * Digest the Array of digests
-  # * Return the digest for <tt>class:length:value</tt> where:
+  # * Return the digest for `class:length:value` where:
   #   * "class" is equal to the current object class (e.g. Array).
   #   * "length" is the size of the Array of digests (which should equal
   #     the number of elements in the original Array object).
   #   * "value" is the Array of digests joined with a colon (":").
   #
-  # This method can be used by any class with an <tt>each</tt> method.
+  # This method can be used by any class with an `each` method.
   #
   #     class MyNamedArray
   #       include Gibbler::Array
@@ -502,7 +502,7 @@ class Gibbler < String
     end
   end
 
-  # Creates a digest based on: <tt>CLASS:LENGTH:TIME</tt>.
+  # Creates a digest based on: `CLASS:LENGTH:TIME`.
   # Times are calculated based on the equivalent time in UTC.
   # e.g.
   #
@@ -533,7 +533,7 @@ class Gibbler < String
     end
   end
 
-  # Creates a digest based on: <tt>CLASS:LENGTH:DATETIME</tt>.
+  # Creates a digest based on: `CLASS:LENGTH:DATETIME`.
   # Dates are calculated based on the equivalent datetime in UTC.
   # e.g.
   #
@@ -565,7 +565,7 @@ class Gibbler < String
 
   end
 
-  # Creates a digest based on: <tt>CLASS:EXCLUDE?:FIRST:LAST</tt>
+  # Creates a digest based on: `CLASS:EXCLUDE?:FIRST:LAST`
   # where EXCLUDE? is a boolean value whether the Range excludes
   # the last value (i.e. 1...100) and FIRST and LAST are the values
   # returned by Range#first and Range#last.
@@ -603,7 +603,7 @@ class Gibbler < String
 
   end
 
-  # Creates a digest based on: <tt>CLASS:\0</tt>
+  # Creates a digest based on: `CLASS:\0`
   #
   # e.g.
   #
@@ -626,7 +626,7 @@ class Gibbler < String
     end
   end
 
-  # Creates a digest based on: <tt>CLASS:PATHLENGTH:PATH</tt>
+  # Creates a digest based on: `CLASS:PATHLENGTH:PATH`
   # where PATHLENGTH is the length of the PATH string. PATH is
   # not modified in any way (it is not converted to an absolute
   # path).
