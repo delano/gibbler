@@ -5,12 +5,11 @@ Git-like hashes and history for Ruby objects for Ruby 1.9+, 2.7+ and JRuby.
 Check out [this post on RubyInside](http://www.rubyinside.com/gibbler-git-like-hashes-and-history-for-ruby-objects-1980.html).
 
 * [Repo](https://github.com/delano/gibbler)
-* [Docs](https://delano.github.com/gibbler)
+* [Docs](https://delanotes.com/gibbler)
 * [Sponsor](https://solutious.com/)
 * [Inspiration](https://www.youtube.com/watch?v=fipD4DdV48g)
 
 ## Installation
-
 
 Install the gem and add to the application's Gemfile by executing:
 
@@ -98,7 +97,7 @@ Gibbler can also keep track of the history of changes to an object. By default G
     a.gibbler_stamp              # => 2009-07-01 18:56:52 -0400
 ```
 
-![](https://delano.github.com/gibbler/img/whoababy.gif)
+![](https://delanotes.com/gibbler/img/whoababy.gif)
 
 
 ### Example 4 -- Method Aliases
@@ -181,7 +180,7 @@ Gibbler can prepend all digest inputs with a global secret. You can set this onc
 
 ### Supported Classes
 
-Gibbler methods are available only to the classes which explicitly include them [see docs'(https://delano.github.com/gibbler) for details on which classes are supported by default). You can also extend custom objects:
+Gibbler methods are available only to the classes which explicitly include them [see docs'(https://delanotes.com/gibbler) for details on which classes are supported by default). You can also extend custom objects:
 
 ```ruby
     class FullHouse
