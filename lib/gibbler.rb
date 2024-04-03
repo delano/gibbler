@@ -120,8 +120,8 @@ class Gibbler < String
   module Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     def self.gibbler_fields
@@ -307,8 +307,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
       obj.class_eval do
         @__gibbler_fields = []
         def self.gibbler_fields
@@ -318,8 +318,8 @@ class Gibbler < String
           @__gibbler_fields.push *fields
         end
         def self.inherited(obj)
-          obj.extend Attic
-          obj.attic :gibbler_cache
+          obj.extend AtticReplacement
+          obj.attic_replacement :gibbler_cache
           fields = @__gibbler_fields.clone
           obj.class_eval do
             @__gibbler_fields = fields
@@ -385,8 +385,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -420,8 +420,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -464,8 +464,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -504,8 +504,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -535,8 +535,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -569,8 +569,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -598,8 +598,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
@@ -633,8 +633,8 @@ class Gibbler < String
     include Gibbler::Object
 
     def self.included(obj)
-      obj.extend Attic
-      obj.attic :gibbler_cache
+      obj.extend AtticReplacement
+      obj.attic_replacement :gibbler_cache
     end
 
     # Creates a digest for the current state of self.
