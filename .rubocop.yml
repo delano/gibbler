@@ -11,6 +11,7 @@ Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
 Layout/LineLength:
+  Enabled: true
   Max: 120
 
 Metrics/CyclomaticComplexity:
