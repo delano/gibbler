@@ -1,23 +1,10 @@
+# frozen_string_literal: true
+
 unless defined?(GIBBLER_LIB_HOME)
   GIBBLER_LIB_HOME = File.expand_path File.dirname(__FILE__)
 end
-
-%w{attic}.each do |dir|
-  $:.unshift File.join(GIBBLER_LIB_HOME, '..', '..', dir, 'lib')
-end
-
-require 'thread'
-require 'attic'
 require 'digest/sha1'
 
-# # frozen_string_literal: true
-
-# require_relative "gibbler/version"
-
-# module Gibbler
-#   class Error < StandardError; end
-#   # Your code goes here...
-# end
 
 # = Gibbler
 #
@@ -135,8 +122,6 @@ class Gibbler < String
     def self.included(obj)
       obj.extend Attic
       obj.attic :gibbler_cache
-      # Backwards compatibility for <= 0.6.2
-      obj.send :alias_method, :__gibbler_cache, :gibbler_cache
     end
 
     def self.gibbler_fields
@@ -661,28 +646,6 @@ class Gibbler < String
       a
     end
   end
-
-  ##--
-  ## NOTE: this was used when Gibbler supported "include Gibbler". We
-  ## now recommend the "include Gibbler::String" approach. This was an
-  ## interesting approach so I'm keeping the code here for reference.
-  ##def self.included(klass)
-  ##  # Find the appropriate Gibbler::* module for the inheriting class
-  ##  gibbler_module = Gibbler.const_get("#{klass}") rescue Gibbler::String
-  ##
-  ##  # If a Gibbler module is not defined, const_get bubbles up
-  ##  # through the stack to find the constant. This will return
-  ##  # the global class (likely itself) so we enforce a default.
-  ##  gibbler_module = Gibbler::String if gibbler_module == klass
-  ##  gibbler_debug :constant, klass, gibbler_module
-  ##
-  ##  klass.module_eval do
-  ##    include gibbler_module
-  ##  end
-  ##
-  ##end
-  ##++
-
 
 end
 
