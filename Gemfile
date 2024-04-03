@@ -2,9 +2,12 @@
 
 source "https://rubygems.org"
 
+ruby "3.1.0"
+
 # Specify your gem's dependencies in gibbler.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+gem "rake"
 
-gem "rubocop", "~> 1.21"
+# RuboCop version should be updated to the latest to ensure compatibility with Ruby 3.1
+gem "rubocop", require: false

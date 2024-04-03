@@ -1,6 +1,6 @@
 # Gibbler - v0.10.0
 
-Git-like hashes and history for Ruby objects for Ruby 1.9+, 2.7+ and JRuby.
+Git-like hashes and history for Ruby objects for Ruby 3.1+.
 
 Check out [this post on RubyInside](http://www.rubyinside.com/gibbler-git-like-hashes-and-history-for-ruby-objects-1980.html).
 
