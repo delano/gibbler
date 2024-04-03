@@ -1,3 +1,4 @@
+# rubocop:disable all
 require 'gibbler'
 
 class NilClass;            include Gibbler::Nil;       end
