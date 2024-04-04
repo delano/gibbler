@@ -41,15 +41,15 @@ require 'gibbler/mixins'
 
 # Populated Hash instance
   { :a => [1,2,3, [4,5,6]], :b => { :c => Class } }.gibbler
-#=> "1d4b62e1e9f2c097b0cefb6877bf47c2015cdd21"
+#=> "8faca3e967c94fe996fac1b5a5f595ef77e10df4"
 
 # Empty Array instance
   Array.gibbler
-#=> '48fda57c05684c9e5c3259557851943572183a21'
+#=> '83c4994bb01eefc06aa267aa99aa12b55696616e'
 
 # Populated Array instance
   [1, 2, :runtime, [3, "four", [Object, true]]].gibbler
-#=> "3e1d79d113a409a96a13ca3879fc4c42027aa74b"
+#=> "067c28147176992b95b9301817846abc85cbd7e4"
 
 # Knows when a Hash has not changed
   a = { :magic => true }
@@ -65,19 +65,26 @@ require 'gibbler/mixins'
   a.gibbled?
 #=> true
 
-# Two Symbol digests don't cross streams
-  a, b = :something, :anything
-  a.gibbler
-  b.gibbler
-  [a.gibbler_cache.short, b.gibbler_cache.short]
-#=> ["667ce086", "92d5f7cd"]
-
 # Two String digests don't cross streams"
-  a, b = 'something', 'anything'
-  a.gibbler
-  b.gibbler
-  [a.gibbler_cache.short, b.gibbler_cache.short]
+a, b = 'something', 'anything'
+a.gibbler
+b.gibbler
+[a.gibbler_cache.short, b.gibbler_cache.short]
 #=> ["ce0c7694", "c13b2f02"]
+
+# Strings aren't inherently "frozen" so their gibbler cache
+# values are primed after running gibbler the first time.
+  a = 'something'
+  a.gibbler
+  [a.frozen?, a.gibbler_cache]
+#=> [false, "ce0c7694"]
+
+# Symbols are inherently "frozen" so their gibbler cache
+# values are never populated.
+a = :something
+a.gibbler
+[a.frozen?, a.gibbler_cache]
+#=> [true, nil]
 
 ## DISABLED: If gibbler/history is required, there will be an
 ## additional attic_var (:gibbler_history), but only if the

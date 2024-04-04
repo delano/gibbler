@@ -148,7 +148,6 @@ class Gibbler < String
     def gibbler(digest_type=nil)
       #gibbler_debug caller[0]
       gibbler_debug :GIBBLER, self.class, self
-      # return self.gibbler_cache if self.frozen?
       ret = Gibbler::Digest.new self.__gibbler(digest_type)
       self.gibbler_cache = ret unless self.frozen?
       ret
