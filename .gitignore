@@ -9,8 +9,8 @@
 *.txt
 .ruby-version
 appendonlydir
-Gemfile.lock
 etc/config
 log
 tmp
 vendor
+*.gem
