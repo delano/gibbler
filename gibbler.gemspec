@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = "gibbler"
-    s.version     = "0.10.0"
+    s.version     = "1.0.0"
     s.summary     = "Git-like hashes for Ruby objects"
     s.description = "About Gibbler: Git-like hashes for Ruby objects"
     s.authors     = ["Delano Mandelbaum"]
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     s.required_ruby_version = Gem::Requirement.new(">= 2.6.8")
 
     s.add_dependency "rake", "~> 13.0"
+    s.add_dependency "attic", "~> 1.0"
 
     s.add_development_dependency "rubocop", "~> 1.0"
     s.add_development_dependency "tryouts", "~> 2.2"
