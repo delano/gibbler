@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = "gibbler"
-    s.version     = "0.10.0-RC1"
+    s.version     = "0.10.0"
     s.summary     = "Git-like hashes for Ruby objects"
     s.description = "A out Gibbler: Git-like hashes for Ruby objects"
     s.authors     = ["Delano Mandelbaum"]
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
     s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
     s.require_paths = ["lib"]
 
-    s.required_ruby_version = Gem::Requirement.new(">= 3.1.4")
+    s.required_ruby_version = Gem::Requirement.new(">= 2.6.8")
 
     s.add_dependency "rake"
 
