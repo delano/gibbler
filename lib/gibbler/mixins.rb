@@ -1,10 +1,10 @@
+# rubocop:disable all
 require 'gibbler'
 
 class NilClass;            include Gibbler::Nil;       end
 class String;              include Gibbler::String;    end
 class Symbol;              include Gibbler::String;    end
-class Fixnum;              include Gibbler::String;    end
-class Bignum;              include Gibbler::String;    end
+class Integer;             include Gibbler::String;    end
 class TrueClass;           include Gibbler::String;    end
 class FalseClass;          include Gibbler::String;    end
 class Class;               include Gibbler::Object;    end
@@ -23,7 +23,7 @@ class TempFile;            include Gibbler::File;      end
 class MatchData;           include Gibbler::String;    end
 class OpenStruct;          include Gibbler::Object;    end
 
-# URI::Generic must be included towards the 
+# URI::Generic must be included towards the
 # end b/c it runs Object#freeze statically.
 module URI; class Generic; include Gibbler::String;    end; end
 
@@ -31,4 +31,3 @@ module URI; class Generic; include Gibbler::String;    end; end
 module Gem; class Platform; include Gibbler::Complex;  end; end
 
 module Addressable; class URI; include Gibbler::String; end; end
-
